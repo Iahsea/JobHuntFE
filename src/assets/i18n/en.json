@@ -1,0 +1,23 @@
+{
+    "HEADER": {
+        "HOME": "Home",
+        "FIND_JOB": "Find Job",
+        "EMPLOYERS": "Employers",
+        "CANDIDATES": "Candidates",
+        "PRICING_PLANS": "Pricing Plans",
+        "CUSTOMER_SUPPORTS": "Customer Supports",
+        "PHONE": "+1-202-555-0178",
+        "SEARCH_PLACEHOLDER": "Job title, keyword, company",
+        "SIGN_IN": "Sign In"
+    },
+    "LANGUAGES": {
+        "ENGLISH": "English",
+        "VIETNAMESE": "Tiếng Việt",
+        "HINDI": "हिन्दी"
+    },
+    "COUNTRIES": {
+        "INDIA": "India",
+        "VIETNAM": "Vietnam",
+        "USA": "USA"
+    }
+}

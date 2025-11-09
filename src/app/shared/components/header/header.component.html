@@ -10,53 +10,61 @@
                        routerLinkActive="active-top-link"
                        [routerLinkActiveOptions]="{exact: true}"
                        class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
-                        Home
+                        {{ 'HEADER.HOME' | translate }}
                     </a>
                     <a routerLink="/jobs"
                        routerLinkActive="active-top-link"
                        class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
-                        Find Job
+                        {{ 'HEADER.FIND_JOB' | translate }}
                     </a>
                     <a routerLink="/companies"
                        routerLinkActive="active-top-link"
                        class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
-                        Employers
+                        {{ 'HEADER.EMPLOYERS' | translate }}
                     </a>
                     <a href="#"
                        class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
-                        Candidates
+                        {{ 'HEADER.CANDIDATES' | translate }}
                     </a>
                     <a href="#"
                        class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
-                        Pricing Plans
+                        {{ 'HEADER.PRICING_PLANS' | translate }}
                     </a>
                     <a href="#"
                        class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
-                        Customer Supports
+                        {{ 'HEADER.CUSTOMER_SUPPORTS' | translate }}
                     </a>
                 </nav>
 
                 <div class="flex items-center space-x-4">
-                    <a href="tel:+1-202-555-0178"
+                    <a [href]="'tel:' + ('HEADER.PHONE' | translate)"
                        class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
                         <mat-icon class="text-lg mr-1">phone</mat-icon>
-                        <span class="font-medium">+1-202-555-0178</span>
+                        <span class="font-medium">{{ 'HEADER.PHONE' | translate }}</span>
                     </a>
                     <button mat-button
                             [matMenuTriggerFor]="languageMenu"
                             class="flex items-center text-gray-700">
+                        @if (currentLanguage) {
                         <span class="flex items-center">
-                            <img src="https://flagcdn.com/w20/us.png"
-                                 alt="US Flag"
+                            <img [src]="currentLanguage.flag"
+                                 [alt]="currentLanguage.name"
                                  class="w-5 h-3.5 mr-2">
-                            <span class="font-medium">English</span>
+                            <span class="font-medium">{{ currentLanguage.name }}</span>
                         </span>
+                        }
                         <mat-icon class="text-lg ml-1">expand_more</mat-icon>
                     </button>
                     <mat-menu #languageMenu="matMenu">
-                        <button mat-menu-item>English</button>
-                        <button mat-menu-item>Tiếng Việt</button>
-                        <button mat-menu-item>हिन्दी</button>
+                        @for (lang of languages; track lang.code) {
+                        <button mat-menu-item
+                                (click)="changeLanguage(lang.code)">
+                            <img [src]="lang.flag"
+                                 [alt]="lang.name"
+                                 class="w-5 h-3.5 mr-2 inline-block">
+                            {{ lang.name }}
+                        </button>
+                        }
                     </mat-menu>
                 </div>
             </div>
@@ -81,21 +89,21 @@
                             [matMenuTriggerFor]="countryMenu"
                             class="flex items-center border border-gray-300 rounded-md px-4 py-2 hover:border-blue-600 transition-colors">
                         <span class="text-2xl mr-2">🇮🇳</span>
-                        <span class="font-medium text-gray-700">India</span>
+                        <span class="font-medium text-gray-700">{{ 'COUNTRIES.INDIA' | translate }}</span>
                         <mat-icon class="text-gray-500 ml-2">expand_more</mat-icon>
                     </button>
                     <mat-menu #countryMenu="matMenu">
                         <button mat-menu-item>
                             <span class="mr-2">🇮🇳</span>
-                            India
+                            {{ 'COUNTRIES.INDIA' | translate }}
                         </button>
                         <button mat-menu-item>
                             <span class="mr-2">🇻🇳</span>
-                            Vietnam
+                            {{ 'COUNTRIES.VIETNAM' | translate }}
                         </button>
                         <button mat-menu-item>
                             <span class="mr-2">🇺🇸</span>
-                            USA
+                            {{ 'COUNTRIES.USA' | translate }}
                         </button>
                     </mat-menu>
 
@@ -104,7 +112,7 @@
                         <mat-icon
                                   class="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-600">search</mat-icon>
                         <input type="text"
-                               placeholder="Job title, keyword, company"
+                               [placeholder]="'HEADER.SEARCH_PLACEHOLDER' | translate"
                                class="w-full pl-12 pr-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all">
                     </div>
                 </div>
@@ -114,7 +122,7 @@
                     <button mat-stroked-button
                             routerLink="/auth/login"
                             class=" !border-blue-600 !text-blue-600 !font-medium hover:!bg-blue-50 !px-6 mr-4">
-                        Sign In
+                        {{ 'HEADER.SIGN_IN' | translate }}
                     </button>
                 </div>
             </div>

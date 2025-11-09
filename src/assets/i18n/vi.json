@@ -1,0 +1,23 @@
+{
+    "HEADER": {
+        "HOME": "Trang chủ",
+        "FIND_JOB": "Tìm việc",
+        "EMPLOYERS": "Nhà tuyển dụng",
+        "CANDIDATES": "Ứng viên",
+        "PRICING_PLANS": "Gói dịch vụ",
+        "CUSTOMER_SUPPORTS": "Hỗ trợ khách hàng",
+        "PHONE": "+84-28-1234-5678",
+        "SEARCH_PLACEHOLDER": "Vị trí, từ khóa, công ty",
+        "SIGN_IN": "Đăng nhập"
+    },
+    "LANGUAGES": {
+        "ENGLISH": "English",
+        "VIETNAMESE": "Tiếng Việt",
+        "HINDI": "हिन्दी"
+    },
+    "COUNTRIES": {
+        "INDIA": "Ấn Độ",
+        "VIETNAM": "Việt Nam",
+        "USA": "Mỹ"
+    }
+}

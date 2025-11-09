@@ -1,0 +1,23 @@
+{
+    "HEADER": {
+        "HOME": "होम",
+        "FIND_JOB": "नौकरी खोजें",
+        "EMPLOYERS": "नियोक्ता",
+        "CANDIDATES": "उम्मीदवार",
+        "PRICING_PLANS": "मूल्य निर्धारण योजनाएं",
+        "CUSTOMER_SUPPORTS": "ग्राहक सहायता",
+        "PHONE": "+91-11-1234-5678",
+        "SEARCH_PLACEHOLDER": "नौकरी का शीर्षक, कीवर्ड, कंपनी",
+        "SIGN_IN": "साइन इन करें"
+    },
+    "LANGUAGES": {
+        "ENGLISH": "English",
+        "VIETNAMESE": "Tiếng Việt",
+        "HINDI": "हिन्दी"
+    },
+    "COUNTRIES": {
+        "INDIA": "भारत",
+        "VIETNAM": "वियतनाम",
+        "USA": "संयुक्त राज्य अमेरिका"
+    }
+}
