@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
     selector: 'app-auth-layout',
     standalone: true,
-    imports: [CommonModule, RouterOutlet, RouterModule, MatIconModule],
-    templateUrl: './auth-layout.component.html',
-    styleUrls: ['./auth-layout.component.scss']
+    imports: [RouterOutlet],
+    template: `
+    <div class="auth-container">
+      <router-outlet></router-outlet>  <!-- ← LoginComponent, RegisterComponent render ở đây -->
+    </div>
+  `
 })
-export class AuthLayoutComponent {
-    currentYear = new Date().getFullYear();
-}
+export class AuthLayoutComponent {}

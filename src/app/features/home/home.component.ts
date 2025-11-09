@@ -5,11 +5,12 @@ import { JobService } from '../../core/services/job.service';
 import { CompanyService } from '../../core/services/company.service';
 import { Job } from '../../models/job.model';
 import { Company } from '../../models/company.model';
+import { FeaturedJobsComponent } from './featured-jobs/featured-jobs.component';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, FeaturedJobsComponent],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })

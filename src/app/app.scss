@@ -1,0 +1,14 @@
+.main-container {
+    min-height: calc(100vh - 200px);
+    max-width: 72rem; /* = max-w-6xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Container chung cho tất cả nội dung chính */
+:host ::ng-deep router-outlet + * {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}

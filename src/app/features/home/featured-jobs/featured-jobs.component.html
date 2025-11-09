@@ -1,0 +1,56 @@
+<div class="border-t-4 border-blue-500 pt-6 mb-8"></div>
+<div class="flex justify-between items-center mb-6">
+    <h2 class="text-4xl font-bold">
+        <span class="text-gray-900">Featured</span>
+        <span class="text-blue-500">jobs</span>
+    </h2>
+    <a routerLink="/jobs"
+       class="flex items-center text-blue-600 font-medium hover:underline hover:text-blue-800 transition">
+        Show all jobs
+        <mat-icon class="ml-1"
+                  fontIcon="arrow_forward"></mat-icon>
+    </a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    @for (job of jobs; track job.id) {
+    <mat-card class="rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition h-full flex flex-col">
+        <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center">
+                <img *ngIf="job.companyLogo"
+                     [src]="job.companyLogo"
+                     alt="Company Logo"
+                     class="w-10 h-10 rounded-full bg-white object-contain border border-gray-200 mr-2" />
+                <div *ngIf="!job.companyLogo"
+                     class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-2">
+                    <mat-icon class="text-2xl text-gray-400">business</mat-icon>
+                </div>
+                <span class="font-semibold text-base text-gray-800">{{ job.title }}</span>
+            </div>
+            <span
+                  class="px-3 py-1 text-xs rounded-full border border-blue-200 text-blue-600 bg-blue-50 font-medium">Full
+                Time</span>
+        </div>
+        <div class="text-sm text-gray-500 mb-1">{{ job.companyName }} &middot; {{ job.location }}</div>
+        <div class="text-xs text-gray-400 mb-3 line-clamp-2">{{ job.description }}</div>
+        <div class="flex flex-wrap gap-2 mb-4">
+            @for (tag of job.tags ?? []; track $index) {
+            <span class="px-2 py-0.5 rounded-full text-xs font-medium"
+                  [ngClass]="{
+                  'bg-yellow-100 text-yellow-800': tag === 'Marketing',
+                  'bg-green-100 text-green-800': tag === 'Design',
+                  'bg-purple-100 text-purple-800': tag === 'Business',
+                  'bg-red-100 text-red-800': tag === 'Technology'
+                }">
+                {{ tag }}
+            </span>
+            }
+        </div>
+        <div class="mt-auto">
+            <a [routerLink]="['/jobs', job.id]"
+               class="block w-full text-center py-2 rounded-lg border border-blue-500 text-blue-600 font-medium hover:bg-blue-50 transition">
+                View details
+            </a>
+        </div>
+    </mat-card>
+    }
+</div>

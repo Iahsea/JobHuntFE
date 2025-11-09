@@ -6,7 +6,34 @@ export const routes: Routes = [
     {
         path: '',
         loadComponent: () =>
-            import('./features/home/home.component').then((m) => m.HomeComponent),
+            import('./shared/layouts/main-layout/main-layout.component').then((m) => m.MainLayoutComponent),
+        children: [
+            {
+                path: '',
+                loadComponent: () =>
+                    import('./features/home/home.component').then((m) => m.HomeComponent),
+            },
+            {
+                path: 'jobs',
+                loadComponent: () =>
+                    import('./features/job/job-list/job-list.component').then((m) => m.JobListComponent),
+            },
+            {
+                path: 'jobs/:id',
+                loadComponent: () =>
+                    import('./features/job/job-detail/job-detail.component').then((m) => m.JobDetailComponent),
+            },
+            {
+                path: 'companies',
+                loadComponent: () =>
+                    import('./features/company/company-list/company-list.component').then((m) => m.CompanyListComponent),
+            },
+            {
+                path: 'companies/:id',
+                loadComponent: () =>
+                    import('./features/company/company-detail/company-detail.component').then((m) => m.CompanyDetailComponent),
+            },
+        ],
     },
     {
         path: 'auth',
@@ -24,26 +51,6 @@ export const routes: Routes = [
                     import('./features/auth/register/register.component').then((m) => m.RegisterComponent),
             },
         ],
-    },
-    {
-        path: 'jobs',
-        loadComponent: () =>
-            import('./features/job/job-list/job-list.component').then((m) => m.JobListComponent),
-    },
-    {
-        path: 'jobs/:id',
-        loadComponent: () =>
-            import('./features/job/job-detail/job-detail.component').then((m) => m.JobDetailComponent),
-    },
-    {
-        path: 'companies',
-        loadComponent: () =>
-            import('./features/company/company-list/company-list.component').then((m) => m.CompanyListComponent),
-    },
-    {
-        path: 'companies/:id',
-        loadComponent: () =>
-            import('./features/company/company-detail/company-detail.component').then((m) => m.CompanyDetailComponent),
     },
     {
         path: 'admin',

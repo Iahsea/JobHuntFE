@@ -1,0 +1,28 @@
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from '../../components/header/header.component';
+import { FooterComponent } from '../../components/footer/footer.component';
+
+@Component({
+    selector: 'app-main-layout',
+    standalone: true,
+    imports: [RouterOutlet, HeaderComponent, FooterComponent],
+    template: `
+    <app-header></app-header>
+    <main class="main-container">
+      <router-outlet></router-outlet>
+    </main>
+    <app-footer></app-footer>
+  `,
+    styles: [`
+    .main-container {
+      min-height: calc(100vh - 200px);
+      max-width: 72rem;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  `]
+})
+export class MainLayoutComponent {}
