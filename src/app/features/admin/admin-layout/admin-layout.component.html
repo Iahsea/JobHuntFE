@@ -1,0 +1,27 @@
+<div class="admin-layout">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebar bg-dark">
+                <div class="sidebar-header p-3 text-white">
+                    <h5><i class="bi bi-gear-fill"></i> Admin Panel</h5>
+                </div>
+                <ul class="nav flex-column">
+                    @for (item of menuItems; track item.route) {
+                    <li class="nav-item">
+                        <a class="nav-link text-white"
+                           [routerLink]="item.route"
+                           routerLinkActive="active"
+                           [routerLinkActiveOptions]="{exact: item.route === '/admin'}">
+                            <i class="bi bi-{{ item.icon }}"></i> {{ item.label }}
+                        </a>
+                    </li>
+                    }
+                </ul>
+            </div>
+
+            <div class="col-md-10 main-content p-4">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

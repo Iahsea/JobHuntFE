@@ -1,0 +1,32 @@
+/* Active link style for top navigation */
+.active-top-link {
+    color: #2563eb;
+    border-color: #2563eb;
+}
+
+/* Custom Material button styles */
+::ng-deep .mat-mdc-outlined-button {
+    border-radius: 6px !important;
+}
+
+::ng-deep .mat-mdc-raised-button {
+    border-radius: 6px !important;
+}
+
+/* Search input focus effect */
+input:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Menu panel styling */
+::ng-deep .mat-mdc-menu-panel {
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Smooth transitions */
+* {
+    transition-property: color, background-color, border-color;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+}

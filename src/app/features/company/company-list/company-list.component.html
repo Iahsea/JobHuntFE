@@ -1,0 +1,79 @@
+<div class="company-list-page py-5">
+    <div class="container">
+        <h1 class="mb-4">Danh sách công ty</h1>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Tìm kiếm công ty..."
+                               [(ngModel)]="searchKeyword"
+                               (keyup.enter)="onSearch()" />
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary w-100"
+                                (click)="onSearch()">
+                            <i class="bi bi-search"></i> Tìm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (isLoading) {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary"
+                 role="status"></div>
+        </div>
+        } @else {
+        <div class="row">
+            @for (company of companies; track company.id) {
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card company-card h-100 text-center">
+                    <div class="card-body">
+                        <img [src]="company.logo || 'assets/images/default-company.png'"
+                             alt="{{ company.name }}"
+                             class="company-logo mb-3" />
+                        <h5 class="card-title">{{ company.name }}</h5>
+                        <p class="text-muted small mb-2">{{ company.industry }}</p>
+                        <p class="text-muted small">
+                            <i class="bi bi-geo-alt"></i> {{ company.address }}
+                        </p>
+                        <a [routerLink]="['/companies', company.id]"
+                           class="btn btn-outline-primary btn-sm">
+                            Xem chi tiết
+                        </a>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+        @if (totalPages > 1) {
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item"
+                    [class.disabled]="currentPage === 1">
+                    <a class="page-link"
+                       (click)="onPageChange(currentPage - 1)">Trước</a>
+                </li>
+                @for (page of [].constructor(totalPages); track $index) {
+                <li class="page-item"
+                    [class.active]="currentPage === $index + 1">
+                    <a class="page-link"
+                       (click)="onPageChange($index + 1)">{{ $index + 1 }}</a>
+                </li>
+                }
+                <li class="page-item"
+                    [class.disabled]="currentPage === totalPages">
+                    <a class="page-link"
+                       (click)="onPageChange(currentPage + 1)">Sau</a>
+                </li>
+            </ul>
+        </nav>
+        }
+        }
+    </div>
+</div>

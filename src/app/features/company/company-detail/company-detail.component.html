@@ -1,0 +1,104 @@
+<div class="company-detail-page py-5">
+    <div class="container">
+        @if (isLoading) {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary"
+                 role="status"></div>
+        </div>
+        } @else if (company) {
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <img [src]="company.logo || 'assets/images/default-company.png'"
+                             alt="{{ company.name }}"
+                             class="company-logo mb-3" />
+                    </div>
+                    <div class="col-md-9">
+                        <h1 class="h3 mb-3">{{ company.name }}</h1>
+                        <div class="company-info mb-3">
+                            <p class="mb-2">
+                                <i class="bi bi-briefcase text-primary"></i>
+                                <strong class="ms-2">Ngành nghề:</strong> {{ company.industry }}
+                            </p>
+                            @if (company.size) {
+                            <p class="mb-2">
+                                <i class="bi bi-people text-primary"></i>
+                                <strong class="ms-2">Quy mô:</strong> {{ company.size }} nhân viên
+                            </p>
+                            }
+                            <p class="mb-2">
+                                <i class="bi bi-geo-alt text-primary"></i>
+                                <strong class="ms-2">Địa chỉ:</strong> {{ company.address }}
+                            </p>
+                            <p class="mb-2">
+                                <i class="bi bi-telephone text-primary"></i>
+                                <strong class="ms-2">Điện thoại:</strong> {{ company.phone }}
+                            </p>
+                            <p class="mb-2">
+                                <i class="bi bi-envelope text-primary"></i>
+                                <strong class="ms-2">Email:</strong> {{ company.email }}
+                            </p>
+                            @if (company.website) {
+                            <p class="mb-2">
+                                <i class="bi bi-globe text-primary"></i>
+                                <strong class="ms-2">Website:</strong>
+                                <a [href]="company.website"
+                                   target="_blank">{{ company.website }}</a>
+                            </p>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="company-description">
+                    <h5 class="mb-3"><i class="bi bi-info-circle"></i> Giới thiệu công ty</h5>
+                    <div [innerHTML]="company.description"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="mb-4">
+                    <i class="bi bi-briefcase"></i> Vị trí đang tuyển ({{ companyJobs.length }})
+                </h5>
+                @if (companyJobs.length > 0) {
+                <div class="row">
+                    @for (job of companyJobs; track job.id) {
+                    <div class="col-md-6 mb-3">
+                        <div class="card job-card">
+                            <div class="card-body">
+                                <h6 class="card-title">{{ job.title }}</h6>
+                                <div class="job-meta mb-2">
+                                    <span class="badge bg-light text-dark me-2">
+                                        <i class="bi bi-geo-alt"></i> {{ job.location }}
+                                    </span>
+                                    <span class="badge bg-light text-dark">
+                                        <i class="bi bi-clock"></i> {{ job.jobType }}
+                                    </span>
+                                </div>
+                                @if (job.salary) {
+                                <p class="text-primary mb-2">
+                                    <i class="bi bi-cash"></i> {{ job.salary }}
+                                </p>
+                                }
+                                <a [routerLink]="['/jobs', job.id]"
+                                   class="btn btn-sm btn-outline-primary">
+                                    Xem chi tiết
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+                } @else {
+                <p class="text-muted">Hiện tại công ty chưa có vị trí tuyển dụng nào.</p>
+                }
+            </div>
+        </div>
+        }
+    </div>
+</div>

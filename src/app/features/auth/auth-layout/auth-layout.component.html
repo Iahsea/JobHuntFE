@@ -1,0 +1,23 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 flex flex-col">
+    <!-- Logo ở trên cùng -->
+    <div class="w-full py-6">
+        <div class="max-w-7xl mx-auto px-4">
+            <a routerLink="/"
+               class="flex items-center space-x-2 text-2xl font-bold text-gray-800">
+                <mat-icon class="text-blue-600"
+                          style="font-size: 2rem; width: 2rem; height: 2rem; line-height: 1;">business_center</mat-icon>
+                <span>MyJob</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Nội dung chính (login/register form) -->
+    <div class="flex-1 flex items-center justify-center px-4">
+        <router-outlet></router-outlet>
+    </div>
+
+    <!-- Footer đơn giản -->
+    <div class="w-full py-4 text-center text-sm text-gray-500">
+        © {{ currentYear }} MyJob - Job Portal. All rights Reserved
+    </div>
+</div>

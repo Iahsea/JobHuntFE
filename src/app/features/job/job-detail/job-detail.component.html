@@ -1,0 +1,128 @@
+<div class="job-detail-page py-5">
+    <div class="container">
+        @if (isLoading) {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary"
+                 role="status"></div>
+        </div>
+        } @else if (job) {
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start mb-4">
+                            <img [src]="job.companyLogo || 'assets/images/default-company.png'"
+                                 alt="Company Logo"
+                                 class="company-logo me-4" />
+                            <div class="flex-grow-1">
+                                <h1 class="h3 mb-2">{{ job.title }}</h1>
+                                <h5 class="text-muted mb-3">
+                                    <a [routerLink]="['/companies', job.companyId]">{{ job.companyName }}</a>
+                                </h5>
+                                <div class="job-meta">
+                                    <span class="badge bg-primary me-2">
+                                        <i class="bi bi-geo-alt"></i> {{ job.location }}
+                                    </span>
+                                    <span class="badge bg-success me-2">
+                                        <i class="bi bi-clock"></i> {{ job.jobType }}
+                                    </span>
+                                    <span class="badge bg-info">
+                                        <i class="bi bi-bar-chart"></i> {{ job.level }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (job.salary) {
+                        <div class="salary-info mb-4">
+                            <h5 class="text-primary">
+                                <i class="bi bi-cash-stack"></i> Mức lương: {{ job.salary }}
+                            </h5>
+                        </div>
+                        }
+
+                        <hr />
+
+                        <div class="job-description mb-4">
+                            <h5><i class="bi bi-file-text"></i> Mô tả công việc</h5>
+                            <div [innerHTML]="job.description"></div>
+                        </div>
+
+                        <hr />
+
+                        <div class="job-requirements mb-4">
+                            <h5><i class="bi bi-list-check"></i> Yêu cầu công việc</h5>
+                            <div [innerHTML]="job.requirements"></div>
+                        </div>
+
+                        @if (job.benefits) {
+                        <hr />
+                        <div class="job-benefits mb-4">
+                            <h5><i class="bi bi-gift"></i> Quyền lợi</h5>
+                            <div [innerHTML]="job.benefits"></div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card mb-4 sticky-top"
+                     style="top: 20px;">
+                    <div class="card-body">
+                        <button class="btn btn-primary btn-lg w-100 mb-3"
+                                (click)="applyJob()">
+                            <i class="bi bi-send"></i> Ứng tuyển ngay
+                        </button>
+                        <button class="btn btn-outline-primary w-100">
+                            <i class="bi bi-bookmark"></i> Lưu tin
+                        </button>
+
+                        <hr />
+
+                        <div class="job-info">
+                            <h6 class="mb-3">Thông tin chung</h6>
+                            <div class="info-item mb-3">
+                                <i class="bi bi-calendar3 text-primary"></i>
+                                <span class="ms-2">
+                                    <strong>Hạn nộp:</strong>
+                                    {{ job.deadline ? (job.deadline | date: 'dd/MM/yyyy') : 'Không giới hạn' }}
+                                </span>
+                            </div>
+                            <div class="info-item mb-3">
+                                <i class="bi bi-briefcase text-primary"></i>
+                                <span class="ms-2"><strong>Loại hình:</strong> {{ job.jobType }}</span>
+                            </div>
+                            <div class="info-item mb-3">
+                                <i class="bi bi-bar-chart text-primary"></i>
+                                <span class="ms-2"><strong>Cấp bậc:</strong> {{ job.level }}</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="bi bi-geo-alt text-primary"></i>
+                                <span class="ms-2"><strong>Địa điểm:</strong> {{ job.location }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if (relatedJobs.length > 0) {
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="mb-3">Việc làm liên quan</h6>
+                        @for (relatedJob of relatedJobs; track relatedJob.id) {
+                        <div class="related-job mb-3 pb-3 border-bottom">
+                            <h6 class="mb-1">
+                                <a [routerLink]="['/jobs', relatedJob.id]">{{ relatedJob.title }}</a>
+                            </h6>
+                            <p class="text-muted small mb-1">{{ relatedJob.companyName }}</p>
+                            <span class="badge bg-light text-dark">{{ relatedJob.location }}</span>
+                        </div>
+                        }
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+        }
+    </div>
+</div>

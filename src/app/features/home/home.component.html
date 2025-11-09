@@ -1,0 +1,152 @@
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Tìm công việc mơ ước của bạn</h1>
+                <p class="lead mb-4">
+                    Hàng ngàn cơ hội việc làm từ các công ty hàng đầu đang chờ đợi bạn
+                </p>
+                <div class="search-box mb-4">
+                    <div class="input-group input-group-lg">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Tìm kiếm công việc..." />
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Địa điểm" />
+                        <button class="btn btn-primary px-5"
+                                type="button">
+                            <i class="bi bi-search"></i> Tìm kiếm
+                        </button>
+                    </div>
+                </div>
+                <div class="popular-keywords">
+                    <span class="text-muted me-2">Từ khóa phổ biến:</span>
+                    <a href="#"
+                       class="badge bg-light text-dark me-2">Developer</a>
+                    <a href="#"
+                       class="badge bg-light text-dark me-2">Designer</a>
+                    <a href="#"
+                       class="badge bg-light text-dark me-2">Marketing</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="assets/images/hero-illustration.svg"
+                     alt="Hero"
+                     class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section py-5 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 col-6 mb-3">
+                <h2 class="display-5 fw-bold text-primary">1000+</h2>
+                <p class="text-muted">Việc làm</p>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <h2 class="display-5 fw-bold text-primary">500+</h2>
+                <p class="text-muted">Công ty</p>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <h2 class="display-5 fw-bold text-primary">5000+</h2>
+                <p class="text-muted">Ứng viên</p>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <h2 class="display-5 fw-bold text-primary">800+</h2>
+                <p class="text-muted">Tuyển dụng</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Jobs -->
+<section class="featured-jobs py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold">Việc làm nổi bật</h2>
+            <a routerLink="/jobs"
+               class="btn btn-outline-primary">Xem tất cả</a>
+        </div>
+
+        @if (isLoading) {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary"
+                 role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        } @else {
+        <div class="row">
+            @for (job of featuredJobs; track job.id) {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card job-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start mb-3">
+                            <img [src]="job.companyLogo || 'assets/images/default-company.png'"
+                                 alt="Company Logo"
+                                 class="company-logo me-3" />
+                            <div class="flex-grow-1">
+                                <h5 class="card-title mb-1">{{ job.title }}</h5>
+                                <p class="text-muted mb-0">{{ job.companyName }}</p>
+                            </div>
+                        </div>
+                        <div class="job-meta mb-3">
+                            <span class="badge bg-light text-dark me-2">
+                                <i class="bi bi-geo-alt"></i> {{ job.location }}
+                            </span>
+                            <span class="badge bg-light text-dark">
+                                <i class="bi bi-clock"></i> {{ job.jobType }}
+                            </span>
+                        </div>
+                        @if (job.salary) {
+                        <p class="text-primary fw-bold mb-3">
+                            <i class="bi bi-cash"></i> {{ job.salary }}
+                        </p>
+                        }
+                        <a [routerLink]="['/jobs', job.id]"
+                           class="btn btn-outline-primary btn-sm w-100">
+                            Xem chi tiết
+                        </a>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        }
+    </div>
+</section>
+
+<!-- Top Companies -->
+<section class="top-companies py-5 bg-light">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold">Công ty hàng đầu</h2>
+            <a routerLink="/companies"
+               class="btn btn-outline-primary">Xem tất cả</a>
+        </div>
+        <div class="row">
+            @for (company of topCompanies; track company.id) {
+            <div class="col-md-3 col-6 mb-4">
+                <div class="card company-card text-center h-100">
+                    <div class="card-body">
+                        <img [src]="company.logo || 'assets/images/default-company.png'"
+                             alt="{{ company.name }}"
+                             class="company-logo-large mb-3" />
+                        <h6 class="card-title">{{ company.name }}</h6>
+                        <p class="text-muted small">{{ company.industry }}</p>
+                        <a [routerLink]="['/companies', company.id]"
+                           class="btn btn-sm btn-outline-primary">
+                            Xem công ty
+                        </a>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

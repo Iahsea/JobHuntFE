@@ -1,0 +1,113 @@
+<div class="job-list-page py-5">
+    <div class="container">
+        <h1 class="mb-4">Tìm kiếm việc làm</h1>
+
+        <!-- Search Filters -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Tìm kiếm công việc..."
+                               [(ngModel)]="searchKeyword" />
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select"
+                                [(ngModel)]="selectedLocation">
+                            <option value="">Tất cả địa điểm</option>
+                            <option value="Hà Nội">Hà Nội</option>
+                            <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select"
+                                [(ngModel)]="selectedJobType">
+                            <option value="">Loại hình</option>
+                            <option value="full-time">Full-time</option>
+                            <option value="part-time">Part-time</option>
+                            <option value="contract">Contract</option>
+                            <option value="internship">Internship</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary w-100"
+                                (click)="onSearch()">
+                            <i class="bi bi-search"></i> Tìm kiếm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (isLoading) {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary"
+                 role="status"></div>
+        </div>
+        } @else {
+        <div class="row">
+            @for (job of jobs; track job.id) {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card job-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start mb-3">
+                            <img [src]="job.companyLogo || 'assets/images/default-company.png'"
+                                 alt="Company Logo"
+                                 class="company-logo me-3" />
+                            <div class="flex-grow-1">
+                                <h5 class="card-title mb-1">{{ job.title }}</h5>
+                                <p class="text-muted mb-0">{{ job.companyName }}</p>
+                            </div>
+                        </div>
+                        <div class="job-meta mb-3">
+                            <span class="badge bg-light text-dark me-2">
+                                <i class="bi bi-geo-alt"></i> {{ job.location }}
+                            </span>
+                            <span class="badge bg-light text-dark">
+                                <i class="bi bi-clock"></i> {{ job.jobType }}
+                            </span>
+                        </div>
+                        @if (job.salary) {
+                        <p class="text-primary fw-bold mb-3">
+                            <i class="bi bi-cash"></i> {{ job.salary }}
+                        </p>
+                        }
+                        <a [routerLink]="['/jobs', job.id]"
+                           class="btn btn-outline-primary btn-sm w-100">
+                            Xem chi tiết
+                        </a>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Pagination -->
+        @if (totalPages > 1) {
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item"
+                    [class.disabled]="currentPage === 1">
+                    <a class="page-link"
+                       (click)="onPageChange(currentPage - 1)">Trước</a>
+                </li>
+                @for (page of [].constructor(totalPages); track $index) {
+                <li class="page-item"
+                    [class.active]="currentPage === $index + 1">
+                    <a class="page-link"
+                       (click)="onPageChange($index + 1)">{{ $index + 1 }}</a>
+                </li>
+                }
+                <li class="page-item"
+                    [class.disabled]="currentPage === totalPages">
+                    <a class="page-link"
+                       (click)="onPageChange(currentPage + 1)">Sau</a>
+                </li>
+            </ul>
+        </nav>
+        }
+        }
+    </div>
+</div>
