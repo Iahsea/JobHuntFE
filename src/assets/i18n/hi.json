@@ -19,5 +19,10 @@
         "INDIA": "भारत",
         "VIETNAM": "वियतनाम",
         "USA": "संयुक्त राज्य अमेरिका"
+    },
+    "FEATURED_JOBS": {
+        "TITLE_FEATURED": "विशेष",
+        "TITLE_JOBS": "नौकरियां",
+        "SHOW_ALL": "सभी नौकरियां देखें"
     }
 }

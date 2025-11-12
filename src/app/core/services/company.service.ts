@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Company, CompanyCreate } from '../../models/company.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CompanyService {
-    private apiUrl = 'http://localhost:8080/api/companies'; // Thay đổi theo API của bạn
+    private apiUrl = `${environment.apiBaseUrl}/companies`; // Thay đổi theo API của bạn
 
     constructor(private http: HttpClient) { }
 

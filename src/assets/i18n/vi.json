@@ -19,5 +19,10 @@
         "INDIA": "Ấn Độ",
         "VIETNAM": "Việt Nam",
         "USA": "Mỹ"
+    },
+    "FEATURED_JOBS": {
+        "TITLE_FEATURED": "Nổi bật",
+        "TITLE_JOBS": "việc làm",
+        "SHOW_ALL": "Xem tất cả"
     }
 }

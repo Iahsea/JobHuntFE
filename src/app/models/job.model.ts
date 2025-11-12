@@ -7,7 +7,7 @@ export interface Job {
     salary?: string;
     location: string;
     jobType: 'full-time' | 'part-time' | 'contract' | 'internship';
-    level: 'intern' | 'junior' | 'middle' | 'senior' | 'lead';
+    level: string;
     companyId: number;
     companyName?: string;
     companyLogo?: string;

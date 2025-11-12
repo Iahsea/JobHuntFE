@@ -28,8 +28,6 @@ export class HeaderComponent implements OnInit {
     constructor(public languageService: LanguageService) { }
 
     ngOnInit(): void {
-        // Lý do: Lấy danh sách các ngôn ngữ hỗ trợ từ LanguageService để hiển thị trên giao diện (dropdown chọn ngôn ngữ).
-        // Nếu không gọi, biến languages sẽ rỗng và không render được danh sách ngôn ngữ.
         this.languages = this.languageService.getLanguages();
         this.updateCurrentLanguage();
     }

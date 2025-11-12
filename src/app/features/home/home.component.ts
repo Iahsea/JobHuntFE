@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { JobService } from '../../core/services/job.service';
@@ -12,43 +12,29 @@ import { FeaturedJobsComponent } from './featured-jobs/featured-jobs.component';
     standalone: true,
     imports: [CommonModule, RouterModule, FeaturedJobsComponent],
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-    featuredJobs: Job[] = [];
-    topCompanies: Company[] = [];
-    isLoading = true;
+    featuredJobs = signal(<Job[]>([]));
+    isLoading = signal(true);
 
-    constructor(
-        private jobService: JobService,
-        private companyService: CompanyService
-    ) { }
+    private jobService = inject(JobService);
+
 
     ngOnInit(): void {
         this.loadFeaturedJobs();
-        this.loadTopCompanies();
     }
 
     loadFeaturedJobs(): void {
-        this.jobService.getAllJobs(1, 6).subscribe({
+        this.jobService.getAllJobs().subscribe({
             next: (response) => {
-                this.featuredJobs = response.data || response;
-                this.isLoading = false;
+                this.featuredJobs.set(response.data.result); // cập nhật signal
+                console.log('Loaded jobs:', this.featuredJobs());
+                this.isLoading.set(false);
             },
             error: (error) => {
                 console.error('Error loading jobs:', error);
-                this.isLoading = false;
-            }
-        });
-    }
-
-    loadTopCompanies(): void {
-        this.companyService.getAllCompanies(1, 8).subscribe({
-            next: (response) => {
-                this.topCompanies = response.data || response;
-            },
-            error: (error) => {
-                console.error('Error loading companies:', error);
+                this.isLoading.set(false);
             }
         });
     }

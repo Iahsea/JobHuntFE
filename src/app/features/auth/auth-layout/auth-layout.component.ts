@@ -6,9 +6,9 @@ import { RouterOutlet } from '@angular/router';
     standalone: true,
     imports: [RouterOutlet],
     template: `
-    <div class="auth-container">
-      <router-outlet></router-outlet>  <!-- ← LoginComponent, RegisterComponent render ở đây -->
+    <div class="auth-container min-h-screen flex items-center justify-center bg-gray-50">
+      <router-outlet></router-outlet>
     </div>
   `
 })
-export class AuthLayoutComponent {}
+export class AuthLayoutComponent { }

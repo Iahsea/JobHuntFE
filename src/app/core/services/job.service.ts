@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Job, JobCreate } from '../../models/job.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class JobService {
-    private apiUrl = 'http://localhost:8080/api/jobs'; // Thay đổi theo API của bạn
+    private apiUrl = `${environment.apiBaseUrl}/jobs`; // Thay đổi theo API của bạn
 
     constructor(private http: HttpClient) { }
 

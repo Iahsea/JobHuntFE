@@ -25,4 +25,4 @@ import { FooterComponent } from '../../components/footer/footer.component';
     }
   `]
 })
-export class MainLayoutComponent {}
+export class MainLayoutComponent { }

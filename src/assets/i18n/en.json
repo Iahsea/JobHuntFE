@@ -19,5 +19,10 @@
         "INDIA": "India",
         "VIETNAM": "Vietnam",
         "USA": "USA"
+    },
+    "FEATURED_JOBS": {
+        "TITLE_FEATURED": "Featured",
+        "TITLE_JOBS": "jobs",
+        "SHOW_ALL": "Show all jobs"
     }
 }
