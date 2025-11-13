@@ -1,0 +1,35 @@
+::ng-deep .top-company-card {
+    border-width: 1.5px !important;
+    border-color: #e5e7eb !important;
+    transition:
+        border-color 0.3s,
+        box-shadow 0.3s;
+    border-radius: 10px !important;
+}
+::ng-deep .top-company-card:hover {
+    border-color: #2563eb !important;
+    box-shadow: 0 4px 24px 0 #2563eb22 !important;
+}
+
+::ng-deep .top-company-card .mat-stroked-button {
+    background: #eaf1fb !important;
+    color: #2563eb !important;
+    border: none !important;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    box-shadow: none !important;
+    transition:
+        background 0.2s,
+        color 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+::ng-deep .top-company-card .mat-stroked-button .mat-button-focus-overlay {
+    background: transparent !important;
+}
+::ng-deep .top-company-card .mat-stroked-button:hover,
+::ng-deep .top-company-card .mat-stroked-button.cdk-focused,
+::ng-deep .top-company-card .mat-stroked-button.cdk-program-focused {
+    background: #2563eb !important;
+    color: #fff !important;
+}

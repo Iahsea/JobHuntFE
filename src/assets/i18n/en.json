@@ -24,5 +24,10 @@
         "TITLE_FEATURED": "Featured",
         "TITLE_JOBS": "jobs",
         "SHOW_ALL": "Show all jobs"
+    },
+    "TOP_COMPANIES": {
+        "TITLE_TOP": "Top",
+        "TITLE_COMPANIES": "companies",
+        "OPEN_POSITION": "Open Position"
     }
 }

@@ -12,10 +12,10 @@ export class CompanyService {
 
     constructor(private http: HttpClient) { }
 
-    getAllCompanies(page: number = 1, limit: number = 10): Observable<any> {
+    getAllCompanies(page: number = 1, size: number = 10): Observable<any> {
         const params = new HttpParams()
             .set('page', page.toString())
-            .set('limit', limit.toString());
+            .set('size', size.toString());
         return this.http.get<any>(this.apiUrl, { params });
     }
 

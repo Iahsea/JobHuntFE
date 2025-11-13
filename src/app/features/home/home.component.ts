@@ -6,27 +6,31 @@ import { CompanyService } from '../../core/services/company.service';
 import { Job } from '../../models/job.model';
 import { Company } from '../../models/company.model';
 import { FeaturedJobsComponent } from './featured-jobs/featured-jobs.component';
+import { TopCompaniesComponent } from './top-companies/top-companies.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [CommonModule, RouterModule, FeaturedJobsComponent],
+    imports: [CommonModule, RouterModule, FeaturedJobsComponent, TopCompaniesComponent],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
     featuredJobs = signal(<Job[]>([]));
+    topCompanies = signal(<Company[]>([]));
     isLoading = signal(true);
 
     private jobService = inject(JobService);
-
+    private companyService = inject(CompanyService);
 
     ngOnInit(): void {
         this.loadFeaturedJobs();
+        this.loadTopCompanies();
     }
 
     loadFeaturedJobs(): void {
-        this.jobService.getAllJobs().subscribe({
+        this.jobService.getAllJobs(1, 8).subscribe({
             next: (response) => {
                 this.featuredJobs.set(response.data.result); // cập nhật signal
                 console.log('Loaded jobs:', this.featuredJobs());
@@ -35,6 +39,23 @@ export class HomeComponent implements OnInit {
             error: (error) => {
                 console.error('Error loading jobs:', error);
                 this.isLoading.set(false);
+            }
+        });
+    }
+
+    loadTopCompanies(): void {
+        this.companyService.getAllCompanies(1, 8).subscribe({
+            next: (response) => {
+                const companies = (response.data?.result || response.data || []).map((company: any) => ({
+                    ...company,
+                    logo: company.logo
+                        ? `${environment.imagesUrl}${company.logo}&folder=${environment.companyImageFolder}`
+                        : null
+                }));
+                this.topCompanies.set(companies);
+            },
+            error: (error) => {
+                console.error('Error loading companies:', error);
             }
         });
     }

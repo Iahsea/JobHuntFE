@@ -24,5 +24,10 @@
         "TITLE_FEATURED": "Nổi bật",
         "TITLE_JOBS": "việc làm",
         "SHOW_ALL": "Xem tất cả"
+    },
+    "TOP_COMPANIES": {
+        "TITLE_TOP": "Công ty",
+        "TITLE_COMPANIES": "hàng đầu",
+        "OPEN_POSITION": "Vị trí tuyển dụng"
     }
 }

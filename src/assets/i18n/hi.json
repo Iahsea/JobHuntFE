@@ -24,5 +24,10 @@
         "TITLE_FEATURED": "विशेष",
         "TITLE_JOBS": "नौकरियां",
         "SHOW_ALL": "सभी नौकरियां देखें"
+    },
+    "TOP_COMPANIES": {
+        "TITLE_TOP": "शीर्ष",
+        "TITLE_COMPANIES": "कंपनियां",
+        "OPEN_POSITION": "खुली स्थिति"
     }
 }

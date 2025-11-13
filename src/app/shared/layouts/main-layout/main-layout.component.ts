@@ -4,17 +4,17 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
-    selector: 'app-main-layout',
-    standalone: true,
-    imports: [RouterOutlet, HeaderComponent, FooterComponent],
-    template: `
+  selector: 'app-main-layout',
+  standalone: true,
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  template: `
     <app-header></app-header>
     <main class="main-container">
       <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>
   `,
-    styles: [`
+  styles: [`
     .main-container {
       min-height: calc(100vh - 200px);
       max-width: 72rem;

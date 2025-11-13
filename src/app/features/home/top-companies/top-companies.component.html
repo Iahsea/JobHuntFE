@@ -1,0 +1,62 @@
+<div class="py-8 bg-white top-companies-bg">
+    <div class="flex justify-between items-center mb-10">
+        <h2 class="text-3xl font-bold"
+            style="font-family: 'Montserrat', sans-serif;">
+            <span class="text-gray-900">{{ 'TOP_COMPANIES.TITLE_TOP' | translate }}</span>
+            <span class="text-blue-500">{{ 'TOP_COMPANIES.TITLE_COMPANIES' | translate }}</span>
+        </h2>
+        <div class="flex gap-2">
+            <button mat-icon-button
+                    class="!bg-white !border !border-gray-300 !rounded-lg hover:!bg-gray-100">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <button mat-icon-button
+                    class="!bg-white !border !border-gray-300 !rounded-lg hover:!bg-gray-100">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        @for (company of companies; track company.id) {
+        <mat-card
+                  class="top-company-card rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-300 p-6 flex flex-col bg-white items-stretch text-left group">
+
+            <!-- Row: Logo + Info -->
+            <div class="flex items-center gap-4 mb-6">
+                <!-- Logo -->
+                <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-gray-100 flex-shrink-0">
+                    @if (company.logo) {
+                    <img [src]="company.logo"
+                         [alt]="company.name"
+                         class="w-8 h-8 object-contain">
+                    } @else {
+                    <mat-icon class="text-3xl text-white">business</mat-icon>
+                    }
+                </div>
+                <!-- Info -->
+                <div class="flex flex-col justify-center min-w-0">
+                    <div class="flex items-center gap-2">
+                        <h3 class="text-base font-semibold text-gray-900 truncate max-w-[120px]">
+                            {{ company.name }}
+                        </h3>
+                    </div>
+                    <div class="flex items-center mt-1">
+                        <mat-icon class="text-base text-gray-400">location_on</mat-icon>
+                        <span class="text-sm text-gray-500 truncate max-w-[120px]">
+                            {{ company.address || 'United States' }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Open Position Button -->
+            <button mat-stroked-button
+                    [routerLink]="['/companies', company.id]"
+                    class="w-full border-0 bg-blue-50 text-blue-600 font-semibold py-2 rounded-md group-hover:bg-blue-600 group-hover:text-white transition">
+                {{ 'TOP_COMPANIES.OPEN_POSITION' | translate }}
+            </button>
+        </mat-card>
+        }
+    </div>
+</div>
