@@ -2,13 +2,20 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { HowItWorksComponent } from '../../../features/how-it-works/how-it-works.component';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    FooterComponent,
+    HowItWorksComponent
+  ],
   template: `
     <app-header></app-header>
+    <app-how-it-works></app-how-it-works>
     <main class="main-container">
       <router-outlet></router-outlet>
     </main>
@@ -22,6 +29,12 @@ import { FooterComponent } from '../../components/footer/footer.component';
       margin-right: auto;
       padding-left: 1rem;
       padding-right: 1rem;
+      background-color: #FFFFFF;
+
+      @media (max-width: 640px) {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
     }
   `]
 })

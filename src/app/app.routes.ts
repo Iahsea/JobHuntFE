@@ -3,6 +3,7 @@ import { authGuard } from './core/guards/auth.guard';
 import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
+    // MainLayoutComponent - Content có giới hạn width (max-w-6xl)
     {
         path: '',
         loadComponent: () =>
@@ -35,6 +36,15 @@ export const routes: Routes = [
             },
         ],
     },
+    // Full width layout (toàn màn hình)
+    {
+        path: 'explore',
+        loadComponent: () => import('./shared/layouts/full-width-layout/full-width-layout.component').then((m) => m.FullWidthLayoutComponent),
+        children: [
+
+        ]
+    },
+    // AuthLayoutComponent - Không có header/footer
     {
         path: 'auth',
         loadComponent: () =>
@@ -52,6 +62,7 @@ export const routes: Routes = [
             },
         ],
     },
+    // AdminLayoutComponent
     {
         path: 'admin',
         loadComponent: () =>

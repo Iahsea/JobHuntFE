@@ -29,5 +29,16 @@
         "TITLE_TOP": "Công ty",
         "TITLE_COMPANIES": "hàng đầu",
         "OPEN_POSITION": "Vị trí tuyển dụng"
+    },
+    "HOW_IT_WORKS": {
+        "TITLE": "Cách thức hoạt động",
+        "CREATE_ACCOUNT": "Tạo tài khoản",
+        "CREATE_ACCOUNT_DESC": "Đăng ký tài khoản dễ dàng và nhanh chóng.",
+        "UPLOAD_CV": "Tải CV/Hồ sơ",
+        "UPLOAD_CV_DESC": "Tải lên CV của bạn để nhà tuyển dụng tìm thấy.",
+        "FIND_JOB": "Tìm việc phù hợp",
+        "FIND_JOB_DESC": "Tìm kiếm công việc phù hợp với kỹ năng của bạn.",
+        "APPLY_JOB": "Ứng tuyển",
+        "APPLY_JOB_DESC": "Nộp đơn ứng tuyển cho các vị trí yêu thích."
     }
 }

@@ -29,5 +29,16 @@
         "TITLE_TOP": "Top",
         "TITLE_COMPANIES": "companies",
         "OPEN_POSITION": "Open Position"
+    },
+    "HOW_IT_WORKS": {
+        "TITLE": "How Jobpilot Works",
+        "CREATE_ACCOUNT": "Create an account",
+        "CREATE_ACCOUNT_DESC": "Sign up easily and quickly to get started.",
+        "UPLOAD_CV": "Upload CV/Resume",
+        "UPLOAD_CV_DESC": "Upload your CV so employers can find you.",
+        "FIND_JOB": "Find suitable jobs",
+        "FIND_JOB_DESC": "Search for jobs that match your skills.",
+        "APPLY_JOB": "Apply for jobs",
+        "APPLY_JOB_DESC": "Submit applications for your favorite positions."
     }
 }

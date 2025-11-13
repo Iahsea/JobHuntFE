@@ -1,0 +1,55 @@
+<section class="how-it-works-section">
+    <div class="container">
+        <h2 class="section-title">{{ 'HOW_IT_WORKS.TITLE' | translate }}</h2>
+
+        <div class="steps-container">
+            @for (step of steps; track $index) {
+            <div class="step-item"
+                 style="min-height: 200px; display: flex; flex-direction: column; justify-content: center;">
+                <!-- Icon Circle -->
+                <div class="icon-circle"
+                     style="margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center;">
+                    <mat-icon>{{ step.icon }}</mat-icon>
+                </div>
+
+                <!-- Step Content -->
+                <h3 class="step-title"
+                    style="text-align: center;">{{ step.title | translate }}</h3>
+                <p class="step-description"
+                   style="text-align: center;">{{ step.description | translate }}</p>
+
+                <!-- Curved Arrow (không hiện ở step cuối) -->
+                @if ($index < steps.length
+                  -
+                  1)
+                  {
+                  <div
+                  class="arrow-wrapper"
+                  [class.reverse]="$index % 2 === 1">
+                    <svg viewBox="0 0 200 80"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <marker id="arrowhead"
+                                    markerWidth="10"
+                                    markerHeight="10"
+                                    refX="9"
+                                    refY="3"
+                                    orient="auto">
+                                <polygon points="0 0, 10 3, 0 6"
+                                         fill="#3b82f6" />
+                            </marker>
+                        </defs>
+                        <path d="M 10 40 Q 100 10, 190 40"
+                              stroke="#3b82f6"
+                              stroke-width="2"
+                              stroke-dasharray="5,5"
+                              fill="none"
+                              marker-end="url(#arrowhead)" />
+                    </svg>
+            </div>
+            }
+        </div>
+        }
+    </div>
+    </div>
+</section>
