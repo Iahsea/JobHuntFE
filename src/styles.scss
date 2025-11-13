@@ -36,3 +36,28 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.scroll-reveal-init {
+  opacity: 0;
+  transition:
+    opacity var(--scroll-reveal-duration, 800ms) cubic-bezier(0.4, 0, 0.2, 1) var(--scroll-reveal-delay, 0ms),
+    transform var(--scroll-reveal-duration, 800ms) cubic-bezier(0.4, 0, 0.2, 1) var(--scroll-reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.scroll-reveal-init[data-reveal-from="bottom"] {
+  transform: translateY(50px);
+}
+.scroll-reveal-init[data-reveal-from="top"] {
+  transform: translateY(-50px);
+}
+.scroll-reveal-init[data-reveal-from="left"] {
+  transform: translateX(-50px);
+}
+.scroll-reveal-init[data-reveal-from="right"] {
+  transform: translateX(50px);
+}
+
+.scroll-reveal-show {
+  opacity: 1 !important;
+  transform: none !important;
+}

@@ -1,11 +1,20 @@
 <section class="how-it-works-section">
     <div class="container">
-        <h2 class="section-title">{{ 'HOW_IT_WORKS.TITLE' | translate }}</h2>
+        <h2 class="section-title"
+            appScrollReveal
+            [revealFrom]="'top'"
+            [revealDuration]="800">
+            {{ 'HOW_IT_WORKS.TITLE' | translate }}
+        </h2>
 
         <div class="steps-container">
-            @for (step of steps; track $index) {
+            @for (step of steps; track $index; let i = $index) {
             <div class="step-item"
-                 style="min-height: 200px; display: flex; flex-direction: column; justify-content: center;">
+                 appScrollReveal
+                 [revealFrom]="'bottom'"
+                 [revealDelay]="i * 150"
+                 [revealDuration]="700"
+                 style="min-height: 320px; display: flex; flex-direction: column; justify-content: center;">
                 <!-- Icon Circle -->
                 <div class="icon-circle"
                      style="margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center;">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../../core/services/language.service';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 @Component({
     selector: 'app-header',
@@ -16,12 +17,12 @@ import { LanguageService } from '../../../core/services/language.service';
         MatIconModule,
         MatButtonModule,
         MatMenuModule,
-        TranslateModule
+        TranslateModule,
     ],
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
     languages: any[] = [];
     currentLanguage: any;
 
@@ -40,5 +41,9 @@ export class HeaderComponent implements OnInit {
     private updateCurrentLanguage(): void {
         const currentLangCode = this.languageService.getCurrentLanguage();
         this.currentLanguage = this.languages.find(lang => lang.code === currentLangCode);
+    }
+
+    ngOnDestroy(): void {
+        // Cleanup logic if needed
     }
 }

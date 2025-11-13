@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Company } from '../../../models/company.model';
+import { ScrollRevealDirective } from '../../../shared/directives/scroll-reveal.directive';
 
 @Component({
     selector: 'app-top-companies',
@@ -16,7 +17,8 @@ import { Company } from '../../../models/company.model';
         MatIconModule,
         MatButtonModule,
         RouterModule,
-        TranslateModule
+        TranslateModule,
+        ScrollRevealDirective
     ],
     templateUrl: './top-companies.component.html',
     styleUrls: ['./top-companies.component.scss']

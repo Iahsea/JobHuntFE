@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
+import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
 
 @Component({
     selector: 'app-how-it-works',
     standalone: true,
-    imports: [CommonModule, MatIconModule, TranslateModule],
+    imports: [CommonModule, MatIconModule, TranslateModule, ScrollRevealDirective],
     templateUrl: './how-it-works.component.html',
     styleUrls: ['./how-it-works.component.scss']
 })

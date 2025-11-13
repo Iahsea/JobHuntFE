@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { StripHtmlPipe } from '../../../shared/pipes/strip-html.pipe';
 import { TranslateModule } from '@ngx-translate/core';
+import { ScrollRevealDirective } from '../../../shared/directives/scroll-reveal.directive';
 
 @Component({
     selector: 'app-featured-jobs',
@@ -15,7 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
         MatIconModule,
         RouterModule,
         StripHtmlPipe,
-        TranslateModule
+        TranslateModule,
+        ScrollRevealDirective
     ],
     templateUrl: './featured-jobs.component.html',
     styleUrls: ['./featured-jobs.component.scss']

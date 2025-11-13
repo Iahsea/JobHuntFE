@@ -1,4 +1,7 @@
-<div class="py-8 bg-white top-companies-bg">
+<div class="py-8 bg-white top-companies-bg"
+     appScrollReveal
+     [revealFrom]="'bottom'"
+     [revealDuration]="800">
     <div class="flex justify-between items-center mb-10">
         <h2 class="text-3xl font-bold"
             style="font-family: 'Montserrat', sans-serif;">
@@ -18,10 +21,12 @@
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        @for (company of companies; track company.id) {
-        <mat-card
+        @for (company of companies; track company.id; let i = $index) {
+        <mat-card appScrollReveal
+                  [revealFrom]="'bottom'"
+                  [revealDelay]="i * 100"
+                  [revealDuration]="600"
                   class="top-company-card rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-300 p-6 flex flex-col bg-white items-stretch text-left group">
-
             <!-- Row: Logo + Info -->
             <div class="flex items-center gap-4 mb-6">
                 <!-- Logo -->

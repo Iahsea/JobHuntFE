@@ -1,5 +1,8 @@
 <div class="py-8"
-     style="background-color: #FFFFFF;">
+     style="background-color: #FFFFFF;"
+     appScrollReveal
+     [revealFrom]="'bottom'"
+     [revealDuration]="800">
     <div class="flex justify-between items-center mb-10">
         <h2 class="text-3xl font-bold"
             style="font-family: 'Montserrat', sans-serif;">
@@ -14,8 +17,11 @@
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        @for (job of jobs; track job.id) {
-        <mat-card
+        @for (job of jobs; track job.id; let i = $index) {
+        <mat-card appScrollReveal
+                  [revealFrom]="'bottom'"
+                  [revealDelay]="i * 100"
+                  [revealDuration]="600"
                   class="rounded-none border-2 border-blue-500 hover:shadow-xl transition-shadow duration-300 p-5 flex flex-col h-full bg-white">
             <!-- Header: Logo + Badge -->
             <div class="flex items-start justify-between mb-3">
