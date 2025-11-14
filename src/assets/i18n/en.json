@@ -40,5 +40,13 @@
         "FIND_JOB_DESC": "Search for jobs that match your skills.",
         "APPLY_JOB": "Apply for jobs",
         "APPLY_JOB_DESC": "Submit applications for your favorite positions."
+    },
+    "HERO": {
+        "TITLE": "Find a job that suits your interest & skills.",
+        "SUBTITLE": "Discover thousands of job opportunities from top companies. Start your career journey today.",
+        "SEARCH_PLACEHOLDER": "Job title, Keyword...",
+        "LOCATION_PLACEHOLDER": "Your Location",
+        "SEARCH_BUTTON": "Find Job",
+        "SUGGESTION": "Suggestion"
     }
 }

@@ -7,7 +7,6 @@ import { Job } from '../../models/job.model';
 import { Company } from '../../models/company.model';
 import { FeaturedJobsComponent } from './featured-jobs/featured-jobs.component';
 import { TopCompaniesComponent } from './top-companies/top-companies.component';
-import { HowItWorksComponent } from '../how-it-works/how-it-works.component';
 import { environment } from '../../../environments/environment';
 
 @Component({

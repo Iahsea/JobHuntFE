@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HowItWorksComponent } from '../../../features/how-it-works/how-it-works.component';
+import { HeroBannerComponent } from '../../../features/home/hero-banner/hero-banner.component';
 
 @Component({
   selector: 'app-main-layout',
@@ -11,10 +12,12 @@ import { HowItWorksComponent } from '../../../features/how-it-works/how-it-works
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    HowItWorksComponent
+    HowItWorksComponent,
+    HeroBannerComponent
   ],
   template: `
     <app-header></app-header>
+    <app-hero-banner></app-hero-banner>
     <app-how-it-works></app-how-it-works>
     <main class="main-container">
       <router-outlet></router-outlet>

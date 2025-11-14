@@ -40,5 +40,13 @@
         "FIND_JOB_DESC": "Tìm kiếm công việc phù hợp với kỹ năng của bạn.",
         "APPLY_JOB": "Ứng tuyển",
         "APPLY_JOB_DESC": "Nộp đơn ứng tuyển cho các vị trí yêu thích."
+    },
+    "HERO": {
+        "TITLE": "Tìm công việc phù hợp với sở thích & kỹ năng của bạn.",
+        "SUBTITLE": "Khám phá hàng ngàn cơ hội việc làm từ các công ty hàng đầu. Bắt đầu hành trình sự nghiệp của bạn ngay hôm nay.",
+        "SEARCH_PLACEHOLDER": "Vị trí, từ khóa...",
+        "LOCATION_PLACEHOLDER": "Địa điểm của bạn",
+        "SEARCH_BUTTON": "Tìm việc",
+        "SUGGESTION": "Gợi ý"
     }
 }

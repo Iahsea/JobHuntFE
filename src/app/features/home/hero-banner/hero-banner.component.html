@@ -1,0 +1,87 @@
+<section class="hero-banner">
+    <!-- Video Background -->
+    <div class="video-background">
+        <video #bgVideo
+               autoplay
+               muted
+               loop
+               playsinline
+               preload="auto"
+               class="background-video">
+            <source src="assets/videos/video-homepage.mp4"
+                    type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+        <div class="container">
+            <div class="content-wrapper"
+                 appScrollReveal
+                 [revealFrom]="'bottom'"
+                 [revealDuration]="1000">
+                <h1 class="hero-title">
+                    {{ 'HERO.TITLE' | translate }}
+                </h1>
+                <p class="hero-subtitle">
+                    {{ 'HERO.SUBTITLE' | translate }}
+                </p>
+
+                <!-- Search Box -->
+                <div class="search-box"
+                     appScrollReveal
+                     [revealFrom]="'bottom'"
+                     [revealDelay]="200"
+                     [revealDuration]="800">
+                    <div class="search-input-group">
+                        <mat-icon class="input-icon">search</mat-icon>
+                        <input type="text"
+                               [(ngModel)]="searchKeyword"
+                               [placeholder]="'HERO.SEARCH_PLACEHOLDER' | translate"
+                               class="search-input">
+                    </div>
+
+                    <div class="location-input-group">
+                        <mat-icon class="input-icon">location_on</mat-icon>
+                        <input type="text"
+                               [(ngModel)]="searchLocation"
+                               [placeholder]="'HERO.LOCATION_PLACEHOLDER' | translate"
+                               class="search-input">
+                    </div>
+
+                    <button mat-flat-button
+                            color="primary"
+                            class="find-job-btn"
+                            (click)="onSearch()">
+                        {{ 'HERO.SEARCH_BUTTON' | translate }}
+                    </button>
+                </div>
+
+                <!-- Popular Keywords -->
+                <div class="suggestion-wrapper"
+                     appScrollReveal
+                     [revealFrom]="'bottom'"
+                     [revealDelay]="400"
+                     [revealDuration]="800">
+                    <span class="suggestion-label">{{ 'HERO.SUGGESTION' | translate }}:</span>
+                    <a href="#"
+                       class="suggestion-link">Designer</a>
+                    <span class="separator">,</span>
+                    <a href="#"
+                       class="suggestion-link">Programming</a>
+                    <span class="separator">,</span>
+                    <a href="#"
+                       class="suggestion-link">Digital Marketing</a>
+                    <span class="separator">,</span>
+                    <a href="#"
+                       class="suggestion-link">Video</a>
+                    <span class="separator">,</span>
+                    <a href="#"
+                       class="suggestion-link">Animation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

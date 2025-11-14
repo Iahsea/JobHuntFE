@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../../core/services/language.service';
-import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
+// import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 @Component({
     selector: 'app-header',
