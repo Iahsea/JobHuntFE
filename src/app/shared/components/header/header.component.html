@@ -1,130 +1,79 @@
 <!-- Wrapper div tổng cho header -->
-<div class="w-full bg-white border-b border-gray-200">
+<div class="w-full bg-white border-b border-gray-200 header-container">
+    <div class="px-6"> <!-- Xóa max-w-6xl mx-auto để header full width, chỉ giữ padding ngang -->
+        <div class="flex items-center justify-between h-16 header-inner">
+            <!-- Logo -->
+            <a routerLink="/"
+               class="flex items-center space-x-2 text-2xl font-bold text-gray-800 logo">
+                <mat-icon class="text-blue-600"
+                          style="font-size: 2rem; width: 2rem; height: 2rem; line-height: 1;"
+                          class="logo-icon">business_center</mat-icon>
+                <span class="logo-text">MyJob</span>
+            </a>
 
-    <!-- Top bar with navigation links (màu xám nhẹ) -->
-    <div class="w-full bg-gray-100">
-        <div class="main-content max-w-6xl mx-auto px-4">
-            <div class="flex items-center justify-between h-10 text-sm">
-                <nav class="flex items-center space-x-6">
-                    <a routerLink="/"
-                       routerLinkActive="active-top-link"
-                       [routerLinkActiveOptions]="{exact: true}"
-                       class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
-                        {{ 'HEADER.HOME' | translate }}
-                    </a>
-                    <a routerLink="/jobs"
-                       routerLinkActive="active-top-link"
-                       class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
-                        {{ 'HEADER.FIND_JOB' | translate }}
-                    </a>
-                    <a routerLink="/companies"
-                       routerLinkActive="active-top-link"
-                       class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
-                        {{ 'HEADER.EMPLOYERS' | translate }}
-                    </a>
-                    <a href="#"
-                       class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
-                        {{ 'HEADER.CANDIDATES' | translate }}
-                    </a>
-                    <a href="#"
-                       class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
-                        {{ 'HEADER.PRICING_PLANS' | translate }}
-                    </a>
-                    <a href="#"
-                       class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
-                        {{ 'HEADER.CUSTOMER_SUPPORTS' | translate }}
-                    </a>
-                </nav>
-
-                <div class="flex items-center space-x-4">
-                    <a [href]="'tel:' + ('HEADER.PHONE' | translate)"
-                       class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
-                        <mat-icon class="text-lg mr-1">phone</mat-icon>
-                        <span class="font-medium">{{ 'HEADER.PHONE' | translate }}</span>
-                    </a>
-                    <button mat-button
-                            [matMenuTriggerFor]="languageMenu"
-                            class="flex items-center text-gray-700">
-                        @if (currentLanguage) {
-                        <span class="flex items-center">
-                            <img [src]="currentLanguage.flag"
-                                 [alt]="currentLanguage.name"
-                                 class="w-5 h-3.5 mr-2">
-                            <span class="font-medium">{{ currentLanguage.name }}</span>
-                        </span>
-                        }
-                        <mat-icon class="text-lg ml-1">expand_more</mat-icon>
-                    </button>
-                    <mat-menu #languageMenu="matMenu">
-                        @for (lang of languages; track lang.code) {
-                        <button mat-menu-item
-                                (click)="changeLanguage(lang.code)">
-                            <img [src]="lang.flag"
-                                 [alt]="lang.name"
-                                 class="w-5 h-3.5 mr-2 inline-block">
-                            {{ lang.name }}
-                        </button>
-                        }
-                    </mat-menu>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main header with logo and search -->
-    <div class="w-full bg-white">
-        <div class="main-content max-w-6xl mx-auto px-4">
-            <div class="flex items-center justify-between py-4">
-                <!-- Logo -->
+            <!-- Navigation links -->
+            <nav class="flex items-center space-x-6 nav-links">
                 <a routerLink="/"
-                   class="flex items-center space-x-2 text-2xl font-bold text-gray-800">
-                    <mat-icon class="text-blue-600"
-                              style="font-size: 2rem; width: 2rem; height: 2rem; line-height: 1;">business_center</mat-icon>
-                    <span>MyJob</span>
+                   routerLinkActive="active-top-link"
+                   [routerLinkActiveOptions]="{exact: true}"
+                   class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
+                    {{ 'HEADER.HOME' | translate }}
                 </a>
+                <a routerLink="/jobs"
+                   routerLinkActive="active-top-link"
+                   class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
+                    {{ 'HEADER.FIND_JOB' | translate }}
+                </a>
+                <a routerLink="/companies"
+                   routerLinkActive="active-top-link"
+                   class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
+                    {{ 'HEADER.EMPLOYERS' | translate }}
+                </a>
+                <a href="#"
+                   class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
+                    {{ 'HEADER.CANDIDATES' | translate }}
+                </a>
+                <a href="#"
+                   class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
+                    {{ 'HEADER.PRICING_PLANS' | translate }}
+                </a>
+                <a href="#"
+                   class="text-gray-700 hover:text-blue-600 transition-colors font-medium border-b-2 border-transparent hover:border-blue-600 pb-2.5">
+                    {{ 'HEADER.CUSTOMER_SUPPORTS' | translate }}
+                </a>
+            </nav>
 
-                <!-- Country selector and search -->
-                <div class="flex items-center space-x-4 max-w-xl w-full min-w-0 mx-8">
-                    <button mat-button
-                            [matMenuTriggerFor]="countryMenu"
-                            class="flex items-center border border-gray-300 rounded-md px-4 py-2 hover:border-blue-600 transition-colors">
-                        <span class="text-2xl mr-2">🇮🇳</span>
-                        <span class="font-medium text-gray-700">{{ 'COUNTRIES.INDIA' | translate }}</span>
-                        <mat-icon class="text-gray-500 ml-2">expand_more</mat-icon>
+            <!-- Right side: phone, language, auth -->
+            <div class="flex items-center space-x-4 header-actions">
+                <button mat-button
+                        [matMenuTriggerFor]="languageMenu"
+                        class="flex items-center text-gray-700 lang-btn">
+                    @if (currentLanguage) {
+                    <span class="flex items-center">
+                        <img [src]="currentLanguage.flag"
+                             [alt]="currentLanguage.name"
+                             class="w-5 h-3.5 mr-2 lang-flag">
+                        <span class="font-medium lang-name">{{ currentLanguage.name }}</span>
+                    </span>
+                    }
+                    <mat-icon class="text-lg ml-1 lang-icon">expand_more</mat-icon>
+                </button>
+                <mat-menu #languageMenu="matMenu">
+                    @for (lang of languages; track lang.code) {
+                    <button mat-menu-item
+                            (click)="changeLanguage(lang.code)">
+                        <img [src]="lang.flag"
+                             [alt]="lang.name"
+                             class="w-5 h-3.5 mr-2 inline-block lang-flag">
+                        {{ lang.name }}
                     </button>
-                    <mat-menu #countryMenu="matMenu">
-                        <button mat-menu-item>
-                            <span class="mr-2">🇮🇳</span>
-                            {{ 'COUNTRIES.INDIA' | translate }}
-                        </button>
-                        <button mat-menu-item>
-                            <span class="mr-2">🇻🇳</span>
-                            {{ 'COUNTRIES.VIETNAM' | translate }}
-                        </button>
-                        <button mat-menu-item>
-                            <span class="mr-2">🇺🇸</span>
-                            {{ 'COUNTRIES.USA' | translate }}
-                        </button>
-                    </mat-menu>
-
-                    <!-- Search bar -->
-                    <div class="flex-1 relative min-w-0">
-                        <mat-icon
-                                  class="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-600">search</mat-icon>
-                        <input type="text"
-                               [placeholder]="'HEADER.SEARCH_PLACEHOLDER' | translate"
-                               class="w-full pl-12 pr-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all">
-                    </div>
-                </div>
-
-                <!-- Auth buttons -->
-                <div class="flex items-center justify-end">
-                    <button mat-stroked-button
-                            routerLink="/auth/login"
-                            class=" !border-blue-600 !text-blue-600 !font-medium hover:!bg-blue-50 !px-6 mr-4">
-                        {{ 'HEADER.SIGN_IN' | translate }}
-                    </button>
-                </div>
+                    }
+                </mat-menu>
+                <button mat-stroked-button
+                        routerLink="/auth/login"
+                        class="!border-blue-600 !text-blue-600 !font-medium hover:!bg-blue-50 !px-6 !rounded-full sign-in-btn">
+                    {{ 'HEADER.SIGN_IN' | translate }}
+                </button>
             </div>
         </div>
     </div>

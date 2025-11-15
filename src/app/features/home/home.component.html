@@ -1,16 +1,6 @@
-<!-- Top Companies -->
-<section class="top-companies py-5 bg-light">
-    <div class="container">
-        <app-top-companies [companies]="topCompanies()"></app-top-companies>
-    </div>
-</section>
-
-<!-- Featured Jobs -->
-<section class="featured-jobs py-5">
-    <div class="container">
-
-        <app-featured-jobs [jobs]="featuredJobs()"></app-featured-jobs>
-
-
-    </div>
-</section>
+<app-hero-banner></app-hero-banner>
+<app-how-it-works></app-how-it-works>
+<div class="home-content">
+    <app-featured-jobs [jobs]="featuredJobs()"></app-featured-jobs>
+    <app-top-companies [companies]="topCompanies()"></app-top-companies>
+</div>

@@ -1,0 +1,9 @@
+.home-content {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    @media (max-width: 640px) {
+        padding: 0 0.75rem;
+    }
+}

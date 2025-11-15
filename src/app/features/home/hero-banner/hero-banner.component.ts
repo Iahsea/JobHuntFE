@@ -51,5 +51,4 @@ export class HeroBannerComponent implements AfterViewInit {
             window.addEventListener('click', playOnInteraction);
         });
     }
-
 }

@@ -7,6 +7,8 @@ import { Job } from '../../models/job.model';
 import { Company } from '../../models/company.model';
 import { FeaturedJobsComponent } from './featured-jobs/featured-jobs.component';
 import { TopCompaniesComponent } from './top-companies/top-companies.component';
+import { HowItWorksComponent } from '../how-it-works/how-it-works.component';
+import { HeroBannerComponent } from './hero-banner/hero-banner.component';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -15,6 +17,8 @@ import { environment } from '../../../environments/environment';
     imports: [
         CommonModule,
         RouterModule,
+        HeroBannerComponent,
+        HowItWorksComponent,
         FeaturedJobsComponent,
         TopCompaniesComponent,
     ],
