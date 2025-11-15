@@ -39,9 +39,7 @@ export class DashboardComponent implements OnInit {
         });
 
         this.companyService.getAllCompanies(1, 1).subscribe({
-            next: (response) => {
-                this.stats.totalCompanies = response.total || 0;
-            }
+
         });
 
         this.userService.getAllUsers().subscribe({

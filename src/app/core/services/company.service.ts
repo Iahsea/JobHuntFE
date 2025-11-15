@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Company, CompanyCreate } from '../../models/company.model';
+import { CompanyDetailResponseDto, CompanyResponseDto, BaseResponse, CompanyListResponseDto } from '../../models/dto';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -12,31 +13,31 @@ export class CompanyService {
 
     constructor(private http: HttpClient) { }
 
-    getAllCompanies(page: number = 1, size: number = 10): Observable<any> {
+    getAllCompanies(page: number = 1, size: number = 10): Observable<BaseResponse<CompanyListResponseDto>> {
         const params = new HttpParams()
             .set('page', page.toString())
             .set('size', size.toString());
-        return this.http.get<any>(this.apiUrl, { params });
+        return this.http.get<BaseResponse<CompanyListResponseDto>>(this.apiUrl, { params });
     }
 
-    getCompanyById(id: number): Observable<Company> {
-        return this.http.get<Company>(`${this.apiUrl}/${id}`);
+    getCompanyById(id: number): Observable<BaseResponse<CompanyDetailResponseDto>> {
+        return this.http.get<BaseResponse<CompanyDetailResponseDto>>(`${this.apiUrl}/${id}`);
     }
 
-    createCompany(company: CompanyCreate): Observable<Company> {
-        return this.http.post<Company>(this.apiUrl, company);
+    createCompany(company: CompanyCreate): Observable<BaseResponse<CompanyDetailResponseDto>> {
+        return this.http.post<BaseResponse<CompanyDetailResponseDto>>(this.apiUrl, company);
     }
 
-    updateCompany(id: number, company: Partial<Company>): Observable<Company> {
-        return this.http.put<Company>(`${this.apiUrl}/${id}`, company);
+    updateCompany(id: number, company: Partial<CompanyCreate>): Observable<BaseResponse<CompanyDetailResponseDto>> {
+        return this.http.put<BaseResponse<CompanyDetailResponseDto>>(`${this.apiUrl}/${id}`, company);
     }
 
-    deleteCompany(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    deleteCompany(id: number): Observable<BaseResponse<null>> {
+        return this.http.delete<BaseResponse<null>>(`${this.apiUrl}/${id}`);
     }
 
-    searchCompanies(keyword: string): Observable<Company[]> {
+    searchCompanies(keyword: string): Observable<BaseResponse<CompanyResponseDto[]>> {
         const params = new HttpParams().set('keyword', keyword);
-        return this.http.get<Company[]>(`${this.apiUrl}/search`, { params });
+        return this.http.get<BaseResponse<CompanyResponseDto[]>>(`${this.apiUrl}/search`, { params });
     }
 }
