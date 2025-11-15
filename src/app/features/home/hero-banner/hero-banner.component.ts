@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,7 +26,7 @@ import { ScrollRevealDirective } from '../../../shared/directives/scroll-reveal.
     templateUrl: './hero-banner.component.html',
     styleUrls: ['./hero-banner.component.scss']
 })
-export class HeroBannerComponent implements AfterViewInit {
+export class HeroBannerComponent {
     searchKeyword: string = '';
     searchLocation: string = '';
     @ViewChild('bgVideo') bgVideo!: ElementRef<HTMLVideoElement>;
@@ -36,19 +36,5 @@ export class HeroBannerComponent implements AfterViewInit {
         // Implement search logic here
     }
 
-    ngAfterViewInit() {
-        const video = this.bgVideo.nativeElement;
 
-        // Thử play ngay, nếu browser block sẽ catch lỗi
-        video.play().catch(err => {
-            console.warn('Autoplay bị block, sẽ play khi người dùng tương tác:', err);
-
-            // Tạo listener để play sau khi người dùng click vào trang
-            const playOnInteraction = () => {
-                video.play().catch(() => { });
-                window.removeEventListener('click', playOnInteraction);
-            };
-            window.addEventListener('click', playOnInteraction);
-        });
-    }
 }

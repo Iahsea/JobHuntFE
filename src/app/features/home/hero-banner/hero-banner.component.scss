@@ -111,7 +111,11 @@
     position: relative;
     z-index: 1;
     width: 100%;
-    margin-top: 120px; // Đẩy content xuống dưới header
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; // căn giữa ngang toàn bộ nội dung
+    height: 100%;
 
     @media (max-width: 768px) {
         margin-top: 100px;
@@ -121,9 +125,14 @@
         max-width: 72rem;
         margin: 0 auto;
         padding: 0 2rem;
+        margin-top: 140px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; // căn giữa ngang nội dung trong container
 
         @media (max-width: 768px) {
             padding: 0 1.5rem;
+            margin-top: 30px;
         }
     }
 
@@ -131,54 +140,43 @@
         max-width: 900px;
         margin: 0 auto;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center; // căn giữa các phần con
     }
 }
 
-.hero-title {
-    font-family: "Poppins", "Montserrat", "Segoe UI", Arial, sans-serif;
-    font-size: 3.75rem;
-    font-weight: 700;
-    line-height: 1.15;
-    margin-bottom: 1.5rem;
-    color: #ffffff;
-    letter-spacing: -0.02em;
-    text-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.4),
-        0 2px 8px rgba(0, 0, 0, 0.3);
+.hero-title,
+.hero-subtitle,
+.search-input,
+.suggestion-label,
+.suggestion-link {
+    font-family: "Nunito", "Poppins", "Montserrat", "Segoe UI", Arial, sans-serif;
+}
 
-    @media (max-width: 1024px) {
-        font-size: 3rem;
-    }
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.01em;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    margin-bottom: 1.25rem;
 
     @media (max-width: 768px) {
-        font-size: 2.25rem;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 1.875rem;
+        font-size: 2.3rem;
     }
 }
 
 .hero-subtitle {
-    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
-    font-size: 1.25rem;
-    line-height: 1.7;
-    margin-bottom: 3rem;
-    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.35rem;
     font-weight: 400;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    color: #f3f4f6;
+    opacity: 0.92;
+    margin-bottom: 2.2rem;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 
     @media (max-width: 768px) {
-        font-size: 1.0625rem;
-        margin-bottom: 2.5rem;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 0.9375rem;
-        margin-bottom: 2rem;
+        font-size: 1.1rem;
     }
 }
 
@@ -186,68 +184,68 @@
     display: flex;
     align-items: stretch;
     gap: 0;
-    background: rgba(255, 255, 255, 0.98);
-    border-radius: 60px;
-    box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.25),
-        0 4px 12px rgba(0, 0, 0, 0.15);
-    margin-bottom: 2rem;
-    overflow: hidden;
-    max-width: 850px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    overflow: visible; // Sửa lại để button không bị che khuất
+    max-width: 680px; // tăng chiều dài search box
+    width: 100%; // Đảm bảo search box không vượt quá container
+    min-width: 0;
     margin-left: auto;
     margin-right: auto;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    justify-content: center; // căn giữa các input và button trong search box
 
     @media (max-width: 768px) {
         flex-direction: column;
-        border-radius: 20px;
         max-width: 100%;
     }
 
     .search-input-group,
     .location-input-group {
         flex: 1;
-        position: relative;
         display: flex;
         align-items: center;
-        padding: 0 1.75rem;
-        min-height: 70px;
-
-        @media (max-width: 768px) {
-            width: 100%;
-            min-height: 56px;
-            padding: 0 1.25rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
+        padding: 0 1rem;
+        min-height: 48px;
+        background: transparent;
+        min-width: 0; // Cho phép input co lại khi text dài
+        flex: 1 1 0;
 
         .input-icon {
-            color: #4285f4;
-            margin-right: 0.875rem;
-            font-size: 1.375rem;
-            width: 1.375rem;
-            height: 1.375rem;
-            flex-shrink: 0;
+            color: #60a5fa;
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+            width: 1.2rem;
+            height: 1.2rem;
         }
 
         .search-input {
-            flex: 1;
+            flex: 1 1 0;
+            min-width: 0;
             border: none;
             outline: none;
-            font-size: 1rem;
-            color: #1f2937;
+            font-size: 1.1rem;
+            color: #fff;
             background: transparent;
-            font-family: "Poppins", "Segoe UI", Arial, sans-serif;
             font-weight: 500;
+            padding: 0.25rem 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
 
             &::placeholder {
-                color: #9ca3af;
+                color: #e0e7ef;
+                opacity: 0.8;
                 font-weight: 400;
             }
         }
     }
 
     .location-input-group {
-        border-left: 1px solid rgba(0, 0, 0, 0.08);
+        border-left: 1px solid rgba(255, 255, 255, 0.15);
 
         @media (max-width: 768px) {
             border-left: none;
@@ -255,55 +253,31 @@
     }
 
     .find-job-btn {
-        background: linear-gradient(135deg, #4285f4 0%, #3367d6 100%) !important;
-        color: white !important;
-        padding: 0 3rem !important;
-        font-size: 1.0625rem !important;
+        background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%) !important;
+        color: #fff !important;
+        padding: 0 3.5rem !important; /* Làm nút dài ra */
+        font-size: 1.1rem !important;
         font-weight: 600 !important;
-        border-radius: 0 60px 60px 0 !important;
-        box-shadow:
-            0 4px 15px rgba(66, 133, 244, 0.4),
-            inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-        min-height: 70px !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        border-radius: 2rem !important;
+        min-height: 48px !important;
+        box-shadow: none !important;
         text-transform: none !important;
-        letter-spacing: 0.02em !important;
-        font-family: "Poppins", "Segoe UI", Arial, sans-serif !important;
+        letter-spacing: 0 !important;
+        font-family: "Nunito", "Poppins", "Montserrat", "Segoe UI", Arial, sans-serif !important;
+        transition: background 0.2s;
+        margin-left: 0.5rem;
+        z-index: 1;
         position: relative;
-        overflow: hidden;
-
-        &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
 
         &:hover {
-            background: linear-gradient(135deg, #3367d6 0%, #2451b8 100%) !important;
-            transform: translateY(-2px);
-            box-shadow:
-                0 6px 20px rgba(66, 133, 244, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-
-            &::before {
-                left: 100%;
-            }
-        }
-
-        &:active {
-            transform: translateY(0);
+            background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%) !important;
         }
 
         @media (max-width: 768px) {
             width: 100%;
-            min-height: 56px !important;
-            border-radius: 0 0 20px 20px !important;
-            padding: 0 2rem !important;
+            border-radius: 0 0 2rem 2rem !important;
+            margin-left: 0;
+            margin-top: 0.5rem;
         }
     }
 }
@@ -311,7 +285,7 @@
 .suggestion-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; // căn giữa các gợi ý
     flex-wrap: wrap;
     gap: 0.625rem;
 
@@ -329,28 +303,19 @@
     }
 
     .suggestion-link {
-        font-size: 0.9375rem;
-        color: rgba(255, 255, 255, 0.95);
-        text-decoration: none;
-        transition: all 0.2s ease;
-        font-family: "Poppins", "Segoe UI", Arial, sans-serif;
-        padding: 0.375rem 0.75rem;
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.13);
+        color: #fff;
+        border-radius: 1rem;
+        padding: 0.25rem 0.9rem;
+        font-size: 1.05rem;
         font-weight: 500;
-        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        transition:
+            background 0.18s,
+            color 0.18s;
 
         &:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        @media (max-width: 480px) {
-            font-size: 0.8125rem;
-            padding: 0.25rem 0.625rem;
+            background: #60a5fa;
+            color: #fff;
         }
     }
 

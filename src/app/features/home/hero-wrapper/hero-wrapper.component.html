@@ -1,0 +1,27 @@
+<div class="hero-wrapper">
+    <!-- Video Background chung cho cả header và hero -->
+    <div class="video-background">
+        <video #bgVideo
+               autoplay
+               muted
+               loop
+               playsinline
+               preload="auto"
+               class="background-video">
+            <source src="assets/videos/video_banner_hero.mp4"
+                    type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- Header nằm trên video -->
+    <div class="header-section">
+        <app-header></app-header>
+    </div>
+
+    <!-- Hero Content nằm trên video -->
+    <div class="hero-section">
+        <app-hero-banner></app-hero-banner>
+    </div>
+</div>

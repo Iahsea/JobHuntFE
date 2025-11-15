@@ -3,7 +3,7 @@ import { authGuard } from './core/guards/auth.guard';
 import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
-    // MainLayoutComponent - Content có giới hạn width (max-w-6xl)
+    // Home page - Không có header riêng, dùng hero-wrapper
     {
         path: '',
         loadComponent: () =>
@@ -14,6 +14,14 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./features/home/home.component').then((m) => m.HomeComponent),
             },
+        ],
+    },
+    // Các trang khác - Có header thường
+    {
+        path: '',
+        loadComponent: () =>
+            import('./shared/layouts/page-layout/page-layout.component').then((m) => m.PageLayoutComponent),
+        children: [
             {
                 path: 'jobs',
                 loadComponent: () =>

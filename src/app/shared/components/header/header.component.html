@@ -1,5 +1,7 @@
 <!-- Wrapper div tổng cho header -->
-<div class="w-full bg-white border-b border-gray-200 header-container">
+<div class="w-full border-b border-gray-200 header-container"
+     [class.header-hidden]="!isHeaderVisible"
+     [class.header-scrolled]="isHeaderScrolled">
     <div class="px-6"> <!-- Xóa max-w-6xl mx-auto để header full width, chỉ giữ padding ngang -->
         <div class="flex items-center justify-between h-16 header-inner">
             <!-- Logo -->

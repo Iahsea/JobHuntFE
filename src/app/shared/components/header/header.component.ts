@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,6 +25,9 @@ import { LanguageService } from '../../../core/services/language.service';
 export class HeaderComponent implements OnInit, OnDestroy {
     languages: any[] = [];
     currentLanguage: any;
+    isHeaderVisible = true;
+    isHeaderScrolled = false;
+    private lastScrollTop = 0;
 
     constructor(public languageService: LanguageService) { }
 
@@ -41,6 +44,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private updateCurrentLanguage(): void {
         const currentLangCode = this.languageService.getCurrentLanguage();
         this.currentLanguage = this.languages.find(lang => lang.code === currentLangCode);
+    }
+
+    @HostListener('window:scroll', [])
+    onWindowScroll() {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        this.isHeaderScrolled = st > 10;
+        if (st > this.lastScrollTop && st > 80) {
+            // Scroll down
+            this.isHeaderVisible = false;
+        } else {
+            // Scroll up
+            this.isHeaderVisible = true;
+        }
+        this.lastScrollTop = st <= 0 ? 0 : st;
     }
 
     ngOnDestroy(): void {

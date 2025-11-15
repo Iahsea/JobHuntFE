@@ -1,8 +1,36 @@
 .header-container {
-    width: 100%;
-    background: #fff;
-    border-bottom: 1px solid #e5e7eb;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition:
+        transform 2.2s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.4s,
+        background 0.4s;
     box-shadow: 0 2px 8px 0 rgba(59, 130, 246, 0.03);
+    border-bottom: none !important; // <--- Xóa đường gạch ngang mặc định
+
+    &.header-hidden {
+        transform: translateY(-100%);
+        box-shadow: none;
+    }
+    &.header-scrolled {
+        background: #f8fafc !important; // màu xanh xám nhạt hiện đại, hợp với UI sáng
+        border-bottom: 1px solid #e2e8f0 !important;
+        box-shadow: 0 2px 8px 0 rgba(59, 130, 246, 0.06);
+        transition:
+            background 0.4s,
+            box-shadow 0.4s;
+        .logo-text,
+        .nav-links a,
+        .lang-name {
+            color: #18181b !important;
+        }
+        .logo-icon {
+            color: #2563eb !important;
+        }
+    }
 
     .header-inner {
         display: flex;
