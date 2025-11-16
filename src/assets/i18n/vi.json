@@ -48,5 +48,23 @@
         "LOCATION_PLACEHOLDER": "Địa điểm của bạn",
         "SEARCH_BUTTON": "Tìm việc",
         "SUGGESTION": "Gợi ý"
+    },
+    "COMPANY_DETAIL": {
+        "BREADCRUMB_HOME": "Trang chủ",
+        "BREADCRUMB_COMPANIES": "Công ty",
+        "JOBS": "Việc làm",
+        "VISIT_WEBSITE": "Truy cập website công ty",
+        "FOUNDED": "Thành lập",
+        "EMPLOYEES": "Nhân viên",
+        "LOCATION": "Địa điểm",
+        "INDUSTRY": "Ngành nghề",
+        "PROFILE": "Giới thiệu công ty",
+        "SEE_MORE": "Xem thêm",
+        "SEE_LESS": "Ẩn bớt",
+        "CONTACT": "Liên hệ",
+        "CONTACT_EN": "/ Contact",
+        "TECH_STACK": "Công nghệ sử dụng",
+        "TECH_STACK_DESC": "Tìm hiểu về công nghệ và công cụ mà {{name}} sử dụng.",
+        "NO_JOBS": "Hiện tại công ty chưa có vị trí tuyển dụng nào."
     }
 }

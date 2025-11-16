@@ -1,20 +1,57 @@
+export interface JobSkill {
+    id: number;
+    name: string;
+    createdAt?: string;
+    updatedAt?: string;
+    createdBy?: string;
+    updatedBy?: string;
+}
+
+export interface JobCompany {
+    id: number;
+    name: string;
+    description?: string;
+    address?: string;
+    logo?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    createdBy?: string;
+    updatedBy?: string;
+}
+
 export interface Job {
     id: number;
-    title: string;
-    description: string;
-    requirements: string;
+    name: string;
+    title?: string;
+    description?: string;
+    logo?: string;
+    requirements?: string;
     benefits?: string;
-    salary?: string;
-    location: string;
-    jobType: 'full-time' | 'part-time' | 'contract' | 'internship';
-    level: string;
-    companyId: number;
+    location?: string;
+    salary?: number | string;
+    quantity?: number;
+    level?: string;
+    workMode?: string;
+    experience?: string;
+    education?: string;
+    deadline?: string;
+    startDate?: string;
+    endDate?: string;
+    status?: string;
+    active?: boolean;
+    companyId?: number;
     companyName?: string;
     companyLogo?: string;
-    deadline?: Date;
-    status: 'active' | 'closed';
-    createdAt?: Date;
-    updatedAt?: Date;
+    categoryId?: number;
+    categoryName?: string;
+    viewCount?: number;
+    applicationCount?: number;
+    createdAt?: string;
+    updatedAt?: string;
+    createdBy?: string;
+    updatedBy?: string;
+    company?: JobCompany;
+    skills?: JobSkill[];
 }
 
 export interface JobCreate {

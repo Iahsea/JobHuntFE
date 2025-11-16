@@ -7,8 +7,11 @@ export interface CompanyResponseDto {
     website?: string;
     industry?: string;
     companySize?: string;
-    foundedYear?: string;
-    jobCount?: number;
+    coverImage?: string;
+    jobs?: JobSummaryDto[];
+    foundedDate?: string;
+    benefits?: string;
+    employeeCount?: number;
     createdAt?: string;
     updatedAt?: string;
     createdBy?: string;
@@ -25,11 +28,12 @@ export interface CompanyDetailResponseDto extends CompanyResponseDto {
 
 export interface JobSummaryDto {
     id: number;
-    title: string;
+    name: string;
     location?: string;
     salary?: string;
-    jobType?: string;
-    experience?: string;
+    logo?: string;
+    quantity?: number;
+    level?: string;
     deadline?: string;
     createdAt?: string;
 }

@@ -1,0 +1,18 @@
+:host {
+    display: block;
+}
+nav {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 2rem;
+    a {
+        color: #666;
+        text-decoration: none;
+        &:hover {
+            color: #0066ff;
+        }
+    }
+    span {
+        margin: 0 8px;
+    }
+}

@@ -1,0 +1,136 @@
+body,
+.job-detail-page {
+    background: #fff !important;
+}
+
+.max-w-6xl {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mt-24 {
+    margin-top: 6rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+.p-6 {
+    padding: 1.5rem;
+}
+
+.rounded-xl {
+    border-radius: 1rem;
+}
+
+.rounded-2xl {
+    border-radius: 1.5rem;
+}
+
+.shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-xl {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-sm {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.border-0 {
+    border: none !important;
+}
+
+.sticky {
+    position: sticky;
+}
+
+.top-24 {
+    top: 6rem;
+}
+
+.job-header-gradient {
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+}
+
+.apply-now-animated {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(90deg, #2563eb 0%, #6366f1 100%);
+    color: #fff !important;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition:
+        box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+        background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+        0 2px 8px rgba(59, 130, 246, 0.1),
+        0 8px 32px 0 rgba(99, 102, 241, 0.1);
+    z-index: 1;
+    isolation: isolate;
+}
+
+.apply-now-animated::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, #60a5fa 0%, #818cf8 100%);
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+}
+
+.apply-now-animated:hover::before {
+    opacity: 0.18;
+}
+
+.apply-now-animated:hover,
+.apply-now-animated:focus-visible {
+    box-shadow:
+        0 8px 32px 0 rgba(59, 130, 246, 0.18),
+        0 2px 8px rgba(99, 102, 241, 0.12);
+    transform: translateY(-2px) scale(1.045);
+    background: linear-gradient(90deg, #4338ca 0%, #2563eb 100%);
+}
+
+.apply-now-animated:active {
+    transform: scale(0.97);
+}
+
+.apply-now-animated span {
+    position: relative;
+    z-index: 1;
+    font-size: 1.08rem;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.apply-now-animated .apply-arrow {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.5rem;
+    font-size: 1.25rem;
+    transition:
+        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.2s;
+    will-change: transform;
+}
+
+.apply-now-animated:hover .apply-arrow {
+    transform: translateX(10px) scale(1.18) rotate(12deg);
+    color: #fff;
+}

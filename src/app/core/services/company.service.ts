@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Company, CompanyCreate } from '../../models/company.model';
+import { CompanyCreate } from '../../models/company.model';
 import { CompanyDetailResponseDto, CompanyResponseDto, BaseResponse, CompanyListResponseDto } from '../../models/dto';
 import { environment } from '../../../environments/environment';
 

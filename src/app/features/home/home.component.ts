@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
                 const companies = (response.data?.result || response.data || []).map((company: any) => ({
                     ...company,
                     logo: company.logo
-                        ? `${environment.imagesUrl}${company.logo}&folder=${environment.companyImageFolder}`
+                        ? `${environment.imagesUrl}${company.logo}`
                         : null
                 }));
                 this.topCompanies.set(companies);

@@ -24,43 +24,9 @@ export class JobListComponent implements OnInit {
     constructor(private jobService: JobService) { }
 
     ngOnInit(): void {
-        this.loadJobs();
+
     }
 
-    loadJobs(): void {
-        this.isLoading = true;
-        this.jobService.getAllJobs(this.currentPage, 12).subscribe({
-            next: (response) => {
-                this.jobs = response.data || response;
-                this.totalPages = response.totalPages || 1;
-                this.isLoading = false;
-            },
-            error: (error) => {
-                console.error('Error loading jobs:', error);
-                this.isLoading = false;
-            }
-        });
-    }
 
-    onSearch(): void {
-        const filters = {
-            keyword: this.searchKeyword,
-            location: this.selectedLocation,
-            jobType: this.selectedJobType
-        };
-        this.jobService.searchJobs(filters).subscribe({
-            next: (jobs) => {
-                this.jobs = jobs;
-            },
-            error: (error) => {
-                console.error('Error searching jobs:', error);
-            }
-        });
-    }
 
-    onPageChange(page: number): void {
-        this.currentPage = page;
-        this.loadJobs();
-        window.scrollTo(0, 0);
-    }
 }

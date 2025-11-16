@@ -48,5 +48,23 @@
         "LOCATION_PLACEHOLDER": "आपका स्थान",
         "SEARCH_BUTTON": "नौकरी खोजें",
         "SUGGESTION": "सुझाव"
+    },
+    "COMPANY_DETAIL": {
+        "BREADCRUMB_HOME": "होम",
+        "BREADCRUMB_COMPANIES": "कंपनियां",
+        "JOBS": "नौकरियां",
+        "VISIT_WEBSITE": "कंपनी वेबसाइट देखें",
+        "FOUNDED": "स्थापना",
+        "EMPLOYEES": "कर्मचारी",
+        "LOCATION": "स्थान",
+        "INDUSTRY": "उद्योग",
+        "PROFILE": "कंपनी प्रोफ़ाइल",
+        "SEE_MORE": "और देखें",
+        "SEE_LESS": "कम दिखाएं",
+        "CONTACT": "संपर्क करें",
+        "CONTACT_EN": "/ Contact",
+        "TECH_STACK": "प्रयुक्त तकनीक",
+        "TECH_STACK_DESC": "{{name}} द्वारा उपयोग की जाने वाली तकनीक और टूल्स के बारे में जानें।",
+        "NO_JOBS": "इस कंपनी के पास वर्तमान में कोई खुली स्थिति नहीं है।"
     }
 }

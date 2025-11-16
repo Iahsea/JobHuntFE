@@ -9,12 +9,10 @@
                         <input type="text"
                                class="form-control"
                                placeholder="Tìm kiếm công ty..."
-                               [(ngModel)]="searchKeyword"
-                               (keyup.enter)="onSearch()" />
+                               [(ngModel)]="searchKeyword" />
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-primary w-100"
-                                (click)="onSearch()">
+                        <button class="btn btn-primary w-100">
                             <i class="bi bi-search"></i> Tìm
                         </button>
                     </div>
@@ -56,20 +54,17 @@
             <ul class="pagination justify-content-center">
                 <li class="page-item"
                     [class.disabled]="currentPage === 1">
-                    <a class="page-link"
-                       (click)="onPageChange(currentPage - 1)">Trước</a>
+
                 </li>
                 @for (page of [].constructor(totalPages); track $index) {
                 <li class="page-item"
                     [class.active]="currentPage === $index + 1">
-                    <a class="page-link"
-                       (click)="onPageChange($index + 1)">{{ $index + 1 }}</a>
+
                 </li>
                 }
                 <li class="page-item"
                     [class.disabled]="currentPage === totalPages">
-                    <a class="page-link"
-                       (click)="onPageChange(currentPage + 1)">Sau</a>
+                    <a class="page-link">Sau</a>
                 </li>
             </ul>
         </nav>

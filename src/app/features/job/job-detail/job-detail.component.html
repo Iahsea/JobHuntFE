@@ -1,128 +1,173 @@
-<div class="job-detail-page py-5">
-    <div class="container">
-        @if (isLoading) {
-        <div class="text-center py-5">
-            <div class="spinner-border text-primary"
-                 role="status"></div>
-        </div>
-        } @else if (job) {
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="d-flex align-items-start mb-4">
-                            <img [src]="job.companyLogo || 'assets/images/default-company.png'"
-                                 alt="Company Logo"
-                                 class="company-logo me-4" />
-                            <div class="flex-grow-1">
-                                <h1 class="h3 mb-2">{{ job.title }}</h1>
-                                <h5 class="text-muted mb-3">
-                                    <a [routerLink]="['/companies', job.companyId]">{{ job.companyName }}</a>
-                                </h5>
-                                <div class="job-meta">
-                                    <span class="badge bg-primary me-2">
-                                        <i class="bi bi-geo-alt"></i> {{ job.location }}
-                                    </span>
-                                    <span class="badge bg-success me-2">
-                                        <i class="bi bi-clock"></i> {{ job.jobType }}
-                                    </span>
-                                    <span class="badge bg-info">
-                                        <i class="bi bi-bar-chart"></i> {{ job.level }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        @if (job.salary) {
-                        <div class="salary-info mb-4">
-                            <h5 class="text-primary">
-                                <i class="bi bi-cash-stack"></i> Mức lương: {{ job.salary }}
-                            </h5>
-                        </div>
-                        }
-
-                        <hr />
-
-                        <div class="job-description mb-4">
-                            <h5><i class="bi bi-file-text"></i> Mô tả công việc</h5>
-                            <div [innerHTML]="job.description"></div>
-                        </div>
-
-                        <hr />
-
-                        <div class="job-requirements mb-4">
-                            <h5><i class="bi bi-list-check"></i> Yêu cầu công việc</h5>
-                            <div [innerHTML]="job.requirements"></div>
-                        </div>
-
-                        @if (job.benefits) {
-                        <hr />
-                        <div class="job-benefits mb-4">
-                            <h5><i class="bi bi-gift"></i> Quyền lợi</h5>
-                            <div [innerHTML]="job.benefits"></div>
-                        </div>
-                        }
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="card mb-4 sticky-top"
-                     style="top: 20px;">
-                    <div class="card-body">
-                        <button class="btn btn-primary btn-lg w-100 mb-3"
-                                (click)="applyJob()">
-                            <i class="bi bi-send"></i> Ứng tuyển ngay
-                        </button>
-                        <button class="btn btn-outline-primary w-100">
-                            <i class="bi bi-bookmark"></i> Lưu tin
-                        </button>
-
-                        <hr />
-
-                        <div class="job-info">
-                            <h6 class="mb-3">Thông tin chung</h6>
-                            <div class="info-item mb-3">
-                                <i class="bi bi-calendar3 text-primary"></i>
-                                <span class="ms-2">
-                                    <strong>Hạn nộp:</strong>
-                                    {{ job.deadline ? (job.deadline | date: 'dd/MM/yyyy') : 'Không giới hạn' }}
-                                </span>
-                            </div>
-                            <div class="info-item mb-3">
-                                <i class="bi bi-briefcase text-primary"></i>
-                                <span class="ms-2"><strong>Loại hình:</strong> {{ job.jobType }}</span>
-                            </div>
-                            <div class="info-item mb-3">
-                                <i class="bi bi-bar-chart text-primary"></i>
-                                <span class="ms-2"><strong>Cấp bậc:</strong> {{ job.level }}</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="bi bi-geo-alt text-primary"></i>
-                                <span class="ms-2"><strong>Địa điểm:</strong> {{ job.location }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                @if (relatedJobs.length > 0) {
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="mb-3">Việc làm liên quan</h6>
-                        @for (relatedJob of relatedJobs; track relatedJob.id) {
-                        <div class="related-job mb-3 pb-3 border-bottom">
-                            <h6 class="mb-1">
-                                <a [routerLink]="['/jobs', relatedJob.id]">{{ relatedJob.title }}</a>
-                            </h6>
-                            <p class="text-muted small mb-1">{{ relatedJob.companyName }}</p>
-                            <span class="badge bg-light text-dark">{{ relatedJob.location }}</span>
-                        </div>
-                        }
-                    </div>
-                </div>
-                }
-            </div>
-        </div>
-        }
+<div class="w-full min-h-screen bg-white">
+    @if (isLoading()) {
+    <div class="flex flex-col items-center justify-center py-16 text-gray-500 animate-pulse">
+        <div class="spinner-border text-blue-400"></div>
+        <p class="text-lg font-medium mt-4">Đang tải thông tin công việc...</p>
     </div>
+    } @else if (job()) {
+    <!-- Breadcrumb -->
+    <div class="w-full bg-white border-b border-gray-200 mt-24">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <app-breadcrumb [items]="[
+                    { label: 'Home', link: '/' },
+                    { label: 'Companies', link: '/companies' },
+                    { label: job()?.company?.name, link: '/companies/' + job()?.company?.id },
+                    { label: job()?.name }
+                ]"></app-breadcrumb>
+        </div>
+    </div>
+
+    <!-- Header Card -->
+    <div class="w-full py-16"
+         style="background: #f8f8fd;">
+        <div class="max-w-6xl mx-auto px-4">
+            <div
+                 class="flex flex-col md:flex-row items-stretch gap-6 bg-white rounded-2xl shadow-sm px-8 py-8 border border-gray-200 job-header-gradient">
+                <!-- Logo -->
+                <div
+                     class="flex-shrink-0 bg-gradient-to-br bg-gray-50 rounded-2xl p-4 w-32 h-32 flex items-center justify-center">
+                    <img [src]="job()?.logo || 'assets/images/default_job.png'"
+                         [alt]="job()?.name"
+                         class="w-20 h-20 object-contain" />
+                </div>
+
+                <!-- Job Info -->
+                <div class="flex-1 flex flex-col justify-center">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-3">{{ job()?.name }}</h1>
+                    <div class="flex flex-wrap gap-6 text-sm text-gray-600 mb-4">
+                        <div class="flex items-center gap-2">
+                            <mat-icon class="text-blue-500 text-lg">apartment</mat-icon>
+                            <div>
+                                <div class="text-xs text-gray-500">Company</div>
+                                <div class="font-semibold">{{ job()?.company?.name }}</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <mat-icon class="text-blue-500 text-lg">location_on</mat-icon>
+                            <div>
+                                <div class="text-xs text-gray-500">Location</div>
+                                <div class="font-semibold">{{ job()?.location }}</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <mat-icon class="text-blue-500 text-lg">schedule</mat-icon>
+                            <div>
+                                <div class="text-xs text-gray-500">Job Type</div>
+                                <div class="font-semibold">Full-Time</div>
+                            </div>
+                        </div>
+                        @if (job()?.salary) {
+                        <div class="flex items-center gap-2">
+                            <mat-icon class="text-blue-500 text-lg">payments</mat-icon>
+                            <div>
+                                <div class="text-xs text-gray-500">Salary</div>
+                                <div class="font-semibold">{{ job()?.salary | currency:'VND':'symbol':'1.0-0' }}</div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Apply Button -->
+                <div class="flex-shrink-0 flex items-center justify-center">
+                    <button (click)="applyJob()"
+                            class="apply-now-animated px-8 py-3 rounded-xl text-base shadow-md">
+                        <span>Apply Now</span>
+                        <mat-icon class="apply-arrow text-lg align-middle">arrow_forward</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="w-full bg-white py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left Column: Description + Responsibilities + Who You Are -->
+                <div class="lg:col-span-2 space-y-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Description</h2>
+                        <div class="text-gray-700 leading-relaxed space-y-4"
+                             [innerHTML]="job()?.description"></div>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Responsibilities</h2>
+                        <div class="text-gray-700 leading-relaxed space-y-2"
+                             [innerHTML]="job()?.requirements"></div>
+                    </div>
+                    @if (job()?.benefits) {
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Who You Are</h2>
+                        <div class="text-gray-700 leading-relaxed space-y-2"
+                             [innerHTML]="job()?.benefits"></div>
+                    </div>
+                    }
+                </div>
+
+                <!-- Right Column: About this role -->
+                <div>
+                    <div class="bg-white rounded-xl p-6 border border-gray-200">
+                        <h2 class="text-lg font-bold text-gray-900 mb-6">About this role</h2>
+                        <div class="space-y-4 mb-6">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-600 flex items-center gap-2">
+                                    <mat-icon class="text-base text-gray-400">event</mat-icon>
+                                    Apply Before
+                                </span>
+                                <span class="font-semibold text-gray-900">{{ job()?.endDate ? (job()?.endDate | date:
+                                    'MMM dd, yyyy') : 'Open' }}</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-600 flex items-center gap-2">
+                                    <mat-icon class="text-base text-gray-400">calendar_today</mat-icon>
+                                    Job Posted On
+                                </span>
+                                <span class="font-semibold text-gray-900">{{ job()?.startDate ? (job()?.startDate |
+                                    date: 'MMM dd, yyyy') : 'N/A' }}</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-600 flex items-center gap-2">
+                                    <mat-icon class="text-base text-gray-400">work_outline</mat-icon>
+                                    Job Type
+                                </span>
+                                <span class="font-semibold text-gray-900">Full-Time</span>
+                            </div>
+                            @if (job()?.salary) {
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-600 flex items-center gap-2">
+                                    <mat-icon class="text-base text-gray-400">payments</mat-icon>
+                                    Salary
+                                </span>
+                                <span class="font-semibold text-gray-900">{{ job()?.salary |
+                                    currency:'VND':'symbol':'1.0-0' }}</span>
+                            </div>
+                            }
+                        </div>
+                        <div class="mb-6">
+                            <h3 class="text-sm font-bold text-gray-900 mb-3">Categories</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                      class="bg-orange-100 text-orange-700 px-3 py-1.5 rounded-full text-xs font-medium">Marketing</span>
+                                <span
+                                      class="bg-blue-100 text-blue-700 px-3 py-1.5 rounded-full text-xs font-medium">Design</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-gray-900 mb-3">Required Skills</h3>
+                            <div class="flex flex-wrap gap-2">
+                                @for (skill of job()?.skills; track skill.id) {
+                                <span
+                                      class="bg-white border border-gray-300 text-gray-700 px-3 py-1.5 rounded-full text-xs font-medium hover:border-blue-500 hover:text-blue-600 transition-colors">
+                                    {{ skill.name }}
+                                </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
 </div>

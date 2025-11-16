@@ -1,19 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { JobService } from '../../../core/services/job.service';
 import { Job } from '../../../models/job.model';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
 
 @Component({
     selector: 'app-job-detail',
     standalone: true,
-    imports: [CommonModule, RouterModule],
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatButtonModule,
+        MatIconModule,
+        BreadcrumbComponent
+    ],
     templateUrl: './job-detail.component.html',
-    styleUrls: ['./job-detail.component.css']
+    styleUrls: ['./job-detail.component.scss']
 })
 export class JobDetailComponent implements OnInit {
-    job: Job | null = null;
-    isLoading = true;
+    job = signal<Job | null>(null);
+    isLoading = signal(true);
     relatedJobs: Job[] = [];
 
     constructor(
@@ -29,32 +38,22 @@ export class JobDetailComponent implements OnInit {
     }
 
     loadJobDetail(id: number): void {
-        this.isLoading = true;
+        this.isLoading.set(true);
         this.jobService.getJobById(id).subscribe({
-            next: (job) => {
-                this.job = job;
-                this.isLoading = false;
-                if (job.companyId) {
-                    this.loadRelatedJobs(job.companyId);
-                }
+            next: (response) => {
+                this.job.set(response.data);
+                console.log('Loaded response:', response);
+                console.log('Loaded job:', this.job());
+                this.isLoading.set(false);
             },
             error: (error) => {
                 console.error('Error loading job:', error);
-                this.isLoading = false;
+                this.isLoading.set(false);
             }
         });
     }
 
-    loadRelatedJobs(companyId: number): void {
-        this.jobService.getJobsByCompany(companyId).subscribe({
-            next: (jobs) => {
-                this.relatedJobs = jobs.filter(j => j.id !== this.job?.id).slice(0, 3);
-            },
-            error: (error) => {
-                console.error('Error loading related jobs:', error);
-            }
-        });
-    }
+
 
     applyJob(): void {
         alert('Chức năng ứng tuyển đang được phát triển!');

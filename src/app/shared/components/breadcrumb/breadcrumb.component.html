@@ -1,0 +1,21 @@
+<nav class="text-sm text-gray-500 mb-8 flex items-center gap-2 pl-2">
+    @for (item of items; let i = $index; track i) {
+    @if (item.link && (i < items.length
+      -1))
+      {
+      <a
+      [routerLink]="item.link"
+      class="hover:text-blue-600 transition-colors">{{ item.label }}</a>
+        <span>/</span>
+        } @else if (i < items.length
+          -
+          1)
+          {
+          <span
+          class="font-semibold text-gray-700">{{ item.label }}</span>
+            <span>/</span>
+            } @else {
+            <span class="font-semibold text-gray-700">{{ item.label }}</span>
+            }
+            }
+</nav>

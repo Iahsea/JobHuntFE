@@ -48,5 +48,23 @@
         "LOCATION_PLACEHOLDER": "Your Location",
         "SEARCH_BUTTON": "Find Job",
         "SUGGESTION": "Suggestion"
+    },
+    "COMPANY_DETAIL": {
+        "BREADCRUMB_HOME": "Home",
+        "BREADCRUMB_COMPANIES": "Companies",
+        "JOBS": "Jobs",
+        "VISIT_WEBSITE": "Visit company website",
+        "FOUNDED": "Founded",
+        "EMPLOYEES": "Employees",
+        "LOCATION": "Location",
+        "INDUSTRY": "Industry",
+        "PROFILE": "Company Profile",
+        "SEE_MORE": "See more",
+        "SEE_LESS": "See less",
+        "CONTACT": "Contact",
+        "CONTACT_EN": "/ Contact",
+        "TECH_STACK": "Tech stack",
+        "TECH_STACK_DESC": "Learn about the technology and tools that {{name}} uses.",
+        "NO_JOBS": "This company currently has no open positions."
     }
 }

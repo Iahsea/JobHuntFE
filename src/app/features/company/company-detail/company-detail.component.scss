@@ -1,486 +1,99 @@
-.company-detail-mat {
-    max-width: 900px;
-    margin: 2rem auto;
-    background: #fff;
-    border-radius: 1.5rem;
-    box-shadow:
-        0 4px 32px 0 rgba(59, 130, 246, 0.08),
-        0 1.5px 6px 0 rgba(0, 0, 0, 0.04);
-    padding: 2.5rem 2rem 2rem 2rem;
-
-    .company-header-mat {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        margin-bottom: 2rem;
-
-        .company-logo-mat {
-            flex-shrink: 0;
-            .logo-img {
-                width: 110px;
-                height: 110px;
-                object-fit: cover;
-                border-radius: 1.25rem;
-                background: #f3f4f6;
-                border: 1px solid #e5e7eb;
-                box-shadow: 0 2px 8px rgba(59, 130, 246, 0.08);
-            }
-        }
-        .company-header-info {
-            flex: 1;
-            .company-title {
-                font-size: 2rem;
-                font-weight: 700;
-                margin-bottom: 0.5rem;
-                color: #1e293b;
-                font-family: "Poppins", "Montserrat", sans-serif;
-            }
-            .company-meta {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1.5rem;
-                margin-bottom: 0.5rem;
-                span {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.4rem;
-                    color: #475569;
-                    font-size: 1rem;
-                }
-                mat-icon {
-                    font-size: 1.2rem;
-                    color: #2563eb;
-                }
-            }
-            .company-contact {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1.5rem;
-                span {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.4rem;
-                    color: #64748b;
-                    font-size: 0.98rem;
-                }
-                a {
-                    color: #2563eb;
-                    text-decoration: underline;
-                }
-                mat-icon {
-                    font-size: 1.1rem;
-                    color: #64748b;
-                }
-            }
-        }
-    }
-
-    .company-description-mat {
-        margin: 2rem 0 2.5rem 0;
-        h2 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #2563eb;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        div {
-            color: #374151;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-    }
-
-    .company-jobs-mat {
-        h2 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #2563eb;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .jobs-list-mat {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            @media (max-width: 700px) {
-                grid-template-columns: 1fr;
-            }
-        }
-        .job-card-mat {
-            border-radius: 1rem;
-            box-shadow: 0 2px 12px 0 rgba(59, 130, 246, 0.08);
-            border: 1px solid #e5e7eb;
-            .mat-card-title {
-                font-size: 1.1rem;
-                font-weight: 600;
-                color: #1e293b;
-                margin-bottom: 0.5rem;
-            }
-            .job-meta-mat {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1rem;
-                margin-bottom: 0.5rem;
-                span {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.3rem;
-                    color: #475569;
-                    font-size: 0.98rem;
-                }
-                mat-icon {
-                    font-size: 1.1rem;
-                    color: #2563eb;
-                }
-            }
-            .mat-card-actions {
-                margin-top: 0.5rem;
-            }
-        }
-        .text-muted {
-            color: #94a3b8;
-            font-size: 1rem;
-            text-align: center;
-            margin: 2rem 0;
-        }
-    }
-}
-
+body,
 .company-detail-container {
-    max-width: 1200px;
-    margin: 6rem auto 2rem;
-    padding: 0 20px;
+    background: #fff !important;
 }
 
-.loading-spinner {
-    text-align: center;
-    padding: 4rem;
-    color: #666;
+.max-w-6xl {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-// Breadcrumb
-.breadcrumb {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 2rem;
-
-    a {
-        color: #666;
-        text-decoration: none;
-
-        &:hover {
-            color: #0066ff;
-        }
-    }
-
-    span {
-        margin: 0 8px;
-    }
+.mt-24 {
+    margin-top: 6rem;
 }
 
-// PHẦN 1: Header
-.company-header {
-    display: flex;
-    gap: 2rem;
-    padding: 2rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+.mb-8 {
     margin-bottom: 2rem;
 }
 
-.company-logo {
-    flex-shrink: 0;
-
-    img {
-        width: 120px;
-        height: 120px;
-        object-fit: contain;
-        border-radius: 8px;
-        background: #f5f5f5;
-        padding: 10px;
-    }
+.p-6 {
+    padding: 1.5rem;
 }
 
-.company-info {
-    flex: 1;
+.rounded-xl {
+    border-radius: 1rem;
 }
 
-.company-name-badge {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-
-    h1 {
-        font-size: 2rem;
-        font-weight: 600;
-        margin: 0;
-        color: #1a1a1a;
-    }
-
-    .verified-badge {
-        background: #e8f5e9;
-        color: #2e7d32;
-        padding: 4px 12px;
-        border-radius: 12px;
-        font-size: 13px;
-        font-weight: 500;
-    }
+.rounded-2xl {
+    border-radius: 1.5rem;
 }
 
-.company-website {
-    display: inline-block;
-    color: #0066ff;
-    text-decoration: none;
-    margin-bottom: 1.5rem;
-    font-size: 14px;
+.shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
 
+.shadow-xl {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.border-0 {
+    border: none !important;
+}
+
+.max-h-40 {
+    max-height: 10rem;
+    overflow: hidden;
+}
+
+.sticky {
+    position: sticky;
+}
+
+.top-24 {
+    top: 6rem;
+}
+
+.company-header-gradient {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
+.tech-item {
+    transition: transform 0.2s cubic-bezier(0.4, 0.2, 0.2, 1);
+    perspective: 600px;
     &:hover {
-        text-decoration: underline;
+        transform: scale(1.05);
+    }
+    .tech-icon-rotate {
+        transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+        transform-style: preserve-3d;
+    }
+    &:hover .tech-icon-rotate {
+        transform: rotateY(360deg);
     }
 }
 
-.company-meta-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+.company-cover {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
 }
 
-.meta-item {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-
-    mat-icon {
-        color: #0066ff;
-        font-size: 20px;
-        width: 20px;
-        height: 20px;
-        margin-top: 2px;
-    }
-
-    div {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .meta-label {
-        font-size: 13px;
-        color: #666;
-        margin-bottom: 2px;
-    }
-
-    .meta-value {
-        font-size: 15px;
-        color: #1a1a1a;
-        font-weight: 500;
+/* larger height on bigger screens */
+@media (min-width: 768px) {
+    .company-cover {
+        height: 320px;
     }
 }
 
-// PHẦN 2: Content 2 cột
-.company-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-}
-
-.content-left,
-.content-right {
-    h2 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: #1a1a1a;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-
-        mat-icon {
-            color: #0066ff;
-        }
-    }
-}
-
-// Profile Section
-.profile-section {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    margin-bottom: 2rem;
-
-    .profile-content {
-        color: #444;
-        line-height: 1.8;
-        font-size: 15px;
-
-        ::ng-deep {
-            p {
-                margin-bottom: 1rem;
-            }
-
-            a {
-                color: #0066ff;
-                text-decoration: none;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-        }
-    }
-}
-
-// Contact Section
-.contact-section {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-
-    .contact-links {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .contact-link {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: #0066ff;
-        text-decoration: none;
-        padding: 8px;
-        border-radius: 4px;
-        transition: background 0.2s;
-
-        mat-icon {
-            font-size: 18px;
-            width: 18px;
-            height: 18px;
-        }
-
-        &:hover {
-            background: #f5f5f5;
-        }
-    }
-}
-
-// Tech Stack Section
-.tech-stack-section {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-
-    .tech-description {
-        color: #666;
-        font-size: 14px;
-        margin-bottom: 1.5rem;
-    }
-
-    .tech-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .tech-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-
-        .tech-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            background-size: 35px;
-            background-position: center;
-            background-repeat: no-repeat;
-
-            &.html5 {
-                background-color: #ffeaea;
-                background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e34c26"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg>');
-            }
-
-            &.css3 {
-                background-color: #e3f2fd;
-                background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231572B6"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm4.413 4.41l.52 5.899h8.736l-.292 3.288-2.88.792-2.844-.775-.183-2.052H6.354l.329 3.883 5.24 1.454 5.186-1.417.693-7.797H5.855l-.242-2.687h10.013l.234-2.588H5.913z"/></svg>');
-            }
-
-            &.javascript {
-                background-color: #fffbea;
-                background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23F7DF1E"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>');
-            }
-
-            &.ruby {
-                background-color: #ffebee;
-                background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23CC342D"><path d="M20.156.083c3.033.525 3.893 2.598 3.829 4.77L24 4.822 22.635 22.71 4.89 23.926h.016C3.433 23.864.15 23.729 0 19.139L1.645 3 2.819 1.818 20.156.083zm-8.988 1.938l-.861.862-2.975.289L4.349 6.19l.968 3.421L6.653 12.9l1.12 2.975.862.861 3.431 1.327 3.352-1.338 1.112-1.338 1.338-3.024-1.188-3.287-.107-3.358-3.069-2.908-3.384-.789z"/></svg>');
-            }
-
-            &.mysql {
-                background-color: #e3f2fd;
-                background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234479A1"><path d="M16.405 5.676c-.115 0-.193.014-.274.033v.013h.014c.054.104.146.174.214.273.054.107.1.214.154.32l.014-.015c.094-.066.14-.172.14-.333-.04-.047-.046-.094-.08-.14-.04-.067-.126-.1-.18-.153zM5.77 18.87h-.927c-.03-1.562-.123-3.03-.27-4.41h-.008l-1.41 4.41H2.45l-1.4-4.41h-.01c-.103 1.323-.168 2.792-.195 4.41H0c.055-1.966.192-3.81.41-5.53h1.15l1.335 4.064h.008l1.347-4.064h1.095c.242 2.015.384 3.86.428 5.53zm1.75-5.53h-1.5v5.53h.84v-4.874h.66c.185 0 .316.021.392.064.077.043.14.117.192.222.052.104.088.234.107.39.02.154.03.34.03.556v3.642h.842v-3.81c0-.613-.101-1.046-.304-1.297-.203-.252-.544-.378-1.025-.378l-.234-.046zm4.09 3.73c.015-.315-.03-.572-.134-.772-.104-.2-.24-.35-.41-.448-.17-.1-.368-.148-.595-.148-.226 0-.42.05-.584.148s-.295.248-.393.448c-.1.2-.148.457-.144.772v.85c-.004.314.044.572.144.77.1.2.23.35.393.447.164.1.358.148.584.148.227 0 .425-.05.595-.148.17-.1.306-.248.41-.447.104-.2.148-.456.134-.77v-.85zm-.84.85c0 .11-.013.208-.04.294-.025.087-.07.156-.133.207-.062.05-.148.076-.257.076-.108 0-.19-.025-.248-.076-.06-.05-.1-.12-.123-.207-.024-.086-.037-.183-.04-.294v-.85c-.002-.112.013-.21.046-.295.032-.085.08-.153.143-.205.062-.05.146-.077.252-.077.108 0 .193.026.256.077.062.052.108.12.134.205.025.086.04.183.04.295v.85zm3.87.55c0 .262-.047.457-.14.586-.094.13-.227.194-.398.194-.1 0-.193-.016-.277-.05-.085-.032-.16-.083-.223-.15h-.022l-.09.166h-.756v-6.924h.84v2.583h.022c.05-.06.115-.11.194-.148.08-.04.168-.06.264-.06.17 0 .304.063.398.19.094.13.14.327.14.59v2.023zm-.84-2.05c0-.094-.013-.173-.04-.238-.026-.066-.066-.117-.12-.152-.053-.036-.117-.053-.19-.053-.08 0-.148.016-.203.05-.054.032-.096.08-.125.143-.03.062-.044.14-.044.233v2.098c0 .095.016.174.05.238.03.063.077.11.136.143.06.032.126.05.203.05.073 0 .137-.018.19-.053.054-.036.094-.086.12-.152.027-.066.04-.145.04-.238v-2.07zm3.33.05c.054-.047.1-.112.14-.194.04-.082.06-.182.06-.298 0-.14-.03-.257-.087-.35-.057-.095-.146-.166-.267-.214-.12-.05-.275-.074-.465-.074h-1.483v5.53h.84v-2.32h.434c.18 0 .328-.022.447-.064.12-.043.208-.113.267-.21.06-.1.088-.232.088-.398v-.408zm-.84.36c0 .09-.016.157-.048.202-.033.045-.09.068-.172.068h-.434v-1.72h.434c.08 0 .138.023.172.07.033.046.05.113.05.2v1.18zm2.98-1.83h-.84v3.87c0 .114.017.203.05.266.034.063.088.107.163.13.076.024.178.036.306.036.092 0 .19-.006.293-.02v.712c-.172.024-.344.036-.516.036-.31 0-.556-.045-.738-.134-.182-.09-.31-.228-.387-.416-.076-.188-.114-.43-.114-.727v-3.75h-.48v-.713h.48v-1.428h.84v1.428h.942v.713z"/></svg>');
-            }
-
-            &.flutter {
-                background-color: #e3f2fd;
-                background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2302569B"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg>');
-            }
-        }
-
-        span {
-            font-size: 13px;
-            color: #666;
-            font-weight: 500;
-        }
-    }
-
-    .view-tech-stack {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        color: #0066ff;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-
-        mat-icon {
-            font-size: 18px;
-            width: 18px;
-            height: 18px;
-        }
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-}
-
-// Responsive
-@media (max-width: 768px) {
-    .company-header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .company-meta-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .company-content {
-        grid-template-columns: 1fr;
-    }
-
-    .tech-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.open-jobs-bg {
+    background-image: url("../../../../assets/images/job_of_company.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }

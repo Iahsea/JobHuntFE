@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Job, JobCreate } from '../../models/job.model';
+import { JobDetailResponseDto, JobResponseDto } from '../../models/dto/job-response.dto';
 import { environment } from '../../../environments/environment';
+import { BaseResponse } from '../../models/dto';
 
 @Injectable({
     providedIn: 'root'
@@ -12,40 +14,40 @@ export class JobService {
 
     constructor(private http: HttpClient) { }
 
-    getAllJobs(page: number = 1, size: number = 10): Observable<any> {
+    getAllJobs(page: number = 1, size: number = 10): Observable<BaseResponse<{ result: JobResponseDto[] }>> {
         const params = new HttpParams()
             .set('page', page.toString())
             .set('size', size.toString());
-        return this.http.get<any>(this.apiUrl, { params });
+        return this.http.get<BaseResponse<{ result: JobResponseDto[] }>>(this.apiUrl, { params });
     }
 
-    getJobById(id: number): Observable<Job> {
-        return this.http.get<Job>(`${this.apiUrl}/${id}`);
+    getJobById(id: number): Observable<BaseResponse<JobDetailResponseDto>> {
+        return this.http.get<BaseResponse<JobDetailResponseDto>>(`${this.apiUrl}/${id}`);
     }
 
-    createJob(job: JobCreate): Observable<Job> {
-        return this.http.post<Job>(this.apiUrl, job);
+    createJob(job: JobCreate): Observable<BaseResponse<JobDetailResponseDto>> {
+        return this.http.post<BaseResponse<JobDetailResponseDto>>(this.apiUrl, job);
     }
 
-    updateJob(id: number, job: Partial<Job>): Observable<Job> {
-        return this.http.put<Job>(`${this.apiUrl}/${id}`, job);
+    updateJob(id: number, job: Partial<JobCreate>): Observable<BaseResponse<JobDetailResponseDto>> {
+        return this.http.put<BaseResponse<JobDetailResponseDto>>(`${this.apiUrl}/${id}`, job);
     }
 
-    deleteJob(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    deleteJob(id: number): Observable<BaseResponse<null>> {
+        return this.http.delete<BaseResponse<null>>(`${this.apiUrl}/${id}`);
     }
 
-    searchJobs(filters: any): Observable<Job[]> {
+    searchJobs(filters: any): Observable<BaseResponse<JobResponseDto[]>> {
         let params = new HttpParams();
         Object.keys(filters).forEach(key => {
             if (filters[key]) {
                 params = params.set(key, filters[key]);
             }
         });
-        return this.http.get<Job[]>(`${this.apiUrl}/search`, { params });
+        return this.http.get<BaseResponse<JobResponseDto[]>>(`${this.apiUrl}/search`, { params });
     }
 
-    getJobsByCompany(companyId: number): Observable<Job[]> {
-        return this.http.get<Job[]>(`${this.apiUrl}/company/${companyId}`);
+    getJobsByCompany(companyId: number): Observable<BaseResponse<JobResponseDto[]>> {
+        return this.http.get<BaseResponse<JobResponseDto[]>>(`${this.apiUrl}/company/${companyId}`);
     }
 }

@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
         // Load statistics - adjust based on your API
         this.jobService.getAllJobs(1, 1).subscribe({
             next: (response) => {
-                this.stats.totalJobs = response.total || 0;
+
             }
         });
 
