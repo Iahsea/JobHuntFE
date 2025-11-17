@@ -13,6 +13,7 @@ export interface JobCompany {
     description?: string;
     address?: string;
     logo?: string;
+    coverImage?: string
     createdAt?: string;
     updatedAt?: string;
     createdBy?: string;
@@ -28,6 +29,7 @@ export interface Job {
     requirements?: string;
     benefits?: string;
     location?: string;
+    jobType?: string;
     salary?: number | string;
     quantity?: number;
     level?: string;
