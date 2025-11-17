@@ -204,6 +204,11 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Paginator -->
+                    <app-paginator [length]="totalJobs" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+                        [pageIndex]="currentPage - 1" [showFirstLastButtons]="true" (page)="onPageChange($event)">
+                    </app-paginator>
                 </main>
             </div>
         </div>

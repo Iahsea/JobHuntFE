@@ -2,15 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { PageEvent } from '@angular/material/paginator';
 import { JobService } from '../../../core/services/job.service';
 import { Job } from '../../../models/job.model';
 import { SearchBoxComponent } from '../../../shared/components/search-box/search-box.component';
+import { PaginatorComponent } from '../../../shared/components/paginator/paginator.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-job-list',
     standalone: true,
-    imports: [CommonModule, RouterModule, FormsModule, SearchBoxComponent, TranslateModule],
+    imports: [CommonModule, RouterModule, FormsModule, SearchBoxComponent, TranslateModule, PaginatorComponent],
     templateUrl: './job-list.component.html',
     styleUrls: ['./job-list.component.css']
 })
@@ -18,6 +20,11 @@ export class JobListComponent implements OnInit {
     totalJobs = 73;
     viewMode: 'list' | 'grid' = 'list';
     sortBy: string = 'relevant';
+
+    // Pagination
+    currentPage = 1;
+    pageSize = 4;
+    pageSizeOptions = [4, 8, 12, 20];
 
     // Search box properties
     searchPlaceholder: string = 'Job title, Keywords, or Company';
@@ -153,8 +160,8 @@ export class JobListComponent implements OnInit {
         this.loadJobs();
     }
 
-    loadJobs(page: number = 1, pageSize: number = 10): void {
-        this.jobService.getAllJobs(page, pageSize).subscribe({
+    loadJobs(): void {
+        this.jobService.getAllJobs(this.currentPage, this.pageSize).subscribe({
             next: (response) => {
                 this.totalJobs = response.data.meta.total;
                 this.mockJobs = response.data.result.map(job => ({
@@ -199,5 +206,13 @@ export class JobListComponent implements OnInit {
 
     onSortChange(): void {
         console.log('Sort changed to:', this.sortBy);
+    }
+
+    onPageChange(event: PageEvent): void {
+        this.currentPage = event.pageIndex + 1; // Material paginator is 0-indexed
+        this.pageSize = event.pageSize;
+        this.loadJobs();
+        // Scroll to top of job list
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
