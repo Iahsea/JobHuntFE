@@ -183,13 +183,13 @@
                                         <span class="capacity">of {{ job.capacity }} capacity</span>
                                     </div>
                                 </div>
-                                <button class="btn-apply">Apply</button>
+                                <button class="btn-apply" (click)="navigateToJobDetail(job.id)">Apply</button>
                             </div>
 
                             <!-- List View Layout -->
                             <div *ngIf="viewMode === 'list'">
                                 <div class="job-footer">
-                                    <button class="btn-apply">Apply</button>
+                                    <button class="btn-apply" (click)="navigateToJobDetail(job.id)">Apply</button>
                                 </div>
                                 <div class="job-meta">
                                     <div class="progress-bar">

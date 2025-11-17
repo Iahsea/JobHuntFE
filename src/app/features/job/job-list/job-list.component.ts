@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { JobService } from '../../../core/services/job.service';
@@ -154,10 +154,17 @@ export class JobListComponent implements OnInit {
         { label: '$3000 or above', value: '3000+', count: 4 }
     ];
 
-    constructor(private jobService: JobService) { }
+    constructor(
+        private jobService: JobService,
+        private router: Router
+    ) { }
 
     ngOnInit(): void {
         this.loadJobs();
+    }
+
+    navigateToJobDetail(jobId: number): void {
+        this.router.navigate(['/jobs', jobId]);
     }
 
     loadJobs(): void {
