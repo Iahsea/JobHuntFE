@@ -41,7 +41,13 @@ export class JobDetailComponent implements OnInit {
         this.isLoading.set(true);
         this.jobService.getJobById(id).subscribe({
             next: (response) => {
-                this.job.set(response.data);
+                // Convert null values to undefined for compatibility with Job type
+                const jobData: any = {
+                    ...response.data,
+                    updatedAt: response.data.updatedAt ?? undefined,
+                    updatedBy: response.data.updatedBy ?? undefined
+                };
+                this.job.set(jobData);
                 console.log('Loaded response:', response);
                 console.log('Loaded job:', this.job());
                 this.isLoading.set(false);

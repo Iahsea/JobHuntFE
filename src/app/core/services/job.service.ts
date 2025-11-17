@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Job, JobCreate } from '../../models/job.model';
-import { JobDetailResponseDto, JobResponseDto } from '../../models/dto/job-response.dto';
+import { JobDetailResponseDto, JobPaginationData, JobResponseDto } from '../../models/dto/job-response.dto';
 import { environment } from '../../../environments/environment';
 import { BaseResponse } from '../../models/dto';
 
@@ -14,11 +14,11 @@ export class JobService {
 
     constructor(private http: HttpClient) { }
 
-    getAllJobs(page: number = 1, size: number = 10): Observable<BaseResponse<{ result: JobResponseDto[] }>> {
+    getAllJobs(page: number = 1, pageSize: number = 10): Observable<BaseResponse<JobPaginationData>> {
         const params = new HttpParams()
             .set('page', page.toString())
-            .set('size', size.toString());
-        return this.http.get<BaseResponse<{ result: JobResponseDto[] }>>(this.apiUrl, { params });
+            .set('pageSize', pageSize.toString());
+        return this.http.get<BaseResponse<JobPaginationData>>(this.apiUrl, { params });
     }
 
     getJobById(id: number): Observable<BaseResponse<JobDetailResponseDto>> {

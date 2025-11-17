@@ -2,9 +2,9 @@ export interface JobSkillDto {
     id: number;
     name: string;
     createdAt?: string;
-    updatedAt?: string;
+    updatedAt?: string | null;
     createdBy?: string;
-    updatedBy?: string;
+    updatedBy?: string | null;
 }
 
 export interface JobCompanyDto {
@@ -13,40 +13,53 @@ export interface JobCompanyDto {
     description?: string;
     address?: string;
     logo?: string;
+    coverImage?: string;
+    website?: string;
+    companySize?: string;
+    foundedDate?: string;
+    employeeCount?: number;
+    benefits?: string;
+    socialLinks?: string | null;
     createdAt?: string;
-    updatedAt?: string;
+    updatedAt?: string | null;
     createdBy?: string;
-    updatedBy?: string;
+    updatedBy?: string | null;
 }
 
 export interface JobResponseDto {
     id: number;
     name: string;
-    title?: string; // Optional, for compatibility
-    description?: string;
-    requirements?: string;
-    benefits?: string;
     location?: string;
-    salary?: number | string;
+    salary?: number;
     quantity?: number;
     level?: string;
+    description?: string;
     jobType?: string;
-    experience?: string;
-    education?: string;
-    deadline?: string;
+    workMode?: string;
+    yearsOfExperience?: number;
     startDate?: string;
     endDate?: string;
-    status?: string;
     active?: boolean;
-    viewCount?: number;
-    applicationCount?: number;
     createdAt?: string;
-    updatedAt?: string;
+    updatedAt?: string | null;
     createdBy?: string;
-    updatedBy?: string;
+    updatedBy?: string | null;
     company?: JobCompanyDto;
     skills?: JobSkillDto[];
 }
+
+export interface JobPaginationMeta {
+    page: number;
+    pageSize: number;
+    pages: number;
+    total: number;
+}
+
+export interface JobPaginationData {
+    meta: JobPaginationMeta;
+    result: JobResponseDto[];
+}
+
 
 export interface JobDetailResponseDto extends JobResponseDto {
     responsibilities?: string[];

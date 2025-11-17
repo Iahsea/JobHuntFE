@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
     loadFeaturedJobs(): void {
         this.jobService.getAllJobs(1, 8).subscribe({
             next: (response) => {
-                this.featuredJobs.set(response.data.result); // cập nhật signal
+                this.featuredJobs.set(response.data.result as Job[]);
                 console.log('Loaded jobs:', this.featuredJobs());
                 this.isLoading.set(false);
             },

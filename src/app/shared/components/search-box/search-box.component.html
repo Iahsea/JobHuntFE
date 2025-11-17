@@ -1,0 +1,25 @@
+<!-- Search Box -->
+<div class="search-box">
+    <div class="search-input-group">
+        <mat-icon class="input-icon" [style.color]="iconColor">search</mat-icon>
+        <input type="text" [(ngModel)]="searchKeyword" [placeholder]="searchPlaceholder" [style.color]="textColor"
+            class="search-input">
+    </div>
+
+    <div class="location-input-group">
+        <mat-icon class="input-icon" [style.color]="iconColor">location_on</mat-icon>
+        <input type="text" [(ngModel)]="searchLocation" [placeholder]="locationPlaceholder" [style.color]="textColor"
+            class="search-input">
+    </div>
+
+    <button mat-flat-button color="primary" class="find-job-btn" (click)="onSearch()">
+        {{ buttonText }}
+    </button>
+</div>
+
+<!-- Popular Keywords -->
+<div class="suggestion-wrapper" *ngIf="showSuggestions && suggestions.length > 0">
+    <span class="suggestion-label">{{ suggestionLabel }}</span>
+    <a href="#" *ngFor="let suggestion of suggestions" class="suggestion-link"
+        (click)="onSuggestionClick(suggestion); $event.preventDefault()">{{ suggestion }}</a>
+</div>
