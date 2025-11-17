@@ -146,8 +146,30 @@
                     <!-- Job items -->
                     <div class="job-items" [class.grid-view]="viewMode === 'grid'"
                         [class.list-view]="viewMode === 'list'">
+
+                        <!-- Skeleton Loader -->
+                        <ng-container *ngIf="isLoading">
+                            <div class="job-card skeleton-card" *ngFor="let item of skeletonArray"
+                                [class.list-card]="viewMode === 'list'" [class.grid-card]="viewMode === 'grid'">
+                                <div class="job-card-header">
+                                    <div class="company-logo skeleton"></div>
+                                    <div class="job-info">
+                                        <div class="skeleton skeleton-title"></div>
+                                        <div class="skeleton skeleton-text"></div>
+                                        <div class="skeleton skeleton-tags"></div>
+                                    </div>
+                                </div>
+                                <div class="skeleton skeleton-description" *ngIf="viewMode === 'grid'"></div>
+                                <div class="skeleton-footer">
+                                    <div class="skeleton skeleton-progress"></div>
+                                    <div class="skeleton skeleton-button"></div>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                        <!-- Actual Job Cards -->
                         <div class="job-card" *ngFor="let job of mockJobs" [class.list-card]="viewMode === 'list'"
-                            [class.grid-card]="viewMode === 'grid'">
+                            [class.grid-card]="viewMode === 'grid'" [hidden]="isLoading">
                             <div class="job-card-header">
                                 <div class="company-logo">
                                     <img [src]="job.companyLogo" [alt]="job.companyName">

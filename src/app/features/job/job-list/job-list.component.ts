@@ -17,9 +17,10 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
     styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
-    totalJobs = 73;
+    totalJobs = 0;
     viewMode: 'list' | 'grid' = 'list';
     sortBy: string = 'relevant';
+    isLoading: boolean = true;
 
     // Pagination
     currentPage = 1;
@@ -31,93 +32,11 @@ export class JobListComponent implements OnInit {
     locationPlaceholder: string = 'City, State, or Remote';
     searchButtonText: string = 'Find Jobs';
 
-    // Mock job data
-    mockJobs = [
-        {
-            id: 1,
-            title: 'Social Media Assistant',
-            companyName: 'Nomad',
-            companyLogo: 'https://via.placeholder.com/48/4ade80/ffffff?text=N',
-            location: 'Paris, France',
-            employmentType: 'Full-Time',
-            categories: ['Marketing', 'Design'],
-            description: 'Nomad is looking for a Social Media Assistant to join our team in Paris. You will be responsible for managing social media accounts and creating engaging content.',
-            applications: 5,
-            capacity: 10
-        },
-        {
-            id: 2,
-            title: 'Brand Designer',
-            companyName: 'Dropbox',
-            companyLogo: 'https://via.placeholder.com/48/0061ff/ffffff?text=D',
-            location: 'San Fransisco, USA',
-            employmentType: 'Full-Time',
-            categories: ['Marketing', 'Design'],
-            description: 'Dropbox is seeking a talented Brand Designer to help shape our visual identity and create stunning designs for our products.',
-            applications: 2,
-            capacity: 10
-        },
-        {
-            id: 3,
-            title: 'Interactive Developer',
-            companyName: 'Terraform',
-            companyLogo: 'https://via.placeholder.com/48/00d4ff/ffffff?text=T',
-            location: 'Hamburg, Germany',
-            employmentType: 'Full-Time',
-            categories: ['Marketing', 'Design'],
-            description: 'Terraform is hiring an Interactive Developer to build engaging web experiences and interactive applications.',
-            applications: 8,
-            capacity: 12
-        },
-        {
-            id: 4,
-            title: 'Email Marketing',
-            companyName: 'Revolut',
-            companyLogo: 'https://via.placeholder.com/48/1f2937/ffffff?text=R',
-            location: 'Madrid, Spain',
-            employmentType: 'Full-Time',
-            categories: ['Marketing', 'Design'],
-            description: 'Join Revolut as an Email Marketing specialist and help us create compelling email campaigns that drive engagement.',
-            applications: 0,
-            capacity: 10
-        },
-        {
-            id: 5,
-            title: 'Lead Engineer',
-            companyName: 'Canva',
-            companyLogo: 'https://via.placeholder.com/48/00c4cc/ffffff?text=C',
-            location: 'Ankara, Turkey',
-            employmentType: 'Full-Time',
-            categories: ['Marketing', 'Design'],
-            description: 'Canva is looking for a Lead Engineer to guide our engineering team and build scalable solutions.',
-            applications: 5,
-            capacity: 10
-        },
-        {
-            id: 6,
-            title: 'Product Designer',
-            companyName: 'ClassPass',
-            companyLogo: 'https://via.placeholder.com/48/5b7cff/ffffff?text=CP',
-            location: 'Berlin, Germany',
-            employmentType: 'Full-Time',
-            categories: ['Marketing', 'Design'],
-            description: 'ClassPass seeks a creative Product Designer to design intuitive and beautiful user experiences.',
-            applications: 5,
-            capacity: 10
-        },
-        {
-            id: 7,
-            title: 'Customer Manager',
-            companyName: 'Pitch',
-            companyLogo: 'https://via.placeholder.com/48/000000/ffffff?text=P',
-            location: 'Berlin, Germany',
-            employmentType: 'Full-Time',
-            categories: ['Marketing', 'Design'],
-            description: 'Pitch is hiring a Customer Manager to build strong relationships with our customers and ensure their success.',
-            applications: 5,
-            capacity: 10
-        }
-    ];
+    // Job data from API
+    mockJobs: any[] = [];
+
+    // Skeleton placeholder array
+    skeletonArray = Array(4).fill(0);
 
     // Filter data
     employmentTypes = [
@@ -168,6 +87,7 @@ export class JobListComponent implements OnInit {
     }
 
     loadJobs(): void {
+        this.isLoading = true;
         this.jobService.getAllJobs(this.currentPage, this.pageSize).subscribe({
             next: (response) => {
                 this.totalJobs = response.data.meta.total;
@@ -183,9 +103,11 @@ export class JobListComponent implements OnInit {
                     applications: 0, // API doesn't provide this yet
                     capacity: job.quantity || 10
                 }));
+                this.isLoading = false;
             },
             error: (error) => {
                 console.error('Error loading jobs:', error);
+                this.isLoading = false;
             }
         });
     }
