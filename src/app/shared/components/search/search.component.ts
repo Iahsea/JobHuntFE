@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { Job } from '../../../models/job.model';
 
 export interface SearchCriteria {
     keyword: string;
@@ -21,11 +22,12 @@ export class SearchComponent {
     @Input() locationPlaceholder = 'City or postcode';
     @Input() buttonText = 'Find Job';
     @Input() showSuggestions = true;
-    @Input() suggestions: string[] = ['Designer', 'Programming', 'Digital Marketing', 'Video', 'Animation'];
+    @Input() suggestions: Job[] = [];
     @Input() suggestionLabel = 'Suggestion:';
     @Input() variant: 'default' | 'compact' = 'default';
 
     @Output() search = new EventEmitter<SearchCriteria>();
+    @Output() keywordChange = new EventEmitter<string>();
 
     searchKeyword = '';
     searchLocation = '';
@@ -35,5 +37,9 @@ export class SearchComponent {
             keyword: this.searchKeyword.trim(),
             location: this.searchLocation.trim()
         });
+    }
+
+    onKeywordInput(value: string): void {
+        this.keywordChange.emit(value);
     }
 }

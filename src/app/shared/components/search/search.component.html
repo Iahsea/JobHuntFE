@@ -7,7 +7,17 @@
                    [(ngModel)]="searchKeyword"
                    [placeholder]="keywordPlaceholder"
                    class="search-input"
-                   (keyup.enter)="onSearch()" />
+                   (keyup.enter)="onSearch()"
+                   (input)="onKeywordInput(searchKeyword)" />
+            <!-- Hiển thị suggestions popup -->
+            <div class="suggestion-popup"
+                 *ngIf="showSuggestions && suggestions.length > 0 && searchKeyword">
+                <div class="suggestion-item"
+                     *ngFor="let suggestion of suggestions"
+                     (click)="searchKeyword = suggestion.name; onSearch()">
+                    <span class="suggestion-text">{{ suggestion.name }}</span>
+                </div>
+            </div>
         </div>
 
         <div class="location-input-group">
@@ -26,17 +36,4 @@
             {{ buttonText }}
         </button>
     </div>
-
-    @if (showSuggestions && suggestions.length > 0) {
-    <div class="suggestion-wrapper">
-        <span class="suggestion-label">{{ suggestionLabel }}</span>
-        @for (suggestion of suggestions; track suggestion) {
-        <a href="#"
-           class="suggestion-link"
-           (click)="$event.preventDefault(); searchKeyword = suggestion; onSearch()">
-            {{ suggestion }}
-        </a>
-        }
-    </div>
-    }
 </div>
