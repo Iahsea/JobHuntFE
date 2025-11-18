@@ -1,0 +1,42 @@
+<div class="search-container"
+     [class.compact]="variant === 'compact'">
+    <div class="search-box">
+        <div class="search-input-group">
+            <mat-icon class="input-icon">search</mat-icon>
+            <input type="text"
+                   [(ngModel)]="searchKeyword"
+                   [placeholder]="keywordPlaceholder"
+                   class="search-input"
+                   (keyup.enter)="onSearch()" />
+        </div>
+
+        <div class="location-input-group">
+            <mat-icon class="input-icon">location_on</mat-icon>
+            <input type="text"
+                   [(ngModel)]="searchLocation"
+                   [placeholder]="locationPlaceholder"
+                   class="search-input"
+                   (keyup.enter)="onSearch()" />
+        </div>
+
+        <button mat-flat-button
+                color="primary"
+                class="find-job-btn"
+                (click)="onSearch()">
+            {{ buttonText }}
+        </button>
+    </div>
+
+    @if (showSuggestions && suggestions.length > 0) {
+    <div class="suggestion-wrapper">
+        <span class="suggestion-label">{{ suggestionLabel }}</span>
+        @for (suggestion of suggestions; track suggestion) {
+        <a href="#"
+           class="suggestion-link"
+           (click)="$event.preventDefault(); searchKeyword = suggestion; onSearch()">
+            {{ suggestion }}
+        </a>
+        }
+    </div>
+    }
+</div>

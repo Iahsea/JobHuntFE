@@ -13,53 +13,18 @@
                     {{ 'HERO.SUBTITLE' | translate }}
                 </p>
 
-                <!-- Search Box -->
-                <div class="search-box"
-                     appScrollReveal
+                <!-- Search Component -->
+                <div appScrollReveal
                      [revealFrom]="'bottom'"
                      [revealDelay]="200"
                      [revealDuration]="800">
-                    <div class="search-input-group">
-                        <mat-icon class="input-icon">search</mat-icon>
-                        <input type="text"
-                               [(ngModel)]="searchKeyword"
-                               [placeholder]="'HERO.SEARCH_PLACEHOLDER' | translate"
-                               class="search-input">
-                    </div>
-
-                    <div class="location-input-group">
-                        <mat-icon class="input-icon">location_on</mat-icon>
-                        <input type="text"
-                               [(ngModel)]="searchLocation"
-                               [placeholder]="'HERO.LOCATION_PLACEHOLDER' | translate"
-                               class="search-input">
-                    </div>
-
-                    <button mat-flat-button
-                            color="primary"
-                            class="find-job-btn"
-                            (click)="onSearch()">
-                        {{ 'HERO.SEARCH_BUTTON' | translate }}
-                    </button>
-                </div>
-
-                <!-- Popular Keywords -->
-                <div class="suggestion-wrapper"
-                     appScrollReveal
-                     [revealFrom]="'bottom'"
-                     [revealDelay]="400"
-                     [revealDuration]="800">
-                    <span class="suggestion-label">{{ 'HERO.SUGGESTION' | translate }}:</span>
-                    <a href="#"
-                       class="suggestion-link">Designer</a>
-                    <a href="#"
-                       class="suggestion-link">Programming</a>
-                    <a href="#"
-                       class="suggestion-link">Digital Marketing</a>
-                    <a href="#"
-                       class="suggestion-link">Video</a>
-                    <a href="#"
-                       class="suggestion-link">Animation</a>
+                    <app-search [keywordPlaceholder]="'HERO.SEARCH_PLACEHOLDER' | translate"
+                                [locationPlaceholder]="'HERO.LOCATION_PLACEHOLDER' | translate"
+                                [buttonText]="'HERO.SEARCH_BUTTON' | translate"
+                                [showSuggestions]="true"
+                                [suggestionLabel]="'HERO.SUGGESTION' | translate"
+                                [suggestions]="['Designer', 'Programming', 'Digital Marketing', 'Video', 'Animation']"
+                                (search)="onSearch($event)"></app-search>
                 </div>
             </div>
         </div>
