@@ -71,7 +71,10 @@ export class HeroBannerComponent {
     onSearch(criteria: SearchCriteria): void {
         this.jobService.getAllJobs(1, 10, criteria.keyword).subscribe({
             next: (response) => {
-                console.log('Search results:', response.data);
+                if (response && response.data && response.data.result && response.data.result.length > 0) {
+                    const firstJob = response.data.result[0];
+                    this.router.navigate(['/jobs', firstJob.id]);
+                }
             }
         });
     }

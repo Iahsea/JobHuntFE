@@ -19,6 +19,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         @for (job of jobs; track job.id; let i = $index) {
         <mat-card appScrollReveal
+                  (click)="goToDetailJob(job.id)"
                   [revealFrom]="'bottom'"
                   [revealDelay]="i * 100"
                   [revealDuration]="600"

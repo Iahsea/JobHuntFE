@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Company } from '../../../models/company.model';
 import { ScrollRevealDirective } from '../../../shared/directives/scroll-reveal.directive';
@@ -26,8 +26,14 @@ import { ScrollRevealDirective } from '../../../shared/directives/scroll-reveal.
 export class TopCompaniesComponent {
     @Input() companies: Company[] = [];
 
+    constructor(private router: Router) { }
+
     getCompanyColor(index: number): string {
         const colors = ['#ff6b9d', '#10b981', '#3b82f6', '#8b5cf6'];
         return colors[index % colors.length];
+    }
+
+    goToDetailCompany(companyId: number): void {
+        this.router.navigate(['/companies', companyId]);
     }
 }

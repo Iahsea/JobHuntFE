@@ -57,7 +57,7 @@
 
             <!-- Open Position Button -->
             <button mat-stroked-button
-                    [routerLink]="['/companies', company.id]"
+                    (click)="goToDetailCompany(company.id)"
                     class="w-full border-0 bg-blue-50 text-blue-600 font-semibold py-2 rounded-md group-hover:bg-blue-500 group-hover:text-white transition">
                 {{ 'TOP_COMPANIES.OPEN_POSITION' | translate }}
             </button>
