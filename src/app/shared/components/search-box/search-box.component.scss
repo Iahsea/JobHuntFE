@@ -1,0 +1,141 @@
+.search-box {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    overflow: visible;
+    max-width: 680px;
+    width: 100%;
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+    backdrop-filter: blur(6px);
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    justify-content: center;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .search-input-group,
+    .location-input-group {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        min-height: 48px;
+        background: transparent;
+        min-width: 0;
+        flex: 1 1 0;
+
+        .input-icon {
+            // Color set dynamically via [style.color], default #60a5fa (blue)
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .search-input {
+            flex: 1 1 0;
+            min-width: 0;
+            border: none;
+            outline: none;
+            font-size: 1.1rem;
+            // Color set dynamically via [style.color], default #1f2937 (dark)
+            background: transparent;
+            font-weight: 500;
+            padding: 0.25rem 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            &::placeholder {
+                color: #d1d5db;
+                opacity: 0.9;
+                font-weight: 400;
+            }
+        }
+    }
+
+    .location-input-group {
+        border-left: 1px solid rgba(255, 255, 255, 0.15);
+
+        @media (max-width: 768px) {
+            border-left: none;
+        }
+    }
+
+    .find-job-btn {
+        background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%) !important;
+        color: #fff !important;
+        padding: 0 3.5rem !important;
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        border-radius: 2rem !important;
+        min-height: 48px !important;
+        box-shadow: none !important;
+        text-transform: none !important;
+        letter-spacing: 0 !important;
+        font-family: "Nunito", "Poppins", "Montserrat", "Segoe UI", Arial, sans-serif !important;
+        transition: background 0.2s;
+        margin-left: 0.5rem;
+        z-index: 1;
+        position: relative;
+
+        &:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%) !important;
+        }
+
+        @media (max-width: 768px) {
+            width: 100%;
+            border-radius: 0 0 2rem 2rem !important;
+            margin-left: 0;
+            margin-top: 0.5rem;
+        }
+    }
+}
+
+.suggestion-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+
+    .suggestion-label {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+        margin-right: 0.5rem;
+        font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+        @media (max-width: 480px) {
+            font-size: 0.875rem;
+        }
+    }
+
+    .suggestion-link {
+        background: rgba(255, 255, 255, 0.13);
+        color: #fff;
+        border-radius: 1rem;
+        padding: 0.25rem 0.9rem;
+        font-size: 1.05rem;
+        font-weight: 500;
+        transition:
+            background 0.18s,
+            color 0.18s;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+            background: #60a5fa;
+            color: #fff;
+        }
+    }
+}

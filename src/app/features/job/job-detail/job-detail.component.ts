@@ -53,10 +53,6 @@ export class JobDetailComponent implements OnInit {
         this.isLoading.set(true);
         this.jobService.getJobById(id).subscribe({
             next: (response) => {
-                const jobData = response.data;
-                if (jobData.company) {
-                    jobData.company.logo = jobData.company.logo ? `${environment.imagesUrl}${jobData.company.logo}` : undefined;
-                }
                 this.job.set(jobData);
                 console.log('Loaded response:', response);
                 console.log('Loaded job:', this.job());

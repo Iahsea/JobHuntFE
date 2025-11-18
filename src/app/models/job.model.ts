@@ -2,9 +2,9 @@ export interface JobSkill {
     id: number;
     name: string;
     createdAt?: string;
-    updatedAt?: string;
+    updatedAt?: string | null;
     createdBy?: string;
-    updatedBy?: string;
+    updatedBy?: string | null;
 }
 
 export interface JobCompany {
@@ -15,9 +15,9 @@ export interface JobCompany {
     logo?: string;
     coverImage?: string
     createdAt?: string;
-    updatedAt?: string;
+    updatedAt?: string | null;
     createdBy?: string;
-    updatedBy?: string;
+    updatedBy?: string | null;
 }
 
 export interface Job {
@@ -49,9 +49,9 @@ export interface Job {
     viewCount?: number;
     applicationCount?: number;
     createdAt?: string;
-    updatedAt?: string;
+    updatedAt?: string | null;
     createdBy?: string;
-    updatedBy?: string;
+    updatedBy?: string | null;
     company?: JobCompany;
     skills?: JobSkill[];
 }

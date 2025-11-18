@@ -1,0 +1,18 @@
+<div class="skeleton-wrapper">
+    <div class="card skeleton-card" *ngFor="let item of skeletonArray" [class.list-card]="viewMode === 'list'"
+        [class.grid-card]="viewMode === 'grid'">
+        <div class="card-header">
+            <div class="logo skeleton"></div>
+            <div class="info">
+                <div class="skeleton skeleton-title"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-tags"></div>
+            </div>
+        </div>
+        <div class="skeleton skeleton-description" *ngIf="showDescription && viewMode === 'grid'"></div>
+        <div class="skeleton-footer" *ngIf="showFooter">
+            <div class="skeleton skeleton-progress"></div>
+            <div class="skeleton skeleton-button"></div>
+        </div>
+    </div>
+</div>

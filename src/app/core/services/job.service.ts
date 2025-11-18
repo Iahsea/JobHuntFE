@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Job, JobCreate } from '../../models/job.model';
-import { JobDetailResponseDto, JobResponseDto } from '../../models/dto/job-response.dto';
+import { JobDetailResponseDto, JobPaginationData, JobResponseDto } from '../../models/dto/job-response.dto';
 import { environment } from '../../../environments/environment';
 import { BaseResponse } from '../../models/dto';
 

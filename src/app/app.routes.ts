@@ -14,6 +14,7 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./features/home/home.component').then((m) => m.HomeComponent),
             },
+
         ],
     },
     // Các trang khác - Có header thường
@@ -27,6 +28,7 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./features/job/job-list/job-list.component').then((m) => m.JobListComponent),
             },
+
             {
                 path: 'jobs/:id',
                 loadComponent: () =>
