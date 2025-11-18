@@ -4,11 +4,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RouterModule } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Router, RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { ScrollRevealDirective } from '../../../shared/directives/scroll-reveal.directive';
-import { SearchBoxComponent } from '../../../shared/components/search-box/search-box.component';
+import { SearchComponent, SearchCriteria } from '../../../shared/components/search/search.component';
+import { JobService } from '../../../core/services/job.service';
 
 @Component({
     selector: 'app-hero-banner',
@@ -24,45 +27,54 @@ import { SearchBoxComponent } from '../../../shared/components/search-box/search
         TranslateModule,
         ScrollRevealDirective,
         SearchBoxComponent
+        SearchComponent
     ],
     templateUrl: './hero-banner.component.html',
     styleUrls: ['./hero-banner.component.scss']
 })
 export class HeroBannerComponent {
-    @ViewChild('bgVideo') bgVideo!: ElementRef<HTMLVideoElement>;
+    suggestions: string[] = [];
+    private searchSubject = new Subject<string>();
 
-    searchPlaceholder: string = '';
-    locationPlaceholder: string = '';
-    searchButtonText: string = '';
-    suggestionLabel: string = '';
-    suggestions: string[] = ['Designer', 'Programming', 'Digital Marketing', 'Video', 'Animation'];
-
-    constructor(private translateService: TranslateService) {
-        this.loadTranslations();
-
-        // Subscribe to language changes
-        this.translateService.onLangChange.subscribe(() => {
-            this.loadTranslations();
+    constructor(
+        private router: Router,
+        private jobService: JobService
+    ) {
+        this.searchSubject.pipe(
+            debounceTime(300),
+            distinctUntilChanged(),
+            switchMap((keyword) => {
+                if (keyword && keyword.trim()) {
+                    return this.jobService.searchJobs(keyword);
+                }
+                return [];
+            })
+        ).subscribe({
+            next: (response: any) => {
+                if (response && response.data) {
+                    console.log('Suggestions response:', response);
+                    console.log('Suggestions data:', response.data);
+                    // Lấy danh sách job titles từ response để làm suggestions
+                    this.suggestions = response.data.map((job: any) => job.title);
+                }
+            }
         });
     }
 
-    private loadTranslations(): void {
-        this.translateService.get('HERO.SEARCH_PLACEHOLDER').subscribe((text: string) => {
-            this.searchPlaceholder = text;
-        });
-        this.translateService.get('HERO.LOCATION_PLACEHOLDER').subscribe((text: string) => {
-            this.locationPlaceholder = text;
-        });
-        this.translateService.get('HERO.SEARCH_BUTTON').subscribe((text: string) => {
-            this.searchButtonText = text;
-        });
-        this.translateService.get('HERO.SUGGESTION').subscribe((text: string) => {
-            this.suggestionLabel = text + ':';
-        });
+    handleKeywordChange(event: any): void {
+        const value = event && event.target ? (event.target as HTMLInputElement).value : event;
+        this.onKeywordChange(value);
     }
 
-    onSearch(event: { keyword: string, location: string }): void {
-        console.log('Search:', event.keyword, event.location);
-        // Implement search logic here
+    onKeywordChange(keyword: string): void {
+        this.searchSubject.next(keyword);
+    }
+
+    onSearch(criteria: SearchCriteria): void {
+        this.jobService.searchJobs(criteria.keyword).subscribe({
+            next: (response) => {
+                console.log('Search results:', response.data);
+            }
+        });
     }
 }

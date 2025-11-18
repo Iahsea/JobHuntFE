@@ -10,13 +10,18 @@
                     {{ 'HERO.SUBTITLE' | translate }}
                 </p>
 
-                <!-- Search Box -->
-                <div appScrollReveal [revealFrom]="'bottom'" [revealDelay]="200" [revealDuration]="800">
-                    <app-search-box [searchPlaceholder]="searchPlaceholder" [locationPlaceholder]="locationPlaceholder"
-                        [buttonText]="searchButtonText" [suggestionLabel]="suggestionLabel" [suggestions]="suggestions"
-                        [showSuggestions]="true" [textColor]="'#ffffff'" [iconColor]="'#60a5fa'"
-                        (search)="onSearch($event)">
-                    </app-search-box>
+                <!-- Search Component -->
+                <div appScrollReveal
+                     [revealFrom]="'bottom'"
+                     [revealDelay]="200"
+                     [revealDuration]="800">
+                    <app-search [keywordPlaceholder]="'HERO.SEARCH_PLACEHOLDER' | translate"
+                                [locationPlaceholder]="'HERO.LOCATION_PLACEHOLDER' | translate"
+                                [buttonText]="'HERO.SEARCH_BUTTON' | translate"
+                                [showSuggestions]="true"
+                                [suggestionLabel]="'HERO.SUGGESTION' | translate"
+                                [suggestions]="['Designer', 'Programming', 'Digital Marketing', 'Video', 'Animation']"
+                                (search)="onSearch($event)"></app-search>
                 </div>
             </div>
         </div>

@@ -28,7 +28,11 @@
                      class="flex-shrink-0 bg-gradient-to-br bg-gray-50 rounded-2xl p-4 w-32 h-32 flex items-center justify-center">
                     <img [src]="job()?.logo || 'assets/images/default_job.png'"
                          [alt]="job()?.name"
-                         class="w-20 h-20 object-contain" />
+                         class="w-20 h-20 object-contain"
+                         width="80"
+                         height="80"
+                         loading="lazy"
+                         decoding="async" />
                 </div>
 
                 <!-- Job Info -->
@@ -107,63 +111,113 @@
 
                 <!-- Right Column: About this role -->
                 <div>
-                    <div class="bg-white rounded-xl p-6 border border-gray-200">
-                        <h2 class="text-lg font-bold text-gray-900 mb-6">About this role</h2>
-                        <div class="space-y-4 mb-6">
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600 flex items-center gap-2">
-                                    <mat-icon class="text-base text-gray-400">event</mat-icon>
-                                    Apply Before
-                                </span>
-                                <span class="font-semibold text-gray-900">{{ job()?.endDate ? (job()?.endDate | date:
-                                    'MMM dd, yyyy') : 'Open' }}</span>
+                    <div class="about-role-card bg-white rounded-xl p-6 border border-gray-200">
+                        <h2 class="about-role-title mb-6">About this role</h2>
+                        <!-- Progress bar -->
+                        <div class="about-role-progress mb-6">
+                            <div class="flex items-center mb-1">
+                                <span class="font-semibold text-indigo-700">5 applied</span>
+                                <span class="text-gray-400 ml-1">of 10 capacity</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600 flex items-center gap-2">
-                                    <mat-icon class="text-base text-gray-400">calendar_today</mat-icon>
-                                    Job Posted On
-                                </span>
-                                <span class="font-semibold text-gray-900">{{ job()?.startDate ? (job()?.startDate |
-                                    date: 'MMM dd, yyyy') : 'N/A' }}</span>
-                            </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600 flex items-center gap-2">
-                                    <mat-icon class="text-base text-gray-400">work_outline</mat-icon>
-                                    Job Type
-                                </span>
-                                <span class="font-semibold text-gray-900">Full-Time</span>
-                            </div>
-                            @if (job()?.salary) {
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600 flex items-center gap-2">
-                                    <mat-icon class="text-base text-gray-400">payments</mat-icon>
-                                    Salary
-                                </span>
-                                <span class="font-semibold text-gray-900">{{ job()?.salary |
-                                    currency:'VND':'symbol':'1.0-0' }}</span>
-                            </div>
-                            }
-                        </div>
-                        <div class="mb-6">
-                            <h3 class="text-sm font-bold text-gray-900 mb-3">Categories</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span
-                                      class="bg-orange-100 text-orange-700 px-3 py-1.5 rounded-full text-xs font-medium">Marketing</span>
-                                <span
-                                      class="bg-blue-100 text-blue-700 px-3 py-1.5 rounded-full text-xs font-medium">Design</span>
+                            <div class="progress-bar-outer">
+                                <div class="progress-bar-inner"></div>
                             </div>
                         </div>
+                        <div class="about-role-list">
+                            <div class="about-role-row">
+                                <span>Apply Before</span>
+                                <span class="about-role-value">{{ job()?.startDate ? (job()?.startDate |
+                                    date:'yyyy-MM-dd') : '' }}</span>
+                            </div>
+                            <div class="about-role-row">
+                                <span>Job Posted On</span>
+                                <span class="about-role-value">
+                                    {{ job()?.endDate ? (job()?.endDate | date:'yyyy-MM-dd') : '' }}
+                                </span>
+                            </div>
+                            <div class="about-role-row">
+                                <span>Work Mode</span>
+                                <span class="about-role-value">{{ job()?.workMode }}</span>
+                            </div>
+                            <div class="about-role-row">
+                                <span>Salary</span>
+                                <span class="about-role-value font-bold">
+                                    {{ job()?.salary | currency:'VND':'symbol':'1.0-0' }}
+                                </span>
+                            </div>
+                        </div>
+                        <hr class="about-role-divider my-6" />
                         <div>
-                            <h3 class="text-sm font-bold text-gray-900 mb-3">Required Skills</h3>
+                            <h3 class="about-role-section mb-3">Job Type</h3>
                             <div class="flex flex-wrap gap-2">
-                                @for (skill of job()?.skills; track skill.id) {
-                                <span
-                                      class="bg-white border border-gray-300 text-gray-700 px-3 py-1.5 rounded-full text-xs font-medium hover:border-blue-500 hover:text-blue-600 transition-colors">
-                                    {{ skill.name }}
-                                </span>
+                                <span class="about-role-badge about-role-badge-yellow">{{ job()?.jobType }}</span>
+                            </div>
+                        </div>
+                        <hr class="about-role-divider my-6" />
+                        <div>
+                            <h3 class="about-role-section mb-3">Level</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="about-role-badge about-role-badge-green">{{ job()?.level }}</span>
+                            </div>
+                        </div>
+                        <hr class="about-role-divider my-6" />
+                        <div>
+                            <h3 class="about-role-section mb-3">Required Skills</h3>
+                            <div class="about-role-skills">
+                                @for (skill of job()?.skills ?? []; track skill.id) {
+                                <span class="about-role-skill">{{ skill.name }}</span>
                                 }
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Company Information Section -->
+    <div class="w-full bg-white company-info-section">
+        <div class="max-w-6xl mx-auto px-2">
+            <div class=" company-info-card">
+                <!-- new wrapper: left (logo + name + description) and right (single image) -->
+                <div class="company-info-content flex flex-col md:flex-row md:items-stretch py-20 gap-8">
+                    <!-- Left: Logo, Name, Link, Description (all together) -->
+                    <div class="company-info-left flex-1 flex flex-col justify-center min-w-[320px] max-w-[520px]">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="company-info-logo flex-shrink-0">
+                                <img [src]="job()?.company?.logo || 'assets/images/default_company.png'"
+                                     [alt]="job()?.company?.name"
+                                     class="w-14 h-14 object-contain"
+                                     width="56"
+                                     height="56"
+                                     loading="lazy"
+                                     decoding="async" />
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-gray-900 mb-0.5">
+                                    {{ job()?.company?.name }}
+                                </div>
+                                <a [routerLink]="['/companies', job()?.company?.id]"
+                                   class="company-info-link text-blue-600 hover:text-blue-700 font-medium text-base">
+                                    Read more about {{ job()?.company?.name }}
+                                    <mat-icon class="text-lg">arrow_forward</mat-icon>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Company Description now inside same left column -->
+                        <div class="company-description text-gray-700 leading-relaxed text-base mt-2 line-clamp-2"
+                             [title]="job()?.company?.description">
+                            {{ job()?.company?.description }}
+                        </div>
+                    </div>
+
+                    <!-- Right: Single image (use coverImage or fallback) -->
+                    <div class="company-single-image-wrapper">
+                        <img [src]="job()?.company?.coverImage || 'assets/images/default_company_cover.jpg'"
+                             alt="{{ job()?.company?.name }} image"
+                             class="w-full h-full object-cover"
+                             loading="lazy" />
                     </div>
                 </div>
             </div>

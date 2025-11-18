@@ -209,7 +209,7 @@
         display: flex;
         align-items: center;
         padding: 0 1rem;
-        min-height: 48px;
+        min-height: 42px;
         background: transparent;
         min-width: 0; // Cho phép input co lại khi text dài
         flex: 1 1 0;
@@ -227,11 +227,11 @@
             min-width: 0;
             border: none;
             outline: none;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #fff;
             background: transparent;
             font-weight: 500;
-            padding: 0.25rem 0;
+            padding: 0.18rem 0;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -256,10 +256,10 @@
         background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%) !important;
         color: #fff !important;
         padding: 0 3.5rem !important; /* Làm nút dài ra */
-        font-size: 1.1rem !important;
+        font-size: 1.05rem !important;
         font-weight: 600 !important;
         border-radius: 2rem !important;
-        min-height: 48px !important;
+        min-height: 40px !important;
         box-shadow: none !important;
         text-transform: none !important;
         letter-spacing: 0 !important;
@@ -278,6 +278,74 @@
             border-radius: 0 0 2rem 2rem !important;
             margin-left: 0;
             margin-top: 0.5rem;
+        }
+    }
+}
+
+// Override styles for app-search component in hero banner
+:host ::ng-deep app-search {
+    .search-box {
+        background: rgba(255, 255, 255, 0.15) !important;
+        backdrop-filter: blur(10px);
+        border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+        padding: 0.35rem !important;
+        border-radius: 2rem !important;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            border-color: rgba(255, 255, 255, 0.35) !important;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+        }
+    }
+
+    .search-input-group,
+    .location-input-group {
+        background: transparent !important;
+        padding: 0.5rem 1rem !important;
+        height: 40px !important;
+    }
+
+    .input-icon {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    .search-input {
+        color: #fff !important;
+        background: transparent !important;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+    }
+
+    .find-job-btn {
+        background: linear-gradient(90deg, #2563eb, #6366f1) !important;
+        color: #fff !important;
+        border: none !important;
+        border-radius: 2rem !important;
+        height: 40px !important;
+
+        &:hover {
+            background: linear-gradient(90deg, #1e40af, #4f46e5) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3) !important;
+        }
+    }
+
+    .suggestion-label {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    .suggestion-link {
+        color: #fff !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        border-radius: 2rem !important;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.25) !important;
+            color: #fff !important;
         }
     }
 }

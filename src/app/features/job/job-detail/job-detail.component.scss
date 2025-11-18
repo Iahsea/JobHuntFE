@@ -1,136 +1,452 @@
-body,
-.job-detail-page {
-    background: #fff !important;
+// CSS Custom Properties for theme consistency
+:host {
+    --color-primary: #2563eb;
+    --color-primary-hover: #1d4ed8;
+    --color-secondary: #6366f1;
+    --color-text-primary: #0f172a;
+    --color-text-secondary: #475569;
+    --color-border: #e5e7eb;
+    --border-radius-lg: 1rem;
+    --border-radius-xl: 1.5rem;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --transition-base: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.max-w-6xl {
-    max-width: 72rem;
-    margin-left: auto;
-    margin-right: auto;
-}
+// Remove utility classes covered by Tailwind (max-w-6xl, mt-24, etc.)
+// Keep only component-specific styles
 
-.mt-24 {
-    margin-top: 6rem;
-}
-
-.mb-8 {
-    margin-bottom: 2rem;
-}
-
-.p-6 {
-    padding: 1.5rem;
-}
-
-.rounded-xl {
-    border-radius: 1rem;
-}
-
-.rounded-2xl {
-    border-radius: 1.5rem;
-}
-
-.shadow {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.shadow-xl {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.shadow-sm {
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.border-0 {
-    border: none !important;
-}
-
-.sticky {
-    position: sticky;
-}
-
-.top-24 {
-    top: 6rem;
-}
-
+// Job Header
 .job-header-gradient {
     background: #ffffff;
-    border: 1px solid #e9ecef;
+    border: none;
+    box-shadow: var(--shadow-md);
 }
 
+// Apply Button - consolidated animation
 .apply-now-animated {
     position: relative;
     overflow: hidden;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background: linear-gradient(90deg, #2563eb 0%, #6366f1 100%);
-    color: #fff !important;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    color: #fff;
     font-weight: 600;
     letter-spacing: 0.02em;
     border: none;
-    outline: none;
     cursor: pointer;
     transition:
-        box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.18s cubic-bezier(0.4, 0, 0.2, 1),
-        background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow var(--transition-base),
+        transform var(--transition-base),
+        background 0.45s;
     box-shadow:
         0 2px 8px rgba(59, 130, 246, 0.1),
-        0 8px 32px 0 rgba(99, 102, 241, 0.1);
-    z-index: 1;
+        0 8px 32px rgba(99, 102, 241, 0.1);
     isolation: isolate;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, #60a5fa, #818cf8);
+        opacity: 0;
+        transition: opacity 0.4s;
+        z-index: -1;
+    }
+
+    &:hover {
+        box-shadow:
+            0 8px 32px rgba(59, 130, 246, 0.18),
+            0 2px 8px rgba(99, 102, 241, 0.12);
+        transform: translateY(-2px) scale(1.045);
+        background: linear-gradient(90deg, #4338ca, var(--color-primary));
+
+        &::before {
+            opacity: 0.18;
+        }
+        .apply-arrow {
+            transform: translateX(10px) scale(1.18) rotate(12deg);
+        }
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }
+
+    span {
+        position: relative;
+        font-size: 1.08rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .apply-arrow {
+        margin-left: 0.5rem;
+        font-size: 1.25rem;
+        transition: transform 0.45s var(--transition-base);
+        will-change: transform;
+    }
 }
 
-.apply-now-animated::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, #60a5fa 0%, #818cf8 100%);
-    opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 0;
-}
-
-.apply-now-animated:hover::before {
-    opacity: 0.18;
-}
-
-.apply-now-animated:hover,
-.apply-now-animated:focus-visible {
-    box-shadow:
-        0 8px 32px 0 rgba(59, 130, 246, 0.18),
-        0 2px 8px rgba(99, 102, 241, 0.12);
-    transform: translateY(-2px) scale(1.045);
-    background: linear-gradient(90deg, #4338ca 0%, #2563eb 100%);
-}
-
-.apply-now-animated:active {
-    transform: scale(0.97);
-}
-
-.apply-now-animated span {
+// About Role Card - consolidated styles
+.about-role-card {
+    font-family: "Inter", "Roboto", Arial, sans-serif;
+    background: #fff;
+    border-radius: var(--border-radius-xl);
+    border: none;
+    padding: 2rem 1.5rem;
     position: relative;
-    z-index: 1;
-    font-size: 1.08rem;
-    transition: color 0.2s;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        width: 80%;
+        height: 80%;
+        background: #ffffff;
+        filter: blur(32px);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    &:hover {
+        box-shadow:
+            0 12px 48px rgba(99, 102, 241, 0.18),
+            0 2px 8px rgba(99, 102, 241, 0.12);
+    }
+
+    > * {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+// Typography - consolidated font settings
+.about-role-title,
+.about-role-section,
+h1,
+h2,
+h3 {
+    font-family: "Montserrat", "Inter", "Roboto", Arial, sans-serif;
+    font-weight: 600;
+    color: #232946;
+    letter-spacing: -0.5px;
+}
+
+.about-role-title {
+    font-size: 1.45rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-role-section {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.2px;
+}
+
+// Progress Bar - simplified animation
+.about-role-progress {
+    background: #f8f8fd;
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+
+    .font-semibold {
+        font-weight: 700;
+        color: var(--color-secondary);
+    }
+
+    .progress-bar-outer {
+        width: 100%;
+        height: 0.75rem;
+        background: var(--color-border);
+        border-radius: 999px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .progress-bar-inner {
+        height: 100%;
+        background: linear-gradient(90deg, var(--color-secondary), #60a5fa);
+        border-radius: 999px;
+        width: 0;
+        animation: progressGrow 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+}
+
+@keyframes progressGrow {
+    from {
+        width: 0;
+    }
+    to {
+        width: 50%;
+    }
+}
+
+// Role Details - consolidated
+.about-role-list {
+    margin-bottom: 0.5rem;
+}
+
+.about-role-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.35rem 0;
+    font-size: 1rem;
+    color: #232946;
+}
+
+.about-role-value {
+    font-weight: 700;
+    color: #232946;
+    font-size: 1rem;
+}
+
+.about-role-divider {
+    border: none;
+    border-top: 1.5px solid #f1f2f6;
+    margin: 1.5rem 0;
+}
+
+// Badges & Skills - consolidated
+.about-role-badge {
+    display: inline-block;
+    padding: 0.25rem 0.9rem;
+    border-radius: var(--border-radius-lg);
+    font-size: 0.98rem;
+    font-weight: 600;
+    background: #f6f6f6;
+    color: #232946;
+    border: none;
+    letter-spacing: 0.01em;
+
+    &-yellow {
+        background: #fff7e6;
+        color: #f59e42;
+    }
+    &-green {
+        background: #e6fff7;
+        color: #3bb77e;
+    }
+}
+
+.about-role-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+}
+
+.about-role-skill {
+    display: inline-block;
+    background: #f4f3ff;
+    color: #6d5dd3;
+    font-weight: 600;
+    font-size: 0.97rem;
+    padding: 0.32rem 1rem;
+    border-radius: 0.6rem;
+    transition:
+        background var(--transition-base),
+        color var(--transition-base);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 1px 2px rgba(109, 93, 211, 0.04);
+
+    &:hover {
+        background: #e0e7ff;
+        color: #4338ca;
+    }
+}
+
+// Company Info Section - consolidated
+.company-info-section {
+    position: relative;
+    min-height: 100vh;
     display: flex;
     align-items: center;
+    padding: 6rem 0;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, #60a5fa, #818cf8);
+        opacity: 0;
+        filter: blur(4px);
+        background-position: center;
+        box-shadow: inset 0 0 0 1000px rgba(2, 6, 23, 0.4);
+        z-index: 0;
+    }
 }
 
-.apply-now-animated .apply-arrow {
+.company-info-card {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: var(--border-radius-lg);
+    padding: 0 2.5rem;
+    box-shadow: 0 10px 40px rgba(15, 23, 42, 0.06);
+    border: none;
+    position: relative;
+    z-index: 1;
+}
+
+.company-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.company-info-left {
+    flex: 1 1 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding-right: 1rem;
+
+    .text-2xl {
+        font-size: 1.625rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+        letter-spacing: -0.2px;
+    }
+
+    p,
+    .text-gray-700 {
+        color: var(--color-text-secondary);
+        line-height: 1.7;
+        font-size: 0.98rem;
+        max-width: 60ch;
+    }
+}
+
+.company-info-logo {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.company-info-link {
+    color: #4f46e5;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
-    margin-left: 0.5rem;
-    font-size: 1.25rem;
+    gap: 0.5rem;
+    font-size: 0.98rem;
     transition:
-        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-        color 0.2s;
-    will-change: transform;
+        color 0.45s,
+        transform 0.45s;
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--color-secondary), #60a5fa);
+        border-radius: 2px;
+        opacity: 0;
+        transform: scaleX(0.6);
+        transition:
+            opacity 0.45s,
+            transform 0.45s;
+    }
+
+    &:hover {
+        color: #3730a3;
+        transform: translateX(4px);
+
+        &::after {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+        mat-icon {
+            transform: translateX(6px) scale(1.15) rotate(8deg);
+            color: var(--color-secondary);
+        }
+    }
+
+    mat-icon {
+        transition:
+            transform 0.45s,
+            color 0.45s;
+    }
 }
 
-.apply-now-animated:hover .apply-arrow {
-    transform: translateX(10px) scale(1.18) rotate(12deg);
-    color: #fff;
+.company-single-image-wrapper {
+    flex: 0 0 360px;
+    max-width: 360px;
+    border-radius: 12px;
+    overflow: hidden;
+    align-self: center;
+    box-shadow: 0 18px 40px rgba(2, 6, 23, 0.08);
+    border: none;
+    background: #f8fafc;
+
+    img {
+        width: 100%;
+        height: 100%;
+        min-height: 220px;
+        object-fit: cover;
+        transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        display: block;
+
+        &:hover {
+            transform: scale(1.03);
+        }
+    }
+}
+
+// Line Clamp Utility
+.line-clamp-2,
+.company-description.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    position: relative;
+}
+
+// Responsive Styles - consolidated breakpoints
+@media (min-width: 768px) {
+    .company-info-content {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .company-info-card {
+        padding: 1.5rem;
+    }
+    .company-info-content {
+        gap: 1.25rem;
+    }
+    .company-single-image-wrapper {
+        flex: 0 0 auto;
+        max-width: 100%;
+        width: 100%;
+        height: 220px;
+    }
+    .company-info-left {
+        padding-right: 0;
+    }
+    .line-clamp-2::after,
+    .company-description.line-clamp-2::after {
+        height: 1.6rem;
+    }
 }

@@ -1,0 +1,376 @@
+.resume-modal {
+    width: 560px;
+    max-width: 95vw;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: "Inter", "Roboto", sans-serif;
+    animation: resumeModalPopIn 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+    box-shadow:
+        0 12px 48px 0 rgba(37, 99, 235, 0.1),
+        0 2px 8px rgba(99, 102, 241, 0.08);
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Modern pop-in with bounce and blur
+@keyframes resumeModalPopIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.85) translateY(60px);
+        filter: blur(6px);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.04) translateY(-8px);
+        filter: blur(0);
+    }
+    80% {
+        transform: scale(0.98) translateY(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+    background: #fafafa;
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex: 1;
+    }
+
+    .company-logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        flex-shrink: 0;
+        transition:
+            box-shadow 0.22s,
+            transform 0.22s;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        mat-icon {
+            color: #fff;
+            font-size: 28px;
+            width: 28px;
+            height: 28px;
+        }
+    }
+
+    .job-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .job-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #111827;
+        margin: 0 0 4px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .company-details {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin: 0;
+    }
+
+    .close-button {
+        color: #9ca3af;
+        flex-shrink: 0;
+
+        &:hover {
+            background: #f3f4f6;
+            color: #374151;
+        }
+    }
+}
+
+.modal-body {
+    padding: 24px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.form-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 8px 0;
+}
+
+.form-subtitle {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0 0 24px 0;
+}
+
+.application-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    ::ng-deep .mat-mdc-form-field {
+        .mat-mdc-text-field-wrapper {
+            background: #fff;
+        }
+
+        .mat-mdc-form-field-icon-prefix {
+            color: #9ca3af;
+            margin-right: 8px;
+        }
+
+        // Fix: Remove vertical divider between prefix icon and label
+        .mat-mdc-form-field-flex {
+            border: none !important;
+        }
+
+        .mat-mdc-form-field-icon-prefix + .mat-mdc-floating-label {
+            border-left: none !important;
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+        }
+    }
+}
+
+.upload-section {
+    margin-top: 8px;
+
+    .upload-label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #374151;
+        margin-bottom: 8px;
+    }
+
+    .upload-button {
+        width: 100%;
+        height: 48px;
+        border: 2px dashed #d1d5db;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: #fafafa;
+        color: #6b7280;
+        font-weight: 500;
+        transition: all 0.2s;
+        will-change: box-shadow, transform;
+        animation: fadeInUploadBtn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+            border-color: #667eea;
+            background: #f5f3ff;
+            color: #667eea;
+        }
+
+        mat-icon {
+            font-size: 24px;
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    @keyframes fadeInUploadBtn {
+        from {
+            opacity: 0;
+            transform: translateY(12px) scale(0.98);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .selected-file {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background: #f9fafb;
+        animation: fadeInFile 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .file-icon {
+            color: #10b981;
+            font-size: 32px;
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+        }
+
+        .file-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .file-name {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #111827;
+            margin: 0 0 2px 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .file-size {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .remove-button {
+            color: #ef4444;
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.18s;
+
+            &:hover {
+                background: #fee2e2;
+            }
+        }
+    }
+
+    @keyframes fadeInFile {
+        from {
+            opacity: 0;
+            transform: translateY(12px) scale(0.98);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .upload-hint {
+        font-size: 0.75rem;
+        color: #9ca3af;
+        margin: 8px 0 0 0;
+        text-align: center;
+    }
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+
+    .cancel-button {
+        flex: 1;
+        height: 44px;
+        border-color: #d1d5db;
+        color: #6b7280;
+        font-weight: 500;
+
+        &:hover {
+            background: #f9fafb;
+        }
+    }
+
+    .submit-button {
+        flex: 2;
+        height: 44px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        // Gradient xanh blue-indigo thanh lịch, hiện đại
+        background: linear-gradient(90deg, #2563eb 0%, #6366f1 100%);
+        color: #fff;
+        border: none;
+        box-shadow: 0 2px 8px 0 rgba(59, 130, 246, 0.08);
+        transition:
+            box-shadow 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+            transform 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+            background 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+            color 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: box-shadow, transform, background;
+        animation: fadeInSubmitBtn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+        ::ng-deep .mat-mdc-progress-spinner circle {
+            stroke: #fff;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            background: linear-gradient(90deg, #e0e7ff 0%, #c7d2fe 100%);
+            color: #bdbdbd;
+        }
+
+        &:hover:not(:disabled) {
+            box-shadow: 0 8px 24px 0 rgba(59, 130, 246, 0.13);
+            transform: translateY(-2px) scale(1.04);
+            background: linear-gradient(90deg, #1e40af 0%, #4f46e5 100%);
+            color: #fff;
+        }
+    }
+
+    @keyframes fadeInSubmitBtn {
+        from {
+            opacity: 0;
+            transform: translateY(16px) scale(0.98);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+}
+
+// Scrollbar styling
+.modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

@@ -37,14 +37,12 @@ export class JobService {
         return this.http.delete<BaseResponse<null>>(`${this.apiUrl}/${id}`);
     }
 
-    searchJobs(filters: any): Observable<BaseResponse<JobResponseDto[]>> {
+    searchJobs(keyword: string): Observable<BaseResponse<JobResponseDto[]>> {
         let params = new HttpParams();
-        Object.keys(filters).forEach(key => {
-            if (filters[key]) {
-                params = params.set(key, filters[key]);
-            }
-        });
-        return this.http.get<BaseResponse<JobResponseDto[]>>(`${this.apiUrl}/search`, { params });
+        if (keyword) {
+            params = params.set('filter', `name~'${keyword}'`);
+        }
+        return this.http.get<BaseResponse<JobResponseDto[]>>(`${this.apiUrl}`, { params });
     }
 
     getJobsByCompany(companyId: number): Observable<BaseResponse<JobResponseDto[]>> {

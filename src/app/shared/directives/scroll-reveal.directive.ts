@@ -6,7 +6,7 @@ import { Directive, ElementRef, OnInit, OnDestroy, Renderer2, Input } from '@ang
 })
 export class ScrollRevealDirective implements OnInit, OnDestroy {
     @Input() revealDelay: number = 0;
-    @Input() revealDuration: number = 800;
+    @Input() revealDuration: number = 1800; // default slower transition
     @Input() revealFrom: 'bottom' | 'top' | 'left' | 'right' = 'bottom';
 
     private observer?: IntersectionObserver;
@@ -23,15 +23,22 @@ export class ScrollRevealDirective implements OnInit, OnDestroy {
             return;
         }
 
+        // Remove any previous reveal classes/styles to avoid conflicts
+        this.renderer.removeClass(element, 'scroll-reveal-init');
+        this.renderer.removeClass(element, 'scroll-reveal-show');
+        this.renderer.removeAttribute(element, 'data-reveal-from');
+        this.renderer.removeStyle(element, '--scroll-reveal-delay');
+        this.renderer.removeStyle(element, '--scroll-reveal-duration');
+
         // Add initial class
-        this.renderer.addClass(this.el.nativeElement, 'scroll-reveal-init');
+        this.renderer.addClass(element, 'scroll-reveal-init');
 
         // Set direction as a data attribute for CSS
-        this.renderer.setAttribute(this.el.nativeElement, 'data-reveal-from', this.revealFrom);
+        this.renderer.setAttribute(element, 'data-reveal-from', this.revealFrom);
 
-        // Set custom properties for delay and duration
-        this.renderer.setStyle(this.el.nativeElement, '--scroll-reveal-delay', `${this.revealDelay}ms`);
-        this.renderer.setStyle(this.el.nativeElement, '--scroll-reveal-duration', `${this.revealDuration}ms`);
+        // Set custom properties for delay and duration (always overwrite)
+        this.renderer.setStyle(element, '--scroll-reveal-delay', `${this.revealDelay}ms`);
+        this.renderer.setStyle(element, '--scroll-reveal-duration', `${this.revealDuration}ms`);
 
         // Create intersection observer
         this.observer = new IntersectionObserver(
