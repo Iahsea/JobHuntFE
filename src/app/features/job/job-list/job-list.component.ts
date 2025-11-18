@@ -7,12 +7,13 @@ import { JobService } from '../../../core/services/job.service';
 import { Job } from '../../../models/job.model';
 import { SearchBoxComponent } from '../../../shared/components/search-box/search-box.component';
 import { PaginatorComponent } from '../../../shared/components/paginator/paginator.component';
+import { CardSkeletonComponent } from '../../../shared/components/card-skeleton/card-skeleton.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-job-list',
     standalone: true,
-    imports: [CommonModule, RouterModule, FormsModule, SearchBoxComponent, TranslateModule, PaginatorComponent],
+    imports: [CommonModule, RouterModule, FormsModule, SearchBoxComponent, TranslateModule, PaginatorComponent, CardSkeletonComponent],
     templateUrl: './job-list.component.html',
     styleUrls: ['./job-list.component.css']
 })

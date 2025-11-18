@@ -8,8 +8,16 @@ export interface Company {
     email: string;
     industry: string;
     size?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    website?: string;
+    companySize?: string;
+    coverImage?: string;
+    foundedDate?: string;
+    employeeCount?: number;
+    benefits?: string;
+    createdAt?: string | Date;
+    updatedAt?: string | Date;
+    createdBy?: string;
+    updatedBy?: string;
 }
 
 export interface CompanyCreate {
