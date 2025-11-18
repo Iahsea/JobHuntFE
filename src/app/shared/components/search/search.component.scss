@@ -1,5 +1,10 @@
 .search-container {
     width: 100%;
+    overflow: visible !important;
+
+    @media (min-width: 768px) {
+        overflow: visible !important;
+    }
 }
 
 .search-box {
@@ -109,8 +114,8 @@
     min-width: 0;
     background: rgba(255, 255, 255, 0.55);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-    z-index: 1000;
-    max-height: 340px;
+    z-index: 3000;
+    max-height: 225px;
     overflow-y: auto !important;
     overflow-x: hidden;
     border-radius: 8px;
@@ -120,6 +125,9 @@
 }
 
 .suggestion-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     padding: 12px 18px;
     cursor: pointer;
     font-size: 16px;
@@ -127,6 +135,9 @@
     background: transparent;
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
     transition: background 0.15s;
+    text-align: left;
+    font-weight: 400;
+    border-radius: 0;
 
     &:hover {
         background: rgba(59, 130, 246, 0.08);
@@ -135,10 +146,6 @@
     &:last-child {
         border-bottom: none;
     }
-
-    text-align: left;
-    font-weight: 400;
-    border-radius: 0;
 }
 
 .suggestion-text {
@@ -149,6 +156,18 @@
     font-size: 16px;
     font-weight: 400;
     color: #222;
+    margin-right: 0;
+}
+
+.suggestion-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #f3f4f6;
+    flex-shrink: 0;
+    margin-right: 12px;
+    display: inline-block;
 }
 
 // Compact variant
@@ -166,4 +185,19 @@
     .suggestion-wrapper {
         margin-top: 1rem;
     }
+}
+
+.search-container,
+.search-box,
+.search-input-group {
+    overflow: visible !important;
+}
+
+html,
+body,
+#root,
+.main-layout,
+.app-root {
+    overflow: visible !important;
+    height: auto !important;
 }

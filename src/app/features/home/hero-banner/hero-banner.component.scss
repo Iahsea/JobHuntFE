@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     height: 650px; // Giảm chiều cao của hero banner
-    overflow: hidden;
+    // overflow: hidden; // XÓA hoặc comment dòng này
     display: flex;
     align-items: center;
     justify-content: center;
@@ -390,4 +390,10 @@
     .separator {
         display: none;
     }
+}
+
+.hero-content,
+.container,
+.content-wrapper {
+    overflow: visible !important;
 }

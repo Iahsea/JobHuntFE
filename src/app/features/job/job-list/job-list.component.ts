@@ -91,6 +91,7 @@ export class JobListComponent implements OnInit {
         this.isLoading = true;
         this.jobService.getAllJobs(this.currentPage, this.pageSize).subscribe({
             next: (response) => {
+                console.log('Loaded jobs response:', response);
                 this.totalJobs = response.data.meta.total;
                 this.mockJobs = response.data.result.map(job => ({
                     id: job.id,

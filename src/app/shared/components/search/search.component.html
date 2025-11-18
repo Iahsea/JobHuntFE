@@ -15,6 +15,9 @@
                 <div class="suggestion-item"
                      *ngFor="let suggestion of suggestions"
                      (click)="searchKeyword = suggestion.name; onSearch()">
+                    <img class="suggestion-img"
+                         src="assets/images/default_job.png"
+                         alt="default" />
                     <span class="suggestion-text">{{ suggestion.name }}</span>
                 </div>
             </div>

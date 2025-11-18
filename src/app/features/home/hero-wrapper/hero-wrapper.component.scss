@@ -1,8 +1,9 @@
 .hero-wrapper {
     position: relative;
     width: 100%;
-    min-height: 100vh;
-    overflow: hidden;
+    min-height: 120vh; // tăng chiều cao hero-wrapper, ví dụ 120vh hoặc giá trị bạn muốn
+    /* overflow: hidden; */
+    overflow: visible !important;
 }
 
 .video-background {
@@ -98,4 +99,10 @@
             }
         }
     }
+}
+
+.hero-wrapper,
+.hero-section,
+.header-section {
+    overflow: visible !important;
 }

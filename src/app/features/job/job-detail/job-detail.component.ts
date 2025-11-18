@@ -1,7 +1,6 @@
 import { Component, OnInit, signal, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { JobService } from '../../../core/services/job.service';
 import { Job } from '../../../models/job.model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +12,7 @@ import { ResumeCreateDto, ResumeStatus } from '../../../models/dto/resume.dto';
 import { environment } from '../../../../environments/environment';
 import { FileService } from '../../../core/services/file.service';
 import { FileUploadFolder } from '../../../models/enums/common.enums';
+import { JobService } from '../../../core/services/job.service';
 
 @Component({
     selector: 'app-job-detail',
@@ -53,6 +53,10 @@ export class JobDetailComponent implements OnInit {
         this.isLoading.set(true);
         this.jobService.getJobById(id).subscribe({
             next: (response) => {
+                const jobData = response.data;
+                if (jobData.company) {
+                    jobData.company.logo = jobData.company.logo ? `${environment.imagesUrl}${jobData.company.logo}` : undefined;
+                }
                 this.job.set(jobData);
                 console.log('Loaded response:', response);
                 console.log('Loaded job:', this.job());

@@ -27,7 +27,6 @@ import { Job } from '../../../models/job.model';
         RouterModule,
         TranslateModule,
         ScrollRevealDirective,
-        SearchBoxComponent
         SearchComponent
     ],
     templateUrl: './hero-banner.component.html',
