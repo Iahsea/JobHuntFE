@@ -20,8 +20,9 @@
                                 [buttonText]="'HERO.SEARCH_BUTTON' | translate"
                                 [showSuggestions]="true"
                                 [suggestionLabel]="'HERO.SUGGESTION' | translate"
-                                [suggestions]="['Designer', 'Programming', 'Digital Marketing', 'Video', 'Animation']"
-                                (search)="onSearch($event)"></app-search>
+                                [suggestions]="(suggestions$ | async) ?? []"
+                                (search)="onSearch($event)"
+                                (keywordChange)="handleKeywordChange($event)"></app-search>
                 </div>
             </div>
         </div>

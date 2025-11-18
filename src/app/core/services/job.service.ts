@@ -14,11 +14,14 @@ export class JobService {
 
     constructor(private http: HttpClient) { }
 
-    getAllJobs(page: number = 1, pageSize: number = 10): Observable<BaseResponse<JobPaginationData>> {
-        const params = new HttpParams()
+    getAllJobs(page: number = 1, size: number = 10, keyword: string = ''): Observable<BaseResponse<{ result: JobResponseDto[] }>> {
+        let params = new HttpParams()
             .set('page', page.toString())
-            .set('pageSize', pageSize.toString());
-        return this.http.get<BaseResponse<JobPaginationData>>(this.apiUrl, { params });
+            .set('size', size.toString());
+        if (keyword) {
+            params = params.set('filter', `name~'${keyword}'`);
+        }
+        return this.http.get<BaseResponse<{ result: JobResponseDto[] }>>(this.apiUrl, { params });
     }
 
     getJobById(id: number): Observable<BaseResponse<JobDetailResponseDto>> {
