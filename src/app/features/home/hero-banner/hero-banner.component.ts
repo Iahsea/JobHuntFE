@@ -26,6 +26,7 @@ import { JobService } from '../../../core/services/job.service';
         RouterModule,
         TranslateModule,
         ScrollRevealDirective,
+        SearchBoxComponent
         SearchComponent
     ],
     templateUrl: './hero-banner.component.html',

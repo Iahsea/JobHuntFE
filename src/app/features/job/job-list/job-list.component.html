@@ -1,0 +1,224 @@
+<div class="job-list-container">
+    <!-- Header Section with Breadcrumb -->
+    <section class="header-section">
+        <!-- <div class="container">
+            <app-breadcrumb [items]="[
+                { label: 'Home', link: '/' },
+                { label: 'Find Jobs' }
+            ]"></app-breadcrumb>
+        </div> -->
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-header">
+                <h1 class="search-title">
+                    Find your
+                    <span class="dream-job-wrapper">
+                        <span class="dream-job">dream job</span>
+                        <svg class="dream-job-underline" viewBox="0 0 260 40">
+                            <path class="dream-job-underline-path" d="M5 25 C 60 45, 160 5, 255 20" />
+                        </svg>
+                    </span>
+                </h1>
+                <p class="search-subtitle">
+                    Find your next career at companies like HubSpot, Nike, and Dropbox
+                </p>
+            </div>
+
+            <app-search-box [searchPlaceholder]="searchPlaceholder" [locationPlaceholder]="locationPlaceholder"
+                [buttonText]="searchButtonText" [showSuggestions]="false" (search)="onSearch($event)">
+            </app-search-box>
+        </div>
+    </section>
+
+    <!-- Job List Content Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Left Sidebar - Filters -->
+                <aside class="filter-sidebar">
+                    <!-- Type of Employment -->
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <h3>Type of Employment</h3>
+                            <button class="toggle-btn">−</button>
+                        </div>
+                        <div class="filter-options">
+                            <label class="filter-option" *ngFor="let type of employmentTypes">
+                                <input type="checkbox" (change)="onFilterChange('employment', type.value)">
+                                <span class="option-label">{{ type.label }}</span>
+                                <span class="option-count">({{ type.count }})</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <h3>Categories</h3>
+                            <button class="toggle-btn">−</button>
+                        </div>
+                        <div class="filter-options">
+                            <label class="filter-option" *ngFor="let category of categories">
+                                <input type="checkbox" (change)="onFilterChange('category', category.value)">
+                                <span class="option-label">{{ category.label }}</span>
+                                <span class="option-count">({{ category.count }})</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Job Level -->
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <h3>Job Level</h3>
+                            <button class="toggle-btn">−</button>
+                        </div>
+                        <div class="filter-options">
+                            <label class="filter-option" *ngFor="let level of jobLevels">
+                                <input type="checkbox" (change)="onFilterChange('level', level.value)">
+                                <span class="option-label">{{ level.label }}</span>
+                                <span class="option-count">({{ level.count }})</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Salary Range -->
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <h3>Salary Range</h3>
+                            <button class="toggle-btn">−</button>
+                        </div>
+                        <div class="filter-options">
+                            <label class="filter-option" *ngFor="let salary of salaryRanges">
+                                <input type="checkbox" (change)="onFilterChange('salary', salary.value)">
+                                <span class="option-label">{{ salary.label }}</span>
+                                <span class="option-count">({{ salary.count }})</span>
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Right Content - Job List -->
+                <main class="job-list-content">
+                    <div class="job-list-header">
+                        <div class="header-left">
+                            <h2>All Jobs</h2>
+                            <p class="job-count">Showing <strong>{{ totalJobs }}</strong> results</p>
+                        </div>
+                        <div class="header-right">
+                            <div class="sort-dropdown">
+                                <label>Sort by:</label>
+                                <select [(ngModel)]="sortBy" (change)="onSortChange()">
+                                    <option value="relevant">Most relevant</option>
+                                    <option value="newest">Newest</option>
+                                    <option value="salary-high">Salary: High to Low</option>
+                                    <option value="salary-low">Salary: Low to High</option>
+                                </select>
+                            </div>
+                            <div class="view-toggle">
+                                <button class="view-btn" [class.active]="viewMode === 'grid'"
+                                    (click)="setViewMode('grid')" title="Grid view">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <rect x="2" y="2" width="7" height="7" rx="1" stroke="currentColor"
+                                            stroke-width="1.5" />
+                                        <rect x="11" y="2" width="7" height="7" rx="1" stroke="currentColor"
+                                            stroke-width="1.5" />
+                                        <rect x="2" y="11" width="7" height="7" rx="1" stroke="currentColor"
+                                            stroke-width="1.5" />
+                                        <rect x="11" y="11" width="7" height="7" rx="1" stroke="currentColor"
+                                            stroke-width="1.5" />
+                                    </svg>
+                                </button>
+                                <button class="view-btn" [class.active]="viewMode === 'list'"
+                                    (click)="setViewMode('list')" title="List view">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <rect x="2" y="3" width="16" height="3" rx="1" fill="currentColor" />
+                                        <rect x="2" y="8.5" width="16" height="3" rx="1" fill="currentColor" />
+                                        <rect x="2" y="14" width="16" height="3" rx="1" fill="currentColor" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job items -->
+                    <div class="job-items" [class.grid-view]="viewMode === 'grid'"
+                        [class.list-view]="viewMode === 'list'">
+
+                        <!-- Skeleton Loader -->
+                        <app-card-skeleton *ngIf="isLoading" [viewMode]="viewMode" [count]="4" [showDescription]="true"
+                            [showFooter]="true">
+                        </app-card-skeleton>
+
+                        <!-- Actual Job Cards -->
+                        <div class="job-card" *ngFor="let job of mockJobs" [class.list-card]="viewMode === 'list'"
+                            [class.grid-card]="viewMode === 'grid'" [hidden]="isLoading">
+                            <div class="job-card-header">
+                                <div class="company-logo">
+                                    <img [src]="job.companyLogo" [alt]="job.companyName">
+                                </div>
+                                <div class="job-info">
+                                    <h3 class="job-title">{{ job.title }}</h3>
+                                    <div class="company-location">
+                                        <span class="company-name">{{ job.companyName }}</span>
+                                        <span class="separator">•</span>
+                                        <span class="location">{{ job.location }}</span>
+                                    </div>
+                                    <div class="job-tags">
+                                        <span class="tag tag-employment">{{ job.employmentType }}</span>
+                                        <span class="tag-divider"></span>
+                                        <span class="tag tag-category" *ngFor="let category of job.categories">{{
+                                            category
+                                            }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="job-description" *ngIf="viewMode === 'grid'">{{ job.description }}</p>
+
+                            <!-- Grid View Layout -->
+                            <div *ngIf="viewMode === 'grid'" class="job-footer-grid">
+                                <div class="job-meta-grid">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill"
+                                            [style.width.%]="(job.applications / job.capacity) * 100"></div>
+                                    </div>
+                                    <div class="meta-text">
+                                        <span class="applications">{{ job.applications }} applied</span>
+                                        <span class="capacity">of {{ job.capacity }} capacity</span>
+                                    </div>
+                                </div>
+                                <button class="btn-apply" (click)="navigateToJobDetail(job.id)">Apply</button>
+                            </div>
+
+                            <!-- List View Layout -->
+                            <div *ngIf="viewMode === 'list'">
+                                <div class="job-footer">
+                                    <button class="btn-apply" (click)="navigateToJobDetail(job.id)">Apply</button>
+                                </div>
+                                <div class="job-meta">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill"
+                                            [style.width.%]="(job.applications / job.capacity) * 100"></div>
+                                    </div>
+                                    <div class="meta-text">
+                                        <span class="applications">{{ job.applications }} applied</span>
+                                        <span class="capacity">of {{ job.capacity }} capacity</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paginator -->
+                    <app-paginator [length]="totalJobs" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+                        [pageIndex]="currentPage - 1" [showFirstLastButtons]="true" (page)="onPageChange($event)">
+                    </app-paginator>
+                </main>
+            </div>
+        </div>
+    </section>
+
+</div>
