@@ -39,7 +39,6 @@ export class SidebarComponent {
     @Output() isExpandedChange = new EventEmitter<boolean>();
 
     toggleSidebar(): void {
-        this.isExpanded = !this.isExpanded;
-        this.isExpandedChange.emit(this.isExpanded);
+        this.isExpandedChange.emit(!this.isExpanded);
     }
 }

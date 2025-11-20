@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent, MenuSection } from '../../../shared/components/sidebar/sidebar.component';
@@ -42,7 +42,12 @@ export class AdminLayoutComponent {
 
     isSidebarExpanded = true;
 
+    constructor(private cdr: ChangeDetectorRef) { }
+
     onSidebarToggle(expanded: boolean) {
         this.isSidebarExpanded = expanded;
+        console.log('Sidebar toggled:', expanded);
+        console.log('Right content should have collapsed class:', !expanded);
+        this.cdr.detectChanges();
     }
 }
