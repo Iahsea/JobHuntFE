@@ -4,7 +4,7 @@ export interface AuthResponse {
     user: {
         id: number;
         email: string;
-        fullName: string;
+        name: string;
         role: string;
     };
 }

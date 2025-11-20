@@ -92,5 +92,32 @@
         "benefit_2": "Learn about benefits, people and company culture through honest reviews",
         "benefit_3": "Apply easily with one action",
         "benefit_4": "Manage your profile and privacy"
+    },
+    "REGISTER": {
+        "welcome_to": "Welcome to",
+        "brand": "JobHunt",
+        "title": "Sign up",
+        "google_agreement": "By signing up with Google, I agree to JobHunt's",
+        "terms": "Terms & Conditions",
+        "and": "and",
+        "privacy": "Privacy Policy",
+        "privacy_info": "in relation to your privacy information.",
+        "google_button": "Sign up with Google",
+        "or": "OR",
+        "name_label": "Your Name",
+        "name_placeholder": "Enter your Name",
+        "name_invalid": "Name must be at least 3 characters",
+        "email_label": "Email",
+        "email_placeholder": "Enter your email",
+        "email_invalid": "Please enter a valid email",
+        "password_label": "Password",
+        "password_placeholder": "••••••••••••••••••••",
+        "password_req_length": "At least 12 characters",
+        "password_req_symbol": "At least 1 symbol (! @ # $ ...)",
+        "password_req_number": "At least 1 number",
+        "password_req_uppercase": "At least 1 UPPERCASE letter",
+        "password_req_lowercase": "At least 1 lowercase letter",
+        "terms_agreement": "I have read and agree to ITviec's",
+        "submit_button": "Sign up with Email"
     }
 }

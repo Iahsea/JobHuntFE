@@ -1,7 +1,7 @@
 export interface User {
     id: number;
     email: string;
-    fullName: string;
+    name: string;
     phone?: string;
     avatar?: string;
     role: 'user' | 'admin' | 'company';
@@ -12,7 +12,7 @@ export interface User {
 export interface UserRegistration {
     email: string;
     password: string;
-    fullName: string;
+    name: string;
     phone?: string;
     role?: string;
 }

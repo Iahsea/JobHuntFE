@@ -92,5 +92,32 @@
         "benefit_2": "Tìm hiểu về phúc lợi, con người, văn hóa công ty qua các đánh giá chân thật",
         "benefit_3": "Dễ dàng ứng tuyển chỉ với một thao tác",
         "benefit_4": "Quản lý hồ sơ và quyền riêng tư của bạn"
+    },
+    "REGISTER": {
+        "welcome_to": "Chào mừng bạn đến với",
+        "brand": "JobHunt",
+        "title": "Đăng ký",
+        "google_agreement": "Bằng việc đăng ký với Google, tôi đồng ý với",
+        "terms": "Điều khoản dịch vụ",
+        "and": "và",
+        "privacy": "Chính sách quyền riêng tư",
+        "privacy_info": "của JobHunt liên quan đến thông tin riêng tư của bạn.",
+        "google_button": "Đăng ký bằng Google",
+        "or": "HOẶC",
+        "name_label": "Họ và tên",
+        "name_placeholder": "Nhập họ và tên",
+        "name_invalid": "Họ tên phải có ít nhất 3 ký tự",
+        "email_label": "Email",
+        "email_placeholder": "Nhập email của bạn",
+        "email_invalid": "Vui lòng nhập email hợp lệ",
+        "password_label": "Mật khẩu",
+        "password_placeholder": "••••••••••••••••••••",
+        "password_req_length": "Ít nhất 12 ký tự",
+        "password_req_symbol": "Ít nhất 1 ký tự đặc biệt (! @ # $ ...)",
+        "password_req_number": "Ít nhất 1 chữ số",
+        "password_req_uppercase": "Ít nhất 1 chữ IN HOA",
+        "password_req_lowercase": "Ít nhất 1 chữ thường",
+        "terms_agreement": "Tôi đã đọc và đồng ý với",
+        "submit_button": "Đăng ký bằng Email"
     }
 }

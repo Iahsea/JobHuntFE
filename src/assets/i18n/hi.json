@@ -92,5 +92,32 @@
         "benefit_2": "ईमानदार समीक्षाओं के माध्यम से लाभ, लोग और कंपनी संस्कृति के बारे में जानें",
         "benefit_3": "एक क्रिया के साथ आसानी से आवेदन करें",
         "benefit_4": "अपनी प्रोफ़ाइल और गोपनीयता को प्रबंधित करें"
+    },
+    "REGISTER": {
+        "welcome_to": "स्वागत है",
+        "brand": "JobHunt",
+        "title": "साइन अप करें",
+        "google_agreement": "Google से साइन अप करके, मैं JobHunt की सहमति देता हूं",
+        "terms": "नियम और शर्तें",
+        "and": "और",
+        "privacy": "गोपनीयता नीति",
+        "privacy_info": "आपकी गोपनीयता जानकारी के संबंध में।",
+        "google_button": "Google से साइन अप करें",
+        "or": "या",
+        "name_label": "आपका नाम",
+        "name_placeholder": "अपना नाम दर्ज करें",
+        "name_invalid": "नाम कम से कम 3 वर्ण का होना चाहिए",
+        "email_label": "ईमेल",
+        "email_placeholder": "अपना ईमेल दर्ज करें",
+        "email_invalid": "कृपया एक वैध ईमेल दर्ज करें",
+        "password_label": "पासवर्ड",
+        "password_placeholder": "••••••••••••••••••••",
+        "password_req_length": "कम से कम 12 वर्ण",
+        "password_req_symbol": "कम से कम 1 प्रतीक (! @ # $ ...)",
+        "password_req_number": "कम से कम 1 संख्या",
+        "password_req_uppercase": "कम से कम 1 बड़ा अक्षर",
+        "password_req_lowercase": "कम से कम 1 छोटा अक्षर",
+        "terms_agreement": "मैंने iTviec की नियम और शर्तों को पढ़ लिया है और सहमत हूं",
+        "submit_button": "ईमेल से साइन अप करें"
     }
 }

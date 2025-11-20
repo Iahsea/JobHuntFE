@@ -37,7 +37,7 @@ export interface ResumeResponseDto {
 }
 
 export interface ResumeSubmitFormData {
-    fullName: string;
+    name: string;
     email: string;
     phone: string;
     currentJobTitle: string;
