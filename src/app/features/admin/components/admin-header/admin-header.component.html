@@ -1,0 +1,53 @@
+<header class="admin-header">
+    <div class="header-container">
+        <!-- Left Section: Company Info -->
+        <div class="company-section">
+            <div class="company-logo">
+                <img src="assets/images/default_company.png" alt="Company Logo" />
+            </div>
+            <div class="company-info">
+                <span class="company-label">Company</span>
+                <div class="company-name-wrapper">
+                    <h1 class="company-name">Nomad</h1>
+                    <button class="dropdown-toggle" (click)="toggleDropdown()">
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dropdown Menu -->
+            @if (isDropdownOpen) {
+            <div class="company-dropdown">
+                <a href="#" class="dropdown-item">
+                    <i class="bi bi-building"></i>
+                    Company Profile
+                </a>
+                <a href="#" class="dropdown-item">
+                    <i class="bi bi-gear"></i>
+                    Settings
+                </a>
+                <hr class="dropdown-divider" />
+                <a href="#" class="dropdown-item" (click)="logout()">
+                    <i class="bi bi-box-arrow-right"></i>
+                    Logout
+                </a>
+            </div>
+            }
+        </div>
+
+        <!-- Right Section: Actions -->
+        <div class="actions-section">
+            <!-- Notification Icon -->
+            <button class="icon-button notification-btn">
+                <i class="bi bi-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
+
+            <!-- Post a Job Button -->
+            <button class="post-job-btn" (click)="navigateToPostJob()">
+                <i class="bi bi-plus-lg"></i>
+                Post a job
+            </button>
+        </div>
+    </div>
+</header>
