@@ -1,97 +1,379 @@
 <div class="admin-dashboard">
-    <div class="row">
-        <div class="col-md-12 mb-4">
-            <h2><i class="bi bi-speedometer2"></i> Tổng quan hệ thống</h2>
+    <!-- Greeting Header -->
+    <div class="greeting-header">
+        <div class="greeting-content">
+            <h1 class="greeting-title">Good morning, Maria</h1>
+            <p class="greeting-subtitle">Here is your job listings statistic report from {{ displayDateRange }}.</p>
+        </div>
+        <div class="date-picker-wrapper">
+            <!-- Hidden input with date range picker -->
+            <mat-form-field appearance="outline" class="hidden-date-field">
+                <mat-label>Select Date Range</mat-label>
+                <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker">
+                    <input matStartDate formControlName="start" placeholder="Start date">
+                    <input matEndDate formControlName="end" placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+
+            <!-- Custom button to trigger date picker -->
+            <button class="date-picker-btn" (click)="picker.open()">
+                <span>{{ displayDateRange }}</span>
+                <i class="bi bi-calendar3"></i>
+            </button>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-3 mb-4">
-            <div class="card stat-card bg-primary text-white">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-uppercase mb-1">Tổng việc làm</h6>
-                            <h2 class="mb-0">{{ stats.totalJobs }}</h2>
-                        </div>
-                        <div class="stat-icon">
-                            <i class="bi bi-briefcase-fill"></i>
-                        </div>
-                    </div>
+    <!-- Quick Stats Cards -->
+    <div class="quick-stats-row">
+        <div class="stat-box stat-purple">
+            <div class="stat-content">
+                <div class="stat-number">76</div>
+                <div class="stat-label">New candidates to review</div>
+            </div>
+            <button class="stat-arrow-btn">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+
+        <div class="stat-box stat-green">
+            <div class="stat-content">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Schedule for today</div>
+            </div>
+            <button class="stat-arrow-btn">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+
+        <div class="stat-box stat-blue">
+            <div class="stat-content">
+                <div class="stat-number">24</div>
+                <div class="stat-label">Messages received</div>
+            </div>
+            <button class="stat-arrow-btn">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Job Statistics Section -->
+    <div class="job-statistics-section">
+        <div class="statistics-header">
+            <div class="header-left">
+                <h2 class="section-title">Job statistics</h2>
+                <p class="section-subtitle">Showing Jobstatistic Jul 19-25</p>
+            </div>
+            <div class="header-right">
+                <div class="time-filter-buttons">
+                    <button class="filter-btn" [class.active]="activeTimeFilter === 'week'" (click)="setTimeFilter('week')">Week</button>
+                    <button class="filter-btn" [class.active]="activeTimeFilter === 'month'" (click)="setTimeFilter('month')">Month</button>
+                    <button class="filter-btn" [class.active]="activeTimeFilter === 'year'" (click)="setTimeFilter('year')">Year</button>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-3 mb-4">
-            <div class="card stat-card bg-success text-white">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-uppercase mb-1">Công ty</h6>
-                            <h2 class="mb-0">{{ stats.totalCompanies }}</h2>
+            <div class="statistics-tabs">
+                <button class="tab-btn" [class.active]="activeTab === 'overview'" (click)="setActiveTab('overview')">Overview</button>
+                <button class="tab-btn" [class.active]="activeTab === 'jobs-view'" (click)="setActiveTab('jobs-view')">Jobs View</button>
+                <button class="tab-btn" [class.active]="activeTab === 'jobs-applied'" (click)="setActiveTab('jobs-applied')">Jobs Applied</button>
+            </div>
+
+            <!-- Overview Tab Content -->
+            <div class="statistics-content" *ngIf="activeTab === 'overview'">
+                <!-- Left Side Chart -->
+                <div class="left-chart-section">
+                    <div class="chart-container">
+                        <canvas #jobStatsChart></canvas>
+                    </div>
+
+                    <div class="bottom-stats-cards">
+                        <div class="stat-card-item">
+                            <div class="card-header-row">
+                                <span class="card-title">Job Views</span>
+                                <div class="card-icon card-icon-orange">
+                                    <i class="bi bi-eye"></i>
+                                </div>
+                            </div>
+                            <h3 class="card-number">2,342</h3>
+                            <p class="card-trend trend-up">This Week <span>6.4%</span> <i class="bi bi-arrow-up"></i></p>
                         </div>
-                        <div class="stat-icon">
-                            <i class="bi bi-building"></i>
+
+                        <div class="stat-card-item">
+                            <div class="card-header-row">
+                                <span class="card-title">Job Applied</span>
+                                <div class="card-icon card-icon-purple">
+                                    <i class="bi bi-file-earmark-text"></i>
+                                </div>
+                            </div>
+                            <h3 class="card-number">654</h3>
+                            <p class="card-trend trend-down">This Week <span>0.5%</span> <i class="bi bi-arrow-down"></i></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side Stats Cards -->
+                <div class="right-stats-cards">
+                    <!-- Job Open Card -->
+                    <div class="summary-card">
+                        <h3 class="summary-card-title">Job Open</h3>
+                        <div class="summary-card-content">
+                            <div class="summary-number">12</div>
+                            <div class="summary-label">Jobs Opened</div>
+                        </div>
+                    </div>
+
+                    <!-- Applicants Summary Card -->
+                    <div class="summary-card">
+                        <h3 class="summary-card-title">Applicants Summary</h3>
+                        <div class="summary-card-content">
+                            <div class="summary-number">67</div>
+                            <div class="summary-label">Applicants</div>
+                        </div>
+                        
+                        <!-- Progress Bar -->
+                        <div class="applicants-progress-bar">
+                            <div class="progress-segment" style="width: 32.14%; background: #8b5cf6;"></div>
+                            <div class="progress-segment" style="width: 17.14%; background: #56cdad;"></div>
+                            <div class="progress-segment" style="width: 15.71%; background: #26a4ff;"></div>
+                            <div class="progress-segment" style="width: 22.86%; background: #f59e0b;"></div>
+                            <div class="progress-segment" style="width: 21.43%; background: #ef4444;"></div>
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="applicants-legend">
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #8b5cf6;"></span>
+                                <span class="legend-label">Full Time : <strong>45</strong></span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #f59e0b;"></span>
+                                <span class="legend-label">Internship : <strong>32</strong></span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #56cdad;"></span>
+                                <span class="legend-label">Part-Time : <strong>24</strong></span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #ef4444;"></span>
+                                <span class="legend-label">Contract : <strong>30</strong></span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #26a4ff;"></span>
+                                <span class="legend-label">Remote : <strong>22</strong></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-3 mb-4">
-            <div class="card stat-card bg-warning text-white">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-uppercase mb-1">Người dùng</h6>
-                            <h2 class="mb-0">{{ stats.totalUsers }}</h2>
-                        </div>
-                        <div class="stat-icon">
-                            <i class="bi bi-people-fill"></i>
-                        </div>
-                    </div>
+            <!-- Jobs View Tab Content -->
+            <div class="table-content" *ngIf="activeTab === 'jobs-view'">
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Company</th>
+                                <th>Views</th>
+                                <th>Date Posted</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let job of jobsViewData">
+                                <td>
+                                    <div class="job-title-cell">
+                                        <i class="bi bi-briefcase-fill"></i>
+                                        <span>{{ job.title }}</span>
+                                    </div>
+                                </td>
+                                <td>{{ job.company }}</td>
+                                <td>
+                                    <span class="view-count">
+                                        <i class="bi bi-eye"></i> {{ job.views }}
+                                    </span>
+                                </td>
+                                <td>{{ job.datePosted }}</td>
+                                <td>
+                                    <span class="status-badge" [class.status-active]="job.status === 'Active'" 
+                                          [class.status-closed]="job.status === 'Closed'">
+                                        {{ job.status }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-view" title="View Details">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="action-btn btn-edit" title="Edit">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+
+            <!-- Jobs Applied Tab Content -->
+            <div class="table-content" *ngIf="activeTab === 'jobs-applied'">
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Candidate Name</th>
+                                <th>Job Title</th>
+                                <th>Applied Date</th>
+                                <th>Resume</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let application of jobsAppliedData">
+                                <td>
+                                    <div class="candidate-cell">
+                                        <div class="candidate-avatar">{{ application.candidateInitials }}</div>
+                                        <span>{{ application.candidateName }}</span>
+                                    </div>
+                                </td>
+                                <td>{{ application.jobTitle }}</td>
+                                <td>{{ application.appliedDate }}</td>
+                                <td>
+                                    <a href="#" class="resume-link" (click)="$event.preventDefault()">
+                                        <i class="bi bi-file-earmark-pdf"></i> View Resume
+                                    </a>
+                                </td>
+                                <td>
+                                    <span class="status-badge" 
+                                          [class.status-pending]="application.status === 'Pending'"
+                                          [class.status-reviewed]="application.status === 'Reviewed'"
+                                          [class.status-shortlisted]="application.status === 'Shortlisted'"
+                                          [class.status-rejected]="application.status === 'Rejected'">
+                                        {{ application.status }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-view" title="View Application">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="action-btn btn-accept" title="Accept">
+                                            <i class="bi bi-check-circle"></i>
+                                        </button>
+                                        <button class="action-btn btn-reject" title="Reject">
+                                            <i class="bi bi-x-circle"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+
+    <!-- Job Updates Section -->
+    <div class="job-updates-section">
+        <div class="job-updates-header">
+            <h2 class="job-updates-title">Job Updates</h2>
+            <a href="#" class="view-all-link">View All <i class="bi bi-arrow-right"></i></a>
         </div>
 
-        <div class="col-md-3 mb-4">
-            <div class="card stat-card bg-info text-white">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-uppercase mb-1">Đang tuyển</h6>
-                            <h2 class="mb-0">{{ stats.activeJobs }}</h2>
-                        </div>
-                        <div class="stat-icon">
-                            <i class="bi bi-check-circle-fill"></i>
-                        </div>
+        <div class="job-updates-grid">
+            <!-- Job Card 1 -->
+            <div class="job-update-card">
+                <div class="job-card-header">
+                    <div class="company-logo company-logo-green">
+                        <i class="bi bi-people-fill"></i>
                     </div>
+                    <span class="job-type-badge job-type-fulltime">Full-Time</span>
+                </div>
+                <h3 class="job-title">Social Media Assistant</h3>
+                <p class="job-location"><i class="bi bi-geo-alt"></i> Nomad • Paris, France</p>
+                <div class="job-tags">
+                    <span class="job-tag job-tag-orange">Marketing</span>
+                    <span class="job-tag job-tag-purple">Design</span>
+                </div>
+                <div class="job-progress">
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-bar-fill" style="width: 50%;"></div>
+                    </div>
+                    <p class="progress-text"><strong>5 applied</strong> of 10 capacity</p>
+                </div>
+            </div>
+
+            <!-- Job Card 2 -->
+            <div class="job-update-card">
+                <div class="job-card-header">
+                    <div class="company-logo company-logo-blue">
+                        <i class="bi bi-dropbox"></i>
+                    </div>
+                    <span class="job-type-badge job-type-fulltime">Full-Time</span>
+                </div>
+                <h3 class="job-title">Brand Designer</h3>
+                <p class="job-location"><i class="bi bi-geo-alt"></i> Nomad • Paris, France</p>
+                <div class="job-tags">
+                    <span class="job-tag job-tag-teal">Business</span>
+                    <span class="job-tag job-tag-purple">Design</span>
+                </div>
+                <div class="job-progress">
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-bar-fill" style="width: 50%;"></div>
+                    </div>
+                    <p class="progress-text"><strong>5 applied</strong> of 10 capacity</p>
+                </div>
+            </div>
+
+            <!-- Job Card 3 -->
+            <div class="job-update-card">
+                <div class="job-card-header">
+                    <div class="company-logo company-logo-cyan">
+                        <i class="bi bi-box"></i>
+                    </div>
+                    <span class="job-type-badge job-type-fulltime">Full-Time</span>
+                </div>
+                <h3 class="job-title">Interactive Developer</h3>
+                <p class="job-location"><i class="bi bi-geo-alt"></i> Terraform • Berlin, Germany</p>
+                <div class="job-tags">
+                    <span class="job-tag job-tag-orange">Marketing</span>
+                    <span class="job-tag job-tag-purple">Design</span>
+                </div>
+                <div class="job-progress">
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-bar-fill" style="width: 50%;"></div>
+                    </div>
+                    <p class="progress-text"><strong>5 applied</strong> of 10 capacity</p>
+                </div>
+            </div>
+
+            <!-- Job Card 4 -->
+            <div class="job-update-card">
+                <div class="job-card-header">
+                    <div class="company-logo company-logo-blue-circle">
+                        <i class="bi bi-circle-fill"></i>
+                    </div>
+                    <span class="job-type-badge job-type-fulltime">Full-Time</span>
+                </div>
+                <h3 class="job-title">Product Designer</h3>
+                <p class="job-location"><i class="bi bi-geo-alt"></i> ClassPass • Berlin, Germany</p>
+                <div class="job-tags">
+                    <span class="job-tag job-tag-teal">Business</span>
+                    <span class="job-tag job-tag-purple">Design</span>
+                </div>
+                <div class="job-progress">
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-bar-fill" style="width: 50%;"></div>
+                    </div>
+                    <p class="progress-text"><strong>5 applied</strong> of 10 capacity</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6 mb-4">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0"><i class="bi bi-bar-chart"></i> Thống kê nhanh</h5>
-                </div>
-                <div class="card-body">
-                    <p>Biểu đồ thống kê sẽ được hiển thị tại đây</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 mb-4">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0"><i class="bi bi-activity"></i> Hoạt động gần đây</h5>
-                </div>
-                <div class="card-body">
-                    <p>Danh sách hoạt động sẽ được hiển thị tại đây</p>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 </div>

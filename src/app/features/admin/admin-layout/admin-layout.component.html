@@ -1,12 +1,19 @@
 <div class="admin-layout">
+    <!-- Sidebar bên trái -->
     <app-sidebar [menuSections]="menuSections"
                  [userInfo]="userInfo"
                  logoText="JobHuntly"
                  [(isExpanded)]="isSidebarExpanded">
     </app-sidebar>
 
-    <main class="admin-content"
-          [class.collapsed]="!isSidebarExpanded">
-        <router-outlet></router-outlet>
-    </main>
+    <!-- Content bên phải (Header + Main) -->
+    <div class="right-content" [class.collapsed]="!isSidebarExpanded">
+        <!-- Admin Header -->
+        <app-admin-header></app-admin-header>
+        
+        <!-- Main Content -->
+        <main class="admin-content">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
 </div>
