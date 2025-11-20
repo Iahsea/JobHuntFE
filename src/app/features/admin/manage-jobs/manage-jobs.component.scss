@@ -1,0 +1,23 @@
+.jobs-container {
+    padding: 24px;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #25324b;
+            margin: 0;
+        }
+    }
+
+    table {
+        width: 100%;
+        background: #fff;
+        border-radius: 8px;
+    }
+}

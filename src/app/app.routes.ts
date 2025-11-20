@@ -77,25 +77,55 @@ export const routes: Routes = [
         path: 'admin',
         loadComponent: () =>
             import('./features/admin/admin-layout/admin-layout.component').then((m) => m.AdminLayoutComponent),
-        canActivate: [adminGuard],
+        // canActivate: [adminGuard],
         children: [
             {
                 path: '',
+                redirectTo: 'dashboard',
+                pathMatch: 'full'
+            },
+            {
+                path: 'dashboard',
+                loadComponent: () =>
+                    import('./features/admin/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+            },
+            {
+                path: 'messages',
+                loadComponent: () =>
+                    import('./features/admin/messages/messages.component').then((m) => m.MessagesComponent),
+            },
+            {
+                path: 'applications',
                 loadComponent: () =>
                     import('./features/admin/dashboard/dashboard.component').then((m) => m.DashboardComponent),
             },
             {
                 path: 'jobs',
                 loadComponent: () =>
-                    import('./features/admin/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+                    import('./features/admin/manage-jobs/manage-jobs.component').then((m) => m.ManageJobsComponent),
             },
             {
                 path: 'companies',
                 loadComponent: () =>
-                    import('./features/admin/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+                    import('./features/admin/manage-companies/manage-companies.component').then((m) => m.ManageCompaniesComponent),
             },
             {
                 path: 'users',
+                loadComponent: () =>
+                    import('./features/admin/manage-users/manage-users.component').then((m) => m.ManageUsersComponent),
+            },
+            {
+                path: 'profile',
+                loadComponent: () =>
+                    import('./features/admin/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+            },
+            {
+                path: 'settings',
+                loadComponent: () =>
+                    import('./features/admin/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+            },
+            {
+                path: 'help',
                 loadComponent: () =>
                     import('./features/admin/dashboard/dashboard.component').then((m) => m.DashboardComponent),
             },

@@ -1,0 +1,111 @@
+<aside class="sidebar"
+       [class.collapsed]="!isExpanded">
+    <!-- Toggle button -->
+    <button class="sidebar-toggle"
+            mat-icon-button
+            (click)="toggleSidebar()"
+            [attr.aria-label]="isExpanded ? 'Thu gọn' : 'Mở rộng'">
+        <mat-icon>{{ isExpanded ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+    </button>
+
+    <!-- Logo -->
+    <div class="sidebar-header">
+        <div class="logo">
+            <span class="logo-icon"
+                  aria-hidden="true">
+                <!-- Home/Logo icon bo tròn tím -->
+                <svg width="32"
+                     height="32"
+                     viewBox="0 0 32 32"
+                     fill="none">
+                    <circle cx="16"
+                            cy="16"
+                            r="16"
+                            fill="#f0f0ff" />
+                    <path d="M16 10L22 15V24H10V15L16 10Z"
+                          stroke="#4640de"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round" />
+                </svg>
+            </span>
+            @if(isExpanded) {
+            <span class="logo-text"> {{ logoText }}</span>
+            }
+
+        </div>
+    </div>
+
+    <!-- Menu Sections -->
+    <nav class="sidebar-nav">
+        @for (section of menuSections; track section.title) {
+        <div class="menu-section">
+            @if (section.title && isExpanded) {
+            <h3 class="section-title">{{ section.title }}</h3>
+            }
+            <ul class="menu-list">
+                @for (item of section.items; track item.label) {
+                <li class="menu-item">
+                    <a [routerLink]="item.route"
+                       routerLinkActive="active"
+                       [routerLinkActiveOptions]="{ exact: true }"
+                       class="menu-link"
+                       [ngClass]="'icon-' + item.icon">
+                        <span class="menu-icon"
+                              aria-hidden="true">
+                            @switch (item.icon) {
+                            @case ('dashboard') { <mat-icon color="primary">dashboard</mat-icon> }
+                            @case ('message') { <mat-icon color="accent">chat</mat-icon> }
+                            @case ('work') { <mat-icon color="warn">work</mat-icon> }
+                            @case ('search') { <mat-icon>search</mat-icon> }
+                            @case ('business') { <mat-icon>apartment</mat-icon> }
+                            @case ('person') { <mat-icon>person</mat-icon> }
+                            @case ('settings') { <mat-icon>settings</mat-icon> }
+                            @case ('help') { <mat-icon>help</mat-icon> }
+                            @default { <mat-icon>circle</mat-icon> }
+                            }
+                        </span>
+                        @if(isExpanded){
+                        <span class="menu-label"
+                              *ngIf="isExpanded">{{ item.label }}</span>
+                        }
+                    </a>
+                </li>
+                }
+            </ul>
+        </div>
+        }
+    </nav>
+
+    <!-- User Info -->
+    @if (userInfo) {
+    <div class="sidebar-footer">
+        <div class="user-info">
+            <div class="user-avatar">
+                @if (userInfo.avatar) {
+                <img [src]="userInfo.avatar"
+                     [alt]="userInfo.name">
+                }
+                @if (!userInfo.avatar) {
+                <span aria-hidden="true">
+                    <!-- ...existing code... -->
+                </span>
+                }
+            </div>
+            @if(isExpanded)
+            {
+            <div class="user-details">
+                <div class="user-name">{{ userInfo.name }}</div>
+                <div class="user-email">{{ userInfo.email }}</div>
+            </div>
+            } @else{
+            <div class="user-details-collapsed"
+                 [matTooltip]="userInfo.name + ' - ' + userInfo.email"
+                 matTooltipPosition="right">
+                <mat-icon>info</mat-icon>
+            </div>
+            }
+        </div>
+    </div>
+    }
+</aside>

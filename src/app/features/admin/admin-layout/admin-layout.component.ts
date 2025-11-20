@@ -1,19 +1,47 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SidebarComponent, MenuSection } from '../../../shared/components/sidebar/sidebar.component';
 
 @Component({
     selector: 'app-admin-layout',
     standalone: true,
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, SidebarComponent],
     templateUrl: './admin-layout.component.html',
-    styleUrls: ['./admin-layout.component.css']
+    styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent {
-    menuItems = [
-        { icon: 'speedometer2', label: 'Dashboard', route: '/admin' },
-        { icon: 'briefcase', label: 'Quản lý việc làm', route: '/admin/jobs' },
-        { icon: 'building', label: 'Quản lý công ty', route: '/admin/companies' },
-        { icon: 'people', label: 'Quản lý người dùng', route: '/admin/users' }
+    menuSections: MenuSection[] = [
+        {
+            items: [
+                { icon: 'dashboard', label: 'Dashboard', route: '/admin/dashboard' },
+                { icon: 'message', label: 'Messages', route: '/admin/messages' },
+                { icon: 'work', label: 'My Applications', route: '/admin/applications' },
+                { icon: 'search', label: 'Find Jobs', route: '/admin/manage-jobs' },
+                { icon: 'business', label: 'Browse Companies', route: '/admin/manage-companies' },
+                { icon: 'person', label: 'My Public Profile', route: '/admin/profile' },
+                { icon: 'users', label: 'Manage Users', route: '/admin/manage-users' },
+                { icon: 'resume', label: 'Manage Resumes', route: '/admin/manage-resumes' }
+            ]
+        },
+        {
+            title: 'Settings',
+            items: [
+                { icon: 'settings', label: 'Settings', route: '/admin/settings' },
+                { icon: 'help', label: 'Help Center', route: '/admin/help' }
+            ]
+        }
     ];
+
+    userInfo = {
+        name: 'Jake Gyll',
+        email: 'jake@uilib.com',
+        avatar: ''
+    };
+
+    isSidebarExpanded = true;
+
+    onSidebarToggle(expanded: boolean) {
+        this.isSidebarExpanded = expanded;
+    }
 }
