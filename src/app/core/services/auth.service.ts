@@ -9,7 +9,7 @@ import { AuthResponse } from '../../models/auth.model';
     providedIn: 'root'
 })
 export class AuthService {
-    private apiUrl = 'http://localhost:8080/api/auth'; // Thay đổi theo API của bạn
+    private apiUrl = 'http://localhost:8089/api/v1/auth'; // Thay đổi theo API của bạn
     private currentUserSubject = new BehaviorSubject<any>(null);
     public currentUser$ = this.currentUserSubject.asObservable();
 
@@ -25,16 +25,16 @@ export class AuthService {
         }
     }
 
-    register(userData: UserRegistration): Observable<AuthResponse> {
-        return this.http.post<AuthResponse>(`${this.apiUrl}/register`, userData);
+    register(userData: UserRegistration): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}/register`, userData);
     }
 
-    login(credentials: UserLogin): Observable<AuthResponse> {
-        return this.http.post<AuthResponse>(`${this.apiUrl}/login`, credentials).pipe(
+    login(credentials: UserLogin): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
             tap(response => {
-                localStorage.setItem('token', response.token);
-                localStorage.setItem('user', JSON.stringify(response.user));
-                this.currentUserSubject.next(response.user);
+                localStorage.setItem('token', response.data.access_token);
+                localStorage.setItem('user', JSON.stringify(response.data.user));
+                this.currentUserSubject.next(response.data.user);
             })
         );
     }

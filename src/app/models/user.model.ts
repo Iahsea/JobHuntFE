@@ -18,6 +18,6 @@ export interface UserRegistration {
 }
 
 export interface UserLogin {
-    email: string;
+    username: string;
     password: string;
 }

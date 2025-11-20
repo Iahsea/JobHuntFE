@@ -67,4 +67,30 @@
         "TECH_STACK_DESC": "Tìm hiểu về công nghệ và công cụ mà {{name}} sử dụng.",
         "NO_JOBS": "Hiện tại công ty chưa có vị trí tuyển dụng nào."
     }
+    ,
+    "LOGIN": {
+        "title": "Chào mừng bạn đến với",
+        "brand": "JobHunt",
+        "subtitle": "Bằng việc đăng nhập, bạn đồng ý với",
+        "terms": "Điều khoản dịch vụ",
+        "and": "và",
+        "privacy": "Chính sách quyền riêng tư",
+        "google_button": "Đăng nhập bằng Google",
+        "or": "hoặc",
+        "email_label": "Email",
+        "email_placeholder": "Email",
+        "email_invalid": "Vui lòng nhập email hợp lệ",
+        "password_label": "Mật khẩu",
+        "password_placeholder": "Mật khẩu",
+        "password_invalid": "Mật khẩu phải có ít nhất 6 ký tự",
+        "forgot_password": "Quên mật khẩu?",
+        "login_button": "Đăng nhập bằng Email",
+        "no_account": "Bạn chưa có tài khoản?",
+        "register_link": "Đăng ký ngay",
+        "benefits_heading": "Đăng nhập để truy cập ngay vào hàng ngàn đánh giá và dữ liệu lương thị trường IT",
+        "benefit_1": "Xem trước mức lương để có thể lợi thế khi thỏa thuận lương",
+        "benefit_2": "Tìm hiểu về phúc lợi, con người, văn hóa công ty qua các đánh giá chân thật",
+        "benefit_3": "Dễ dàng ứng tuyển chỉ với một thao tác",
+        "benefit_4": "Quản lý hồ sơ và quyền riêng tư của bạn"
+    }
 }

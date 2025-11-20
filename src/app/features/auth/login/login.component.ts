@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../core/services/auth.service';
+import { HeaderComponent } from "../../../shared/components/header/header.component";
 
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, RouterModule],
+    imports: [CommonModule, ReactiveFormsModule, RouterModule, HeaderComponent, TranslateModule],
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
@@ -15,6 +17,7 @@ export class LoginComponent {
     loginForm: FormGroup;
     errorMessage = '';
     isLoading = false;
+    showPassword = false;
 
     constructor(
         private fb: FormBuilder,
@@ -22,7 +25,7 @@ export class LoginComponent {
         private router: Router
     ) {
         this.loginForm = this.fb.group({
-            email: ['', [Validators.required, Validators.email]],
+            username: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
     }
@@ -43,5 +46,15 @@ export class LoginComponent {
                 }
             });
         }
+    }
+
+    togglePasswordVisibility(): void {
+        this.showPassword = !this.showPassword;
+    }
+
+    onGoogleLogin(): void {
+        // TODO: Implement Google OAuth login
+        console.log('Google login clicked');
+        this.errorMessage = 'Tính năng đăng nhập bằng Google sẽ sớm được cập nhật.';
     }
 }

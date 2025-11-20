@@ -67,4 +67,30 @@
         "TECH_STACK_DESC": "Learn about the technology and tools that {{name}} uses.",
         "NO_JOBS": "This company currently has no open positions."
     }
+    ,
+    "LOGIN": {
+        "title": "Welcome to",
+        "brand": "JobHunt",
+        "subtitle": "By signing in, you agree to our",
+        "terms": "Terms of Service",
+        "and": "and",
+        "privacy": "Privacy Policy",
+        "google_button": "Sign in with Google",
+        "or": "or",
+        "email_label": "Email",
+        "email_placeholder": "Email",
+        "email_invalid": "Please enter a valid email",
+        "password_label": "Password",
+        "password_placeholder": "Password",
+        "password_invalid": "Password must be at least 6 characters",
+        "forgot_password": "Forgot password?",
+        "login_button": "Sign in with Email",
+        "no_account": "Don't have an account?",
+        "register_link": "Register now",
+        "benefits_heading": "Sign in to access thousands of reviews and market salary data",
+        "benefit_1": "Preview salaries to gain an advantage during salary negotiation",
+        "benefit_2": "Learn about benefits, people and company culture through honest reviews",
+        "benefit_3": "Apply easily with one action",
+        "benefit_4": "Manage your profile and privacy"
+    }
 }

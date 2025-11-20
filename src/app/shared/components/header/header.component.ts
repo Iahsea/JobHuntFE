@@ -4,8 +4,11 @@ import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../../core/services/language.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { Subscription } from 'rxjs';
 // import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 @Component({
@@ -17,6 +20,7 @@ import { LanguageService } from '../../../core/services/language.service';
         MatIconModule,
         MatButtonModule,
         MatMenuModule,
+        MatDividerModule,
         TranslateModule,
     ],
     templateUrl: './header.component.html',
@@ -28,12 +32,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     isHeaderVisible = true;
     isHeaderScrolled = false;
     private lastScrollTop = 0;
+    currentUser: any = null;
+    private userSubscription?: Subscription;
 
-    constructor(public languageService: LanguageService) { }
+    constructor(
+        public languageService: LanguageService,
+        public authService: AuthService
+    ) { }
 
     ngOnInit(): void {
         this.languages = this.languageService.getLanguages();
         this.updateCurrentLanguage();
+        
+        // Subscribe to current user changes
+        this.userSubscription = this.authService.currentUser$.subscribe(user => {
+            this.currentUser = user;
+        });
     }
 
     changeLanguage(langCode: string): void {
@@ -60,7 +74,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.lastScrollTop = st <= 0 ? 0 : st;
     }
 
+    logout(): void {
+        this.authService.logout();
+    }
+
     ngOnDestroy(): void {
-        // Cleanup logic if needed
+        // Unsubscribe from user subscription
+        if (this.userSubscription) {
+            this.userSubscription.unsubscribe();
+        }
     }
 }

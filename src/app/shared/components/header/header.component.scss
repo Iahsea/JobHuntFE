@@ -30,7 +30,17 @@
         .logo-icon {
             color: #2563eb !important;
         }
+        .user-menu-btn {
+            color: #18181b !important;
+            mat-icon {
+                color: #18181b !important;
+            }
+            span {
+                color: #18181b !important;
+            }
+        }
     }
+
 
     .header-inner {
         display: flex;
@@ -145,5 +155,43 @@
                 color: #2563eb !important;
             }
         }
+
+        .user-menu-btn {
+            display: flex;
+            align-items: center;
+            font-family: "Poppins", "Montserrat", "Segoe UI", Arial, sans-serif;
+            font-weight: 500;
+            color: #ffffff !important;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            transition: 
+                background 0.18s,
+                color 0.18s;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            mat-icon {
+                transition: color 0.18s;
+            }
+
+            span {
+                transition: color 0.18s;
+            }
+        }
     }
+}
+
+// Global style for transparent menu
+::ng-deep .transparent-menu {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 8px !important;
 }

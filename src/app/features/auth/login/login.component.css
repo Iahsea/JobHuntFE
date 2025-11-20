@@ -1,12 +1,1 @@
-.login-container {
-    min-height: calc(100vh - 200px);
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 2rem 0;
-}
-
-.card {
-    border: none;
-    border-radius: 15px;
-}
+/* Login component styles - using Tailwind CSS */
