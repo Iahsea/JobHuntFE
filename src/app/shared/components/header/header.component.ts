@@ -47,8 +47,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         // Subscribe to current user changes
         this.userSubscription = this.authService.currentUser$.subscribe(user => {
             this.currentUser = user;
-        });
-    }
+      });
+  }
 
     changeLanguage(langCode: string): void {
         this.languageService.setLanguage(langCode);

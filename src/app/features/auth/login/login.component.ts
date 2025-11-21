@@ -65,8 +65,6 @@ export class LoginComponent {
     }
 
     onGoogleLogin(): void {
-        // TODO: Implement Google OAuth login
-        console.log('Google login clicked');
-        this.errorMessage = 'Tính năng đăng nhập bằng Google sẽ sớm được cập nhật.';
+        this.authService.loginWithGoogle();
     }
 }

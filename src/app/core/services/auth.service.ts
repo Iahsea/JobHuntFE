@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserLogin, UserRegistration } from '../../models/user.model';
 import { AuthResponse } from '../../models/auth.model';
+import { OAuthConfig } from "../configurations/configuration";
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +20,7 @@ export class AuthService {
 
     private loadUserFromStorage(): void {
         const token = localStorage.getItem('token');
-        const user = localStorage.getItem('user');
+        const user = localStorage.getItem('user') || localStorage.getItem('userGoogle');
         if (token && user) {
             this.currentUserSubject.next(JSON.parse(user));
         }
@@ -42,8 +43,27 @@ export class AuthService {
     logout(): void {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        localStorage.removeItem('userGoogle');
         this.currentUserSubject.next(null);
         this.router.navigate(['/auth/login']);
+    }
+
+    loginWithGoogle(){
+        const callbackUrl = OAuthConfig.redirectUri;
+        const authUrl = OAuthConfig.authUri;
+        const googleClientId = OAuthConfig.clientId;
+
+        const targetUrl = `${authUrl}?redirect_uri=${encodeURIComponent(
+        callbackUrl
+        )}&response_type=token&client_id=${googleClientId}&scope=openid%20email%20profile`;
+
+        console.log(targetUrl);
+
+        window.location.href = targetUrl;
+    };
+
+    changeCodeToToken(code: string): Observable<any> {
+        return this.http.post<any>(`http://localhost:8089/api/v1/outbound/authentication`, { code });
     }
 
     isAuthenticated(): boolean {
@@ -53,6 +73,11 @@ export class AuthService {
     getToken(): string | null {
         return localStorage.getItem('token');
     }
+
+    setCurrentUser(user: any) {
+        this.currentUserSubject.next(user);
+    }
+
 
     getCurrentUser(): any {
         return this.currentUserSubject.value;

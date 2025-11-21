@@ -72,6 +72,14 @@ export const routes: Routes = [
             },
         ],
     },
+    {
+        path: 'authenticate',
+        loadComponent: () =>
+            import('./features/auth/authenticate/authenticate.component').then((m) => m.AuthenticateComponent),
+        children: [
+
+        ],
+    },
     // AdminLayoutComponent
     {
         path: 'admin',
@@ -131,8 +139,8 @@ export const routes: Routes = [
             },
         ],
     },
-    {
-        path: '**',
-        redirectTo: '',
-    },
+    // {
+    //     path: '**',
+    //     redirectTo: '',
+    // },
 ];
